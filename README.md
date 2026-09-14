@@ -100,6 +100,28 @@ génériques pour être géocodés de façon fiable, et le point relevé sur Map
 Mériel porte le libellé « Association Tennis de Mériel ». Les coordonnées visent
 l'emplacement exact quoi qu'il arrive.
 
+## Tableaux des créneaux
+
+Deux pièges se cachent dans ce tableau.
+
+`.venue-block__body` est un élément de grille : son `min-width` vaut `auto` par
+défaut, ce qui l’empêche de descendre sous la largeur min-content de son contenu.
+Avec des cellules en `white-space: nowrap`, la piste de grille prend la largeur du
+tableau et déborde de l’écran — l’`overflow-x: auto` de `.slots` n’y change rien
+tant que le parent ne peut pas rétrécir. D’où le `min-width: 0` sur les deux
+éléments de grille.
+
+Sous 620 px, un tableau à quatre colonnes ne tient de toute façon pas sur un
+téléphone : chaque ligne devient une fiche (jour, horaires, public, pastille).
+Changer le `display` des éléments de tableau leur fait perdre leurs rôles
+implicites, donc le HTML porte des `role="table"`, `role="row"` et `role="cell"`
+explicites. Ne pas les retirer en ajoutant une salle.
+
+Au-dessus de 620 px, le tableau tient pile dans sa colonne. La marge est faible :
+une étiquette de niveau plus longue que « Débutant à intermédiaire » le fera
+défiler horizontalement dans son cadre. Ce n’est pas cassé — `.slots` reste un
+conteneur de défilement — mais c’est moins joli.
+
 ## RGPD
 
 Le site ne fait **aucune requête vers un tiers** au chargement d'une page. Vérifiable
