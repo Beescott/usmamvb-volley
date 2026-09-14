@@ -7,9 +7,6 @@
 <meta name="description" content="Les trois gymnases du club à Auvers-sur-Oise, Méry-sur-Oise et Mériel : adresses, cartes, et horaires détaillés avec le niveau de chaque créneau.">
 <meta property="og:title" content="Nos gymnases et créneaux">
 <meta property="og:description" content="Adresses, cartes et horaires des trois salles où s'entraîne l'USMAMVB.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -80,12 +77,16 @@
       <section class="venue-block">
         <div class="venue-block__media">
           <span class="venue-block__photo venue-block__photo--1" role="img" aria-label="Intérieur du gymnase Bozon"></span>
-          <div class="venue-block__map">
-            <iframe
-              title="Carte du gymnase Bozon, Auvers-sur-Oise"
-              src="https://www.google.com/maps?q=Gymnase%20Bozon%2C%20Rue%20des%20Ponceaux%2C%2095430%20Auvers-sur-Oise&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="venue-block__map"
+               data-map-src="https://www.google.com/maps?q=Gymnase%20Bozon%2C%20Rue%20des%20Ponceaux%2C%2095430%20Auvers-sur-Oise&output=embed"
+               data-map-title="Carte du gymnase Bozon, Auvers-sur-Oise">
+            <button type="button" class="map-consent">
+              <svg class="map-consent__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6 9 3z"/><path d="M9 3v15M15 6v15"/>
+              </svg>
+              <span class="map-consent__label">Afficher la carte</span>
+              <span class="map-consent__note">Carte fournie par Google Maps. L'afficher transmet votre adresse IP à Google et autorise le dépôt de cookies.</span>
+            </button>
           </div>
         </div>
 
@@ -143,14 +144,16 @@
       <section class="venue-block">
         <div class="venue-block__media">
           <span class="venue-block__photo venue-block__photo--2" role="img" aria-label="Intérieur du gymnase municipal de Méry-sur-Oise"></span>
-          <div class="venue-block__map">
-            <!-- Repéré par coordonnées : le nom « Gymnase Municipal » est trop
-                 générique pour être géocodé de façon fiable. -->
-            <iframe
-              title="Carte du gymnase municipal de Méry-sur-Oise"
-              src="https://www.google.com/maps?q=49.064846%2C2.1810109&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="venue-block__map"
+               data-map-src="https://www.google.com/maps?q=49.064846%2C2.1810109&output=embed"
+               data-map-title="Carte du gymnase municipal de Méry-sur-Oise">
+            <button type="button" class="map-consent">
+              <svg class="map-consent__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6 9 3z"/><path d="M9 3v15M15 6v15"/>
+              </svg>
+              <span class="map-consent__label">Afficher la carte</span>
+              <span class="map-consent__note">Carte fournie par Google Maps. L'afficher transmet votre adresse IP à Google et autorise le dépôt de cookies.</span>
+            </button>
           </div>
         </div>
 
@@ -214,12 +217,16 @@
       <section class="venue-block">
         <div class="venue-block__media">
           <span class="venue-block__photo venue-block__photo--3" role="img" aria-label="Intérieur du gymnase de Mériel"></span>
-          <div class="venue-block__map">
-            <iframe
-              title="Carte du gymnase de Mériel"
-              src="https://www.google.com/maps?q=49.0780964%2C2.2025409&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="venue-block__map"
+               data-map-src="https://www.google.com/maps?q=49.0780964%2C2.2025409&output=embed"
+               data-map-title="Carte du gymnase de Mériel">
+            <button type="button" class="map-consent">
+              <svg class="map-consent__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6 9 3z"/><path d="M9 3v15M15 6v15"/>
+              </svg>
+              <span class="map-consent__label">Afficher la carte</span>
+              <span class="map-consent__note">Carte fournie par Google Maps. L'afficher transmet votre adresse IP à Google et autorise le dépôt de cookies.</span>
+            </button>
           </div>
         </div>
 

@@ -4,6 +4,34 @@
    header, hero, sections, footer, responsive.
    ============================================================ */
 
+/* ---------- Police ----------
+   Auto-hebergee plutot que servie par Google Fonts : un appel a
+   fonts.gstatic.com transmettrait l'IP du visiteur a Google sans consentement.
+   Archivo est sous licence SIL OFL 1.1 (voir assets/fonts/OFL.txt).
+   Fichier variable unique : couvre toutes les graisses de 400 a 800. */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('../fonts/archivo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('../fonts/archivo-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* ---------- Tokens ---------- */
 :root {
   --cream:        #f6f0e7;
@@ -762,6 +790,39 @@ a:hover .arrow,
   border: 0;
 }
 
+/* Écran de consentement affiché à la place de la carte. Aucune requête n'est
+   envoyée à Google tant que le visiteur n'a pas cliqué. */
+.map-consent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 260px;
+  padding: 24px;
+  background: none;
+  border: 0;
+  font: inherit;
+  text-align: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background-color .2s var(--ease);
+}
+.map-consent:hover { background: rgba(16, 40, 74, .04); }
+
+.map-consent__icon { width: 30px; height: 30px; color: var(--orange); }
+
+.map-consent__label {
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.map-consent__note { max-width: 42ch; font-size: .75rem; line-height: 1.5; }
+
 .venue-block__name {
   margin-bottom: 14px;
   font-size: clamp(1.625rem, 3.2vw, 2.25rem);
@@ -918,7 +979,8 @@ a:hover .arrow,
   .price            { padding-inline: 20px; gap: 14px; }
   .price__amount    { font-size: 1.25rem; }
 
-  .venue-block__map iframe { height: 220px; }
+  .venue-block__map iframe,
+  .map-consent            { height: 220px; }
   .slots__table th,
   .slots__table td  { padding: 10px 14px; }
 }

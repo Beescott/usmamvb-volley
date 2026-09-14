@@ -55,3 +55,35 @@
     }
   });
 })();
+
+/* Cartes Google Maps chargées à la demande. L'iframe n'existe pas dans le HTML :
+   aucune requête ne part vers Google tant que le visiteur n'a pas cliqué. */
+(function () {
+  'use strict';
+
+  function loadMap(container) {
+    var frame = document.createElement('iframe');
+
+    frame.src = container.getAttribute('data-map-src');
+    frame.title = container.getAttribute('data-map-title');
+    frame.loading = 'lazy';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+
+    container.replaceChildren(frame);
+    frame.focus();
+  }
+
+  var containers = document.querySelectorAll('[data-map-src]');
+
+  Array.prototype.forEach.call(containers, function (container) {
+    var trigger = container.querySelector('.map-consent');
+
+    if (!trigger) {
+      return;
+    }
+
+    trigger.addEventListener('click', function () {
+      loadMap(container);
+    });
+  });
+})();

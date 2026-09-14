@@ -9,8 +9,9 @@ index.html            page d'accueil
 adhesion.html         comment rejoindre le club, tarifs, documents
 gymnases.html         les trois salles : cartes, accès, créneaux
 assets/css/style.css  feuille de style unique
-assets/js/main.js     menu mobile
+assets/js/main.js     menu mobile, chargement des cartes au clic
 assets/img/           logo et photos (voir plus bas)
+assets/fonts/         police Archivo auto-hebergee (voir RGPD)
 ```
 
 Header et footer sont recopiés à l'identique dans chaque page. On en est à trois :
@@ -99,20 +100,43 @@ génériques pour être géocodés de façon fiable, et le point relevé sur Map
 Mériel porte le libellé « Association Tennis de Mériel ». Les coordonnées visent
 l'emplacement exact quoi qu'il arrive.
 
-## Cartes Google Maps et RGPD
+## RGPD
 
-Les cartes sont des iframes `google.com/maps?...&output=embed`. Deux réserves :
+Le site ne fait **aucune requête vers un tiers** au chargement d'une page. Vérifiable
+dans l'onglet Réseau des outils de développement : tout vient du domaine du site.
+Il n'y a donc ni bandeau cookies ni consentement préalable à gérer.
 
-- **Vie privée.** L'iframe dépose des cookies Google dès le chargement de la page,
-  sans consentement. Pour un site d'association en France, c'est le point à
-  regarder avant mise en ligne. Deux sorties : un chargement au clic (une vignette
-  qui n'insère l'iframe qu'après action de l'utilisateur), ou OpenStreetMap qui ne
-  trace pas.
-- **URL non documentée.** `output=embed` fonctionne mais ne fait pas partie de
-  l'API publique. La voie officielle est la Maps Embed API, qui demande une clé.
+**Police.** Archivo est auto-hébergée dans `assets/fonts/`. La servir depuis Google
+Fonts enverrait l'IP de chaque visiteur à Google sans consentement — c'est le motif
+de la condamnation du tribunal de Munich en janvier 2022, et la position de la CNIL.
+Un seul fichier variable couvre les graisses 400 à 800, en deux sous-ensembles
+(latin, latin étendu) découpés par `unicode-range` : le navigateur ne télécharge que
+ce dont il a besoin, soit 35 Ko pour du texte français. Licence SIL OFL 1.1,
+recopiée dans `assets/fonts/OFL.txt` — sa présence est une obligation de la licence.
 
-Le lien « Itinéraire sur Google Maps », lui, utilise l'URL officielle et ne pose
-aucun problème : rien n'est chargé tant que personne ne clique.
+**Cartes.** Aucune `<iframe>` n'est écrite dans le HTML. Chaque emplacement porte
+l'URL en `data-map-src` et affiche un bouton ; l'iframe n'est créée par
+`assets/js/main.js` qu'au clic, après une phrase qui dit ce que le chargement
+implique. Rien n'est mémorisé : pas de stockage de consentement, donc rien à
+révoquer, et le choix est redemandé à chaque visite.
+
+Pour ajouter une salle, reprendre ce gabarit — pas d'`<iframe>` en dur :
+
+```html
+<div class="venue-block__map"
+     data-map-src="https://www.google.com/maps?q=LIEU&output=embed"
+     data-map-title="Carte du ...">
+  <button type="button" class="map-consent"> ... </button>
+</div>
+```
+
+Le lien « Itinéraire sur Google Maps » ne pose pas de problème : c'est un lien
+sortant, rien ne part tant que personne ne clique.
+
+**Reste à traiter le jour où le site collectera des données** : mentions légales et
+politique de confidentialité, obligatoires pour un site d'association. Aucun
+formulaire pour l'instant, l'adhésion passe par HelloAsso qui gère son propre
+consentement.
 
 ## Duplication du header
 
