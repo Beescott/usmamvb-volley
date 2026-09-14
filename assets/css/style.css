@@ -719,6 +719,134 @@ a:hover .arrow,
 .link--inline:hover { text-decoration: underline; }
 
 /* ============================================================
+   PAGE GYMNASES
+   ============================================================ */
+.venue-list { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
+
+.venue-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+}
+.venue-block + .venue-block { margin-top: clamp(48px, 6vw, 80px); }
+
+/* Une salle sur deux : média à droite, texte à gauche. */
+.venue-block:nth-child(even) .venue-block__media { order: 2; }
+
+.venue-block__photo {
+  display: block;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Repli visuel tant que les photos ne sont pas fournies */
+.venue-block__photo--1 { background-image: url('../img/gymnase-1.jpg'), linear-gradient(140deg, #1d4f8c, #0b1d38); }
+.venue-block__photo--2 { background-image: url('../img/gymnase-2.jpg'), linear-gradient(140deg, #1160b0, #12365f); }
+.venue-block__photo--3 { background-image: url('../img/gymnase-3.jpg'), linear-gradient(140deg, #0f3a6b, #071528); }
+
+.venue-block__map {
+  margin-top: 16px;
+  overflow: hidden;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.venue-block__map iframe {
+  display: block;
+  width: 100%;
+  height: 260px;
+  border: 0;
+}
+
+.venue-block__name {
+  margin-bottom: 14px;
+  font-size: clamp(1.625rem, 3.2vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.venue-block__address {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: var(--text-muted);
+}
+.venue-block__address svg {
+  flex: none;
+  width: 19px;
+  height: 19px;
+  margin-top: 3px;
+  color: var(--orange);
+}
+
+.venue-block__access { margin-top: 12px; font-size: .875rem; color: var(--text-muted); }
+.venue-block__route { margin-top: 16px; }
+
+/* Tableau des créneaux */
+.slots {
+  margin-top: 24px;
+  overflow-x: auto;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.slots__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+  text-align: left;
+}
+
+.slots__table th,
+.slots__table td { padding: 12px 16px; white-space: nowrap; }
+
+/* Seule colonne autorisée à passer à la ligne : elle porte les textes longs. */
+.slots__public { white-space: normal; min-width: 16ch; }
+
+.slots__table thead th {
+  background: var(--cream);
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.slots__table tbody tr { border-top: 1px solid var(--border); }
+.slots__table tbody th { font-weight: 700; }
+.slots__table td { color: var(--text-muted); }
+
+.badge {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(225, 81, 31, .12);
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: var(--orange-dark);
+}
+
+/* Libellé réservé aux lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1080px) {
@@ -765,6 +893,10 @@ a:hover .arrow,
   .steps__grid   { grid-template-columns: repeat(2, 1fr); }
   .pricing__grid { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
+
+  /* L'alternance média/texte n'a plus de sens en pile : média toujours en tête */
+  .venue-block   { grid-template-columns: 1fr; }
+  .venue-block:nth-child(even) .venue-block__media { order: 0; }
 }
 
 @media (max-width: 620px) {
@@ -785,6 +917,10 @@ a:hover .arrow,
   .steps__grid      { grid-template-columns: 1fr; }
   .price            { padding-inline: 20px; gap: 14px; }
   .price__amount    { font-size: 1.25rem; }
+
+  .venue-block__map iframe { height: 220px; }
+  .slots__table th,
+  .slots__table td  { padding: 10px 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
