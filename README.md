@@ -198,11 +198,18 @@ est du HTML statique ordinaire : il se modifie directement, le script n'a pas à
 
 Répartition actuelle : 5 féminines 4×4, 5 mixtes 4×4, 3 mixtes 6×6, 2 équimixtes.
 
-Le filtrage se fait en JavaScript sur l'attribut `data-categorie`. Sans JS, les
-15 équipes restent toutes visibles — les boutons ne font simplement rien.
-Attention à `.team-card[hidden] { display: none }` dans le CSS : sans cette
-règle, le `display: flex` de la carte l'emporte sur le comportement par défaut
-de `[hidden]` et le filtre ne masque rien.
+Les équipes sont regroupées en une `<section class="teams-group">` par format,
+chacune avec son intertitre et son compte. « Toutes » affiche les quatre
+sections ; un filtre n'en laisse qu'une. Le masquage porte donc sur les
+sections, pas sur les cartes une à une.
+
+Attention à `.teams-group[hidden]` et `.team-card[hidden]` dans le CSS : sans
+ces règles, le `display` posé par la feuille de style l'emporte sur le
+comportement par défaut de `[hidden]` et le filtre ne masque rien tout en
+paraissant fonctionner.
+
+Hiérarchie des titres : `h1` pour la page, `h2` par format, `h3` par équipe.
+Sans JavaScript, les quinze équipes restent visibles — les boutons ne font rien.
 
 **Données manquantes.** Chaque carte ne porte que ce qui est connu : le format,
 le numéro et une description de catégorie. Il manque, par équipe, l'encadrement,

@@ -88,29 +88,33 @@
   });
 })();
 
-/* Filtrage des équipes par format. Sans JavaScript la grille reste entière et
-   les boutons n'apparaissent pas : le contenu est accessible dans tous les cas. */
+/* Filtrage des équipes par format. Les sections sont masquées en bloc, pas les
+   cartes une a une : « Toutes » laisse donc apparaître les intertitres de
+   catégorie. Sans JavaScript tout reste visible, les boutons ne font rien. */
 (function () {
   'use strict';
 
   var filters = document.querySelectorAll('[data-filtre]');
-  var grid = document.getElementById('equipes');
+  var groups = document.querySelectorAll('.teams-group');
 
-  if (!filters.length || !grid) {
+  if (!filters.length || !groups.length) {
     return;
   }
 
-  var cards = grid.querySelectorAll('.team-card');
-  var counter = document.querySelector('.teams-list__compte');
+  var counter = document.getElementById('compte-equipes');
+
+  function teamsIn(group) {
+    return group.querySelectorAll('.team-card').length;
+  }
 
   function apply(category) {
     var shown = 0;
 
-    Array.prototype.forEach.call(cards, function (card) {
-      var match = category === 'toutes' || card.getAttribute('data-categorie') === category;
-      card.hidden = !match;
+    Array.prototype.forEach.call(groups, function (group) {
+      var match = category === 'toutes' || group.getAttribute('data-categorie') === category;
+      group.hidden = !match;
       if (match) {
-        shown++;
+        shown += teamsIn(group);
       }
     });
 

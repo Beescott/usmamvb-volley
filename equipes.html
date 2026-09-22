@@ -6,7 +6,7 @@
 <title>Nos équipes — USMAMVB</title>
 <meta name="description" content="Les 15 équipes de l'USMAMVB : féminines 4x4, mixtes 4x4, mixtes 6x6 et équimixtes. Filtrez pour trouver le groupe qui vous correspond.">
 <meta property="og:title" content="Nos équipes">
-<meta property="og:description" content="Féminines, mixtes et équimixtes : 15 équipes réparties sur quatre formats de jeu.">
+<meta property="og:description" content="Féminines, mixtes et équimixtes : 15 équipes réparties par format de jeu.">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -37,7 +37,7 @@
         <li><a class="nav__link" href="index.html">Accueil</a></li>
         <li><a class="nav__link" href="adhesion.html">Adhésion</a></li>
         <li><a class="nav__link" href="gymnases.html">Gymnases</a></li>
-        <li><a class="nav__link" href="equipes.html">Équipes</a></li>
+        <li><a class="nav__link is-active" href="equipes.html" aria-current="page">Équipes</a></li>
         <li><a class="nav__link" href="#">Tournois</a></li>
         <li><a class="nav__link" href="#">Règles</a></li>
         <li><a class="nav__link" href="#">Bureau</a></li>
@@ -75,150 +75,169 @@
   </section>
 
   <!-- ============================================================
-       LES ÉQUIPES
+       LES ÉQUIPES — une section par format
        Photos : assets/img/equipe-1.jpg … equipe-4.jpg servent de variantes.
        À remplacer par une photo par équipe quand elles seront prises.
        ============================================================ -->
-  <section class="teams-list">
-    <div class="wrap">
-      <p class="teams-list__compte" role="status" aria-live="polite">15 équipes</p>
+  <div class="teams-list">
+    <div class="wrap" id="equipes">
+      <p class="teams-list__compte" id="compte-equipes" role="status" aria-live="polite">15 équipes</p>
 
-      <ul class="teams-list__grid" id="equipes">
-        <li class="team-card" data-categorie="feminines-4x4">
-          <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 · Équipe 1"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Féminines 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 1</h2>
-            <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
-          </div>
-        </li>
+      <section class="teams-group" data-categorie="feminines-4x4" aria-labelledby="titre-feminines-4x4">
+        <div class="teams-group__entete">
+          <h2 class="teams-group__titre" id="titre-feminines-4x4">Féminines 4×4</h2>
+          <p class="teams-group__compte">5 équipes</p>
+        </div>
 
-        <li class="team-card" data-categorie="feminines-4x4">
-          <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 · Équipe 2"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Féminines 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 2</h2>
-            <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
-          </div>
-        </li>
+        <ul class="teams-list__grid">
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 1"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 1</h3>
+              <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="feminines-4x4">
-          <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 · Équipe 3"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Féminines 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 3</h2>
-            <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 2"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 2</h3>
+              <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="feminines-4x4">
-          <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 · Équipe 4"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Féminines 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 4</h2>
-            <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 3"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 3</h3>
+              <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="feminines-4x4">
-          <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 · Équipe 5"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Féminines 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 5</h2>
-            <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 4"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 4</h3>
+              <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="mixte-4x4">
-          <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 · Équipe 1"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 1</h2>
-            <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 5"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 5</h3>
+              <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-        <li class="team-card" data-categorie="mixte-4x4">
-          <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 · Équipe 2"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 2</h2>
-            <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
-          </div>
-        </li>
+      <section class="teams-group" data-categorie="mixte-4x4" aria-labelledby="titre-mixte-4x4">
+        <div class="teams-group__entete">
+          <h2 class="teams-group__titre" id="titre-mixte-4x4">Mixte 4×4</h2>
+          <p class="teams-group__compte">5 équipes</p>
+        </div>
 
-        <li class="team-card" data-categorie="mixte-4x4">
-          <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 · Équipe 3"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 3</h2>
-            <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
-          </div>
-        </li>
+        <ul class="teams-list__grid">
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 1"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 1</h3>
+              <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="mixte-4x4">
-          <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 · Équipe 4"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 4</h2>
-            <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 2"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 2</h3>
+              <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="mixte-4x4">
-          <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 · Équipe 5"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 4×4</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 5</h2>
-            <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 3"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 3</h3>
+              <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="mixte-6x6">
-          <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 · Équipe 1"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 6×6</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 1</h2>
-            <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 4"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 4</h3>
+              <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="mixte-6x6">
-          <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 · Équipe 2"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 6×6</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 2</h2>
-            <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
-          </div>
-        </li>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 5"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 5</h3>
+              <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-        <li class="team-card" data-categorie="mixte-6x6">
-          <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 · Équipe 3"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Mixte 6×6</p>
-            <h2 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 3</h2>
-            <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
-          </div>
-        </li>
+      <section class="teams-group" data-categorie="mixte-6x6" aria-labelledby="titre-mixte-6x6">
+        <div class="teams-group__entete">
+          <h2 class="teams-group__titre" id="titre-mixte-6x6">Mixte 6×6</h2>
+          <p class="teams-group__compte">3 équipes</p>
+        </div>
 
-        <li class="team-card" data-categorie="equimixte">
-          <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Équimixte · Équipe 1"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Équimixte</p>
-            <h2 class="team-card__name"><span class="sr-only">Équimixte — </span>Équipe 1</h2>
-            <p class="team-card__text">Parité stricte sur le terrain : autant de joueuses que de joueurs, en permanence.</p>
-          </div>
-        </li>
+        <ul class="teams-list__grid">
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 nº 1"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 1</h3>
+              <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
+            </div>
+          </li>
 
-        <li class="team-card" data-categorie="equimixte">
-          <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Équimixte · Équipe 2"></span>
-          <div class="team-card__body">
-            <p class="eyebrow eyebrow--gold">Équimixte</p>
-            <h2 class="team-card__name"><span class="sr-only">Équimixte — </span>Équipe 2</h2>
-            <p class="team-card__text">Parité stricte sur le terrain : autant de joueuses que de joueurs, en permanence.</p>
-          </div>
-        </li>
-      </ul>
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 nº 2"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 2</h3>
+              <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
+            </div>
+          </li>
+
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 nº 3"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 3</h3>
+              <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="teams-group" data-categorie="equimixte" aria-labelledby="titre-equimixte">
+        <div class="teams-group__entete">
+          <h2 class="teams-group__titre" id="titre-equimixte">Équimixte</h2>
+          <p class="teams-group__compte">2 équipes</p>
+        </div>
+
+        <ul class="teams-list__grid">
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Équimixte nº 1"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Équimixte — </span>Équipe 1</h3>
+              <p class="team-card__text">Parité stricte sur le terrain : autant de joueuses que de joueurs, en permanence.</p>
+            </div>
+          </li>
+
+          <li class="team-card">
+            <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Équimixte nº 2"></span>
+            <div class="team-card__body">
+              <h3 class="team-card__name"><span class="sr-only">Équimixte — </span>Équipe 2</h3>
+              <p class="team-card__text">Parité stricte sur le terrain : autant de joueuses que de joueurs, en permanence.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
       <aside class="card card--dark teams-list__cta">
         <p class="teams-list__cta-texte">
@@ -228,7 +247,7 @@
         <a class="btn btn--primary" href="adhesion.html">Réserver un essai</a>
       </aside>
     </div>
-  </section>
+  </div>
 
 </main>
 
