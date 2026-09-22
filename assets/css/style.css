@@ -802,6 +802,17 @@ a:hover .arrow,
   color: rgba(255, 255, 255, .55);
 }
 
+/* Adresse en clair sous le QR : doit rester lisible sur le fond noir de la
+   carte, d'ou l'or vif du logo (12,3:1) plutot que l'or encre. */
+.qr__url {
+  margin-bottom: 14px;
+  font-size: .75rem;
+  text-align: center;
+  word-break: break-word;
+}
+.qr__url a { color: var(--gold); }
+.qr__url a:hover { text-decoration: underline; }
+
 .qr__cta { width: 100%; }
 .btn__ext { flex: none; width: 15px; height: 15px; }
 
