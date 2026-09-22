@@ -352,7 +352,7 @@ a:hover .arrow,
   position: absolute;
   inset: -48px;
   background: url('../img/hero.jpg') center / cover no-repeat;
-  filter: blur(8px) brightness(.5) saturate(.85);
+  filter: blur(4px) brightness(.62) saturate(.9);
 }
 
 /* Voile degrade par-dessus : assombrit davantage le cote ou se pose le texte. */
@@ -360,7 +360,7 @@ a:hover .arrow,
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, rgba(0, 0, 0, .64) 0%, rgba(0, 0, 0, .42) 45%, rgba(0, 0, 0, .16) 100%);
+  background: linear-gradient(105deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .34) 45%, rgba(0, 0, 0, .10) 100%);
 }
 
 .hero__inner { position: relative; z-index: 1; max-width: 660px; }

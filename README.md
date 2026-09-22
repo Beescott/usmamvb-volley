@@ -87,9 +87,14 @@ liseré clair que laisse un flou échantillonnant au-delà du cadre. Un second v
 dégradé, `.hero::after`, assombrit davantage le côté où se pose le texte.
 
 Réglage vérifié en reproduisant numériquement flou, luminosité et voile sur la
-zone exacte du texte : le pixel le plus clair sous le texte donne **11,2:1** pour
-du blanc, soit 2,5× le seuil. En remontant `brightness` on gagne en lisibilité de
-la photo et on perd sur ce chiffre — il ne doit pas descendre sous 4,5.
+zone exacte du texte : le pixel le plus clair sous le texte donne **7,6:1** pour
+du blanc, soit 1,7× le seuil de 4,5.
+
+Trois curseurs jouent ensemble — `blur`, `brightness` du filtre, et l'opacité du
+voile. Les remonter rend la photo plus présente et fait baisser ce chiffre. Il ne
+doit pas passer sous 4,5, et mieux vaut garder de la marge : la mesure suppose un
+texte posé exactement sur `.hero__inner`, un bloc plus large irait chercher des
+zones plus claires à droite.
 | `equipe-1.jpg` … `equipe-4.jpg` | cartes équipes | 4:3, ≥ 800×600 |
 | `gymnase-1.jpg` | gymnase Bozon, Auvers | 3:2, ≥ 1200×800 |
 | `gymnase-2.jpg` | gymnase Municipal, Méry | 3:2, ≥ 1200×800 |
