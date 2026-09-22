@@ -1019,17 +1019,19 @@ a:hover .arrow,
   box-shadow: var(--shadow-sm);
 }
 
-.aide__icon { width: 52px; height: 52px; margin-bottom: 18px; color: var(--gold-ink); }
-.aide__icon svg { display: block; width: 100%; height: 100%; }
-
-.aide__amount {
-  font-size: 2.5rem;
-  font-weight: 800;
-  line-height: 1;
+/* Visuels officiels des dispositifs : affiches de campagne, jamais recadrees.
+   Leurs formats different (16:9 et 2,12:1), donc les deux bandeaux n'ont pas
+   tout a fait la meme hauteur — rogner une affiche officielle serait pire. */
+.aide__visuel {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
 }
 
 .aide__title {
-  margin: 4px 0 12px;
+  margin: 0 0 12px;
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: .04em;

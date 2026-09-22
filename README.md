@@ -107,11 +107,26 @@ sources officielles avant chaque rentrée :
 | Pass'Sport | 50 €, campagne 1er sept. → 31 déc. 2026, QF ≤ 699 € | <https://www.pass.sports.gouv.fr/> |
 | labaz | 100 € pour une inscription sport ou culture, 15-17 ans | <https://www.iledefrance.fr/tous-les-services/labaz-lappli-pour-les-15-25-ans> |
 
-Les illustrations des deux cartes sont des SVG écrits pour le site : aucune
-dépendance, aucune question de licence. Les logos officiels des deux dispositifs
-n'ont **pas** été intégrés — ce sont des marques tierces, et les déposer dans un
-dépôt public est une décision qui revient au bureau du club. Les kits de
-communication sont disponibles sur les sites ci-dessus.
+### Visuels
+
+Les deux cartes affichent les **affiches officielles** des kits de communication,
+que le club est autorisé à utiliser :
+
+| Fichier | Source | Poids |
+| --- | --- | --- |
+| `assets/img/aide-pass-sport.jpg` | kit partenaires pass Sport, visuel « club » 1920×1080 | 252 Ko |
+| `assets/img/aide-labaz.jpg` | kit com labaz, visuel « Aide Sport et Culture » 1380×650 | 315 Ko |
+
+Elles ne sont **pas recadrées** : leurs formats diffèrent (16:9 et 2,12:1), donc
+les deux bandeaux n'ont pas exactement la même hauteur. Rogner une affiche
+officielle serait pire que ce léger décalage.
+
+Le montant n'est écrit qu'une fois : il figure déjà dans l'affiche, inutile de le
+répéter en texte à côté — deux sources finiraient par diverger.
+
+Les deux fichiers font 567 Ko à eux deux, chargés en `loading="lazy"`. Si le
+poids devient gênant, les redimensionner à la largeur réelle d'affichage
+(environ 640 px) suffirait à diviser le poids par trois.
 
 ## QR code HelloAsso
 
