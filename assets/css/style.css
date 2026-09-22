@@ -324,7 +324,7 @@ a:hover .arrow,
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: rgba(11, 29, 56, .45);
+  background: rgba(0, 0, 0, .55);
 }
 
 /* ============================================================
@@ -928,7 +928,7 @@ a:hover .arrow,
   cursor: pointer;
   transition: background-color .2s var(--ease);
 }
-.map-consent:hover { background: rgba(16, 40, 74, .04); }
+.map-consent:hover { background: rgba(20, 20, 20, .04); }
 
 .map-consent__icon { width: 30px; height: 30px; color: var(--gold-ink); }
 
