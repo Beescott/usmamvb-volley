@@ -36,6 +36,7 @@
 :root {
   /* Rampe d'or echantillonnee sur assets/img/logo.png (84 615 pixels dores). */
   --gold-deep:    #ba903e;
+  --gold-mid:     #d4ab55;
   --gold:         #ebc974;
   --gold-light:   #fbf3ba;
 
@@ -695,13 +696,20 @@ a:hover .arrow,
 .step__title { color: #fff; }
 .step__text  { color: var(--text-on-dark); }
 
+/* Chaque numero prend un palier different de la rampe du logo, du plus profond
+   au plus clair : la progression se lit d'une carte a l'autre. Sur le noir des
+   cartes, le palier le plus sombre tient encore 6,7:1. */
 .step__num {
   margin-bottom: 14px;
   font-size: 2.5rem;
   font-weight: 800;
   line-height: 1;
-  color: var(--gold-ink);
+  color: var(--gold);
 }
+.step:nth-child(1) .step__num { color: var(--gold-deep); }
+.step:nth-child(2) .step__num { color: var(--gold-mid); }
+.step:nth-child(3) .step__num { color: var(--gold); }
+.step:nth-child(4) .step__num { color: var(--gold-light); }
 
 .step__title {
   margin-bottom: 10px;
