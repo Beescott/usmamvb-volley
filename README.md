@@ -77,6 +77,19 @@ est absent, donc la page reste présentable. Déposer les fichiers dans `assets/
 | Fichier | Usage | Format conseillé |
 | --- | --- | --- |
 | `hero.jpg` | bandeau d'accueil | paysage, ≥ 1920×1080 |
+
+`hero.jpg` est en place : photo du club reprise de l'ancien site
+(`usmvb.asso.fr/Files/Image/FB_IMG_1725616034205.jpg`), 1080×720.
+
+Elle est floutée et assombrie sur une couche à part, `.hero::before` : appliquer
+le filtre sur `.hero` flouterait aussi le texte. Le débord de 48 px évite le
+liseré clair que laisse un flou échantillonnant au-delà du cadre. Un second voile
+dégradé, `.hero::after`, assombrit davantage le côté où se pose le texte.
+
+Réglage vérifié en reproduisant numériquement flou, luminosité et voile sur la
+zone exacte du texte : le pixel le plus clair sous le texte donne **11,2:1** pour
+du blanc, soit 2,5× le seuil. En remontant `brightness` on gagne en lisibilité de
+la photo et on perd sur ce chiffre — il ne doit pas descendre sous 4,5.
 | `equipe-1.jpg` … `equipe-4.jpg` | cartes équipes | 4:3, ≥ 800×600 |
 | `gymnase-1.jpg` | gymnase Bozon, Auvers | 3:2, ≥ 1200×800 |
 | `gymnase-2.jpg` | gymnase Municipal, Méry | 3:2, ≥ 1200×800 |

@@ -340,14 +340,30 @@ a:hover .arrow,
   border-radius: var(--radius-lg);
   overflow: hidden;
   color: #fff;
-  /* Couche 1 : voile lisibilité — Couche 2 : photo — Couche 3 : repli si photo absente */
-  background:
-    linear-gradient(105deg, rgba(11, 29, 56, .88) 0%, rgba(11, 29, 56, .62) 45%, rgba(11, 29, 56, .30) 100%),
-    url('../img/hero.jpg') center / cover no-repeat,
-    linear-gradient(140deg, #2a2213 0%, #0b0b0b 55%, #3a2f18 100%);
+  /* Repli visible si la photo venait a manquer. */
+  background: linear-gradient(140deg, #2a2213 0%, #0b0b0b 55%, #3a2f18 100%);
 }
 
-.hero__inner { max-width: 660px; }
+/* La photo vit sur sa propre couche : appliquer le filtre sur .hero flouterait
+   aussi le texte. Le debord de 48px evite que le flou laisse un lisere clair
+   le long des bords, le flou echantillonnant au-dela du cadre. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -48px;
+  background: url('../img/hero.jpg') center / cover no-repeat;
+  filter: blur(8px) brightness(.5) saturate(.85);
+}
+
+/* Voile degrade par-dessus : assombrit davantage le cote ou se pose le texte. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(0, 0, 0, .64) 0%, rgba(0, 0, 0, .42) 45%, rgba(0, 0, 0, .16) 100%);
+}
+
+.hero__inner { position: relative; z-index: 1; max-width: 660px; }
 
 .hero__title {
   margin-bottom: 20px;
