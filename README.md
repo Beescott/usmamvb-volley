@@ -94,6 +94,24 @@ Source d'origine : `C:\Users\beesc\Documents\Logo - USMAMVB - Header.png`.
 | Grille tarifaire, réductions | `TARIFS` → `.pricing__list` et `.pricing__note` |
 | QR code et lien HelloAsso | `TARIFS` → `.qr` |
 | Pièces du dossier | `DOCUMENTS À FOURNIR` |
+| Pass'Sport et labaz | `AIDES À L'INSCRIPTION` |
+
+## Aides à l'inscription — à revérifier chaque année
+
+Les montants, les tranches d'âge et les dates de campagne changent d'une saison
+à l'autre. Ceux affichés valent pour **2026-2027** et sont à confronter aux
+sources officielles avant chaque rentrée :
+
+| Dispositif | Affiché | Source |
+| --- | --- | --- |
+| Pass'Sport | 50 €, campagne 1er sept. → 31 déc. 2026, QF ≤ 699 € | <https://www.pass.sports.gouv.fr/> |
+| labaz | 100 € pour une inscription sport ou culture, 15-17 ans | <https://www.iledefrance.fr/tous-les-services/labaz-lappli-pour-les-15-25-ans> |
+
+Les illustrations des deux cartes sont des SVG écrits pour le site : aucune
+dépendance, aucune question de licence. Les logos officiels des deux dispositifs
+n'ont **pas** été intégrés — ce sont des marques tierces, et les déposer dans un
+dépôt public est une décision qui revient au bureau du club. Les kits de
+communication sont disponibles sur les sites ci-dessus.
 
 ## QR code HelloAsso
 
