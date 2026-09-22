@@ -37,6 +37,37 @@ doit être lisible par les moteurs de recherche sans exécuter de JavaScript.
 
 Couleurs, polices et largeurs sont regroupées en haut de `style.css`, dans `:root`.
 
+## Charte : noir, blanc, or
+
+La palette vient du logo. Les teintes sont un échantillonnage réel de
+`assets/img/logo.png` — 418 283 pixels opaques, dont 53,8 % de noir pur
+`#000000`, 22,6 % de blanc et 20,2 % d'or allant de `#ba903e` à `#fbf3ba`.
+
+**L'or du logo ne peut pas servir de couleur de texte sur fond clair.** Il
+plafonne à 1,60:1 sur blanc, là où il en faut 4,5. Il y a donc deux ors, et
+confondre les deux casse la lisibilité :
+
+| Token | Valeur | Usage |
+| --- | --- | --- |
+| `--gold` | `#ebc974` | texte et aplats **sur fond noir** (12,3:1) |
+| `--gold-sweep` | dégradé | fonds de bouton, filets, texte sur noir |
+| `--gold-ink` | `#87681d` | texte **sur fond clair** (4,58:1 au pire) |
+| `--gold-sweep-ink` | dégradé | grand texte sur fond clair uniquement |
+
+`--gold-ink` est la teinte la plus claire qui tienne 4,5:1 sur les trois fonds
+clairs du site. L'éclaircir d'un cran fait échouer le bandeau crème.
+
+Le header est en `--black-pure` (`#000000`) et non en `--black-deep` : le disque
+du logo doit s'y fondre exactement, sinon il ressort en liseré.
+
+Le texte en dégradé passe par la classe `.gold-text`, qui bascule
+automatiquement sur le balayage vif quand elle est dans un `.card--dark` ou un
+`.step`. Un `color` de repli est posé avant le `@supports`.
+
+Toute modification de palette doit être revalidée : un audit de contraste
+parcourt le DOM, compose les alphas et compare au seuil WCAG selon la taille de
+police. Les trois pages en sortent sans échec.
+
 ## Photos à fournir
 
 Aucune photo n'est versionnée : un dégradé de repli s'affiche tant que le fichier

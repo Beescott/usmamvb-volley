@@ -34,20 +34,39 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --cream:        #f6f0e7;
-  --cream-soft:   #fbf7f0;
-  --white:        #ffffff;
-  --navy:         #10284a;
-  --navy-deep:    #0b1d38;
-  --blue:         #1160b0;
-  --blue-dark:    #0c4b8e;
-  --orange:       #e1511f;
-  --orange-dark:  #c14113;
+  /* Rampe d'or echantillonnee sur assets/img/logo.png (84 615 pixels dores). */
+  --gold-deep:    #ba903e;
+  --gold:         #ebc974;
+  --gold-light:   #fbf3ba;
 
-  --text:         #10284a;
-  --text-muted:   #4d6180;
-  --text-on-dark: rgba(255, 255, 255, .78);
-  --border:       rgba(16, 40, 74, .12);
+  /* L'or du logo plafonne a 2,94:1 sur blanc : illisible en texte. Cette
+     declinaison sombre est la plus claire qui tienne 4,5:1 sur les trois fonds
+     clairs du site : 5,21:1 sur blanc, 5,00:1 sur creme-soft, 4,58:1 sur creme. */
+  --gold-ink:      #87681d;
+  --gold-ink-dark: #6d5213;
+
+  /* Balayage metallique : aplats et fonds de bouton, sur surface sombre. */
+  --gold-sweep: linear-gradient(135deg,
+                  var(--gold-deep) 0%, var(--gold) 34%, var(--gold-light) 52%,
+                  var(--gold) 70%, var(--gold-deep) 100%);
+
+  /* Meme effet pousse a la limite de lisibilite sur blanc : le palier le plus
+     clair, #aa9254, tient 3,02:1. Grand texte uniquement. */
+  --gold-sweep-ink: linear-gradient(135deg, #5e4610 0%, #aa9254 52%, #7a5c17 100%);
+
+  --cream:        #f2f0ec;
+  --cream-soft:   #fbfaf8;
+  --white:        #ffffff;
+  --black:        #121212;
+  --black-deep:   #0b0b0b;
+  /* Noir pur reserve au header : 53,8 % de l'ecusson est du #000000 et le
+     disque doit s'y fondre sans laisser de lisere. */
+  --black-pure:   #000000;
+
+  --text:         #141414;
+  --text-muted:   #5a5750;
+  --text-on-dark: rgba(255, 255, 255, .76);
+  --border:       rgba(20, 20, 20, .12);
 
   --font:         'Archivo', 'Segoe UI', system-ui, -apple-system, sans-serif;
 
@@ -57,8 +76,8 @@
   --radius:       6px;
   --radius-lg:    10px;
 
-  --shadow-sm:    0 1px 2px rgba(16, 40, 74, .06);
-  --shadow-md:    0 8px 24px rgba(16, 40, 74, .10);
+  --shadow-sm:    0 1px 2px rgba(0, 0, 0, .06);
+  --shadow-md:    0 8px 24px rgba(0, 0, 0, .12);
 
   --ease:         cubic-bezier(.4, 0, .2, 1);
 }
@@ -86,7 +105,7 @@ img, svg { max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 
 :focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--gold-ink);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -97,7 +116,7 @@ a { color: inherit; text-decoration: none; }
   top: 0;
   z-index: 200;
   padding: 12px 18px;
-  background: var(--navy);
+  background: var(--black);
   color: #fff;
 }
 .skip-link:focus { left: 12px; top: 12px; }
@@ -119,7 +138,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-muted);
 }
 .eyebrow--light  { color: rgba(255, 255, 255, .72); }
-.eyebrow--orange { color: var(--orange); }
+.eyebrow--gold { color: var(--gold-ink); }
 
 .h2 {
   font-size: clamp(1.75rem, 3.6vw, 2.5rem);
@@ -141,9 +160,9 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
   font-size: .875rem;
   font-weight: 600;
-  color: var(--orange);
+  color: var(--gold-ink);
 }
-.link--orange { color: var(--orange); }
+.link--gold { color: var(--gold-ink); }
 a:hover .arrow,
 .link:hover .arrow { transform: translateX(4px); }
 
@@ -163,14 +182,38 @@ a:hover .arrow,
   cursor: pointer;
   transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
 }
-.btn--primary { background: var(--orange); color: #fff; }
-.btn--primary:hover { background: var(--orange-dark); }
+.btn--primary {
+  background: var(--gold-sweep);
+  color: var(--black-deep);
+  border-color: transparent;
+}
+.btn--primary:hover {
+  background: linear-gradient(135deg, #a87f30 0%, var(--gold-deep) 40%, var(--gold) 60%, #a87f30 100%);
+}
 
 .btn--ghost { border-color: rgba(255, 255, 255, .55); color: #fff; }
 .btn--ghost:hover { background: rgba(255, 255, 255, .12); border-color: #fff; }
 
-.btn--light { background: #fff; color: var(--navy); }
+.btn--light { background: #fff; color: var(--black); }
 .btn--light:hover { background: var(--cream); }
+
+/* Texte en degrade. Le `color` pose avant sert de repli si background-clip
+   n'est pas supporte ; il n'est annule que dans le @supports. */
+.gold-text { color: var(--gold-ink); }
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .gold-text {
+    background-image: var(--gold-sweep-ink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Sur fond noir, l'or du logo passe a 12,3:1 : balayage complet possible. */
+  .card--dark .gold-text,
+  .step .gold-text {
+    background-image: var(--gold-sweep);
+  }
+}
 
 /* ============================================================
    HEADER
@@ -179,8 +222,17 @@ a:hover .arrow,
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
+  background: var(--black-pure);
+}
+
+/* Filet dore sous le header : rappelle l'anneau du logo et detache la barre
+   du bandeau clair qui la suit. */
+.site-header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -2px;
+  height: 2px;
+  background: var(--gold-sweep);
 }
 
 .header__inner {
@@ -205,13 +257,14 @@ a:hover .arrow,
   font-size: 1.125rem;
   font-weight: 800;
   letter-spacing: .04em;
+  color: #fff;
 }
 .brand__baseline {
   font-size: .625rem;
   font-weight: 500;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, .55);
 }
 
 .nav { display: flex; align-items: center; gap: 20px; }
@@ -224,11 +277,20 @@ a:hover .arrow,
   border-radius: var(--radius);
   font-size: .8125rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, .72);
   transition: color .2s var(--ease), background-color .2s var(--ease);
 }
-.nav__link:hover { color: var(--text); background: var(--cream); }
-.nav__link.is-active { color: var(--text); background: var(--cream); font-weight: 600; }
+.nav__link:hover { color: #fff; background: rgba(255, 255, 255, .08); }
+
+/* Onglet actif : soulignement dore. Une pastille claire serait illisible. */
+.nav__link.is-active { position: relative; color: #fff; font-weight: 600; }
+.nav__link.is-active::after {
+  content: '';
+  position: absolute;
+  inset: auto 12px 3px;
+  height: 2px;
+  background: var(--gold-sweep);
+}
 
 .nav__cta { padding: 12px 18px; }
 
@@ -242,14 +304,14 @@ a:hover .arrow,
   height: 42px;
   padding: 0 9px;
   background: none;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, .28);
   border-radius: var(--radius);
   cursor: pointer;
 }
 .burger span {
   display: block;
   height: 2px;
-  background: var(--navy);
+  background: #fff;
   border-radius: 2px;
   transition: transform .25s var(--ease), opacity .2s var(--ease);
 }
@@ -281,7 +343,7 @@ a:hover .arrow,
   background:
     linear-gradient(105deg, rgba(11, 29, 56, .88) 0%, rgba(11, 29, 56, .62) 45%, rgba(11, 29, 56, .30) 100%),
     url('../img/hero.jpg') center / cover no-repeat,
-    linear-gradient(135deg, #16386b 0%, #0b1d38 55%, #1160b0 100%);
+    linear-gradient(140deg, #2a2213 0%, #0b0b0b 55%, #3a2f18 100%);
 }
 
 .hero__inner { max-width: 660px; }
@@ -329,7 +391,7 @@ a:hover .arrow,
 }
 .qcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
-.qcard__icon { width: 26px; height: 26px; margin-bottom: 4px; color: var(--orange); }
+.qcard__icon { width: 26px; height: 26px; margin-bottom: 4px; color: var(--gold-ink); }
 .qcard__icon svg { display: block; width: 100%; height: 100%; }
 
 .qcard__title {
@@ -379,7 +441,7 @@ a:hover .arrow,
   font-size: clamp(1.75rem, 3.4vw, 2.25rem);
   font-weight: 800;
   line-height: 1;
-  color: var(--orange);
+  color: var(--gold-ink);
 }
 .stat__label {
   font-size: .625rem;
@@ -392,7 +454,13 @@ a:hover .arrow,
 .club__aside { display: grid; gap: 16px; }
 
 .card { padding: 26px; border-radius: var(--radius); }
-.card--navy  { background: var(--navy-deep); color: #fff; }
+.card--dark {
+  background:
+    radial-gradient(120% 90% at 8% 0%, rgba(235, 201, 116, .10) 0%, transparent 60%),
+    var(--black-deep);
+  border: 1px solid rgba(235, 201, 116, .28);
+  color: #fff;
+}
 .card--white { background: var(--white); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 
 .card__title {
@@ -409,8 +477,8 @@ a:hover .arrow,
   font-size: .875rem;
   color: var(--text-muted);
 }
-.card--navy .card__meta,
-.card--navy .card__text { color: var(--text-on-dark); }
+.card--dark .card__meta,
+.card--dark .card__text { color: var(--text-on-dark); }
 
 /* ============================================================
    NOS ÉQUIPES
@@ -446,10 +514,10 @@ a:hover .arrow,
 .team:hover .team__photo { transform: translateY(-3px); }
 
 /* Repli visuel tant que les photos ne sont pas fournies */
-.team__photo--1 { background-image: url('../img/equipe-1.jpg'), linear-gradient(140deg, #1d4f8c, #0b1d38); }
-.team__photo--2 { background-image: url('../img/equipe-2.jpg'), linear-gradient(140deg, #1160b0, #12365f); }
-.team__photo--3 { background-image: url('../img/equipe-3.jpg'), linear-gradient(140deg, #2b6ca8, #0f2a4d); }
-.team__photo--4 { background-image: url('../img/equipe-4.jpg'), linear-gradient(140deg, #0f3a6b, #071528); }
+.team__photo--1 { background-image: url('../img/equipe-1.jpg'), linear-gradient(140deg, #3a2f18, #0b0b0b); }
+.team__photo--2 { background-image: url('../img/equipe-2.jpg'), linear-gradient(140deg, #4a3a1c, #141414); }
+.team__photo--3 { background-image: url('../img/equipe-3.jpg'), linear-gradient(140deg, #2f2615, #0b0b0b); }
+.team__photo--4 { background-image: url('../img/equipe-4.jpg'), linear-gradient(140deg, #453718, #0b0b0b); }
 
 .team__body { display: block; }
 .team__body .eyebrow { margin-bottom: 4px; }
@@ -469,7 +537,9 @@ a:hover .arrow,
 .venues {
   margin: 0 var(--inset);
   padding-block: clamp(44px, 6vw, 72px);
-  background: var(--blue);
+  background:
+    radial-gradient(90% 120% at 0% 0%, rgba(235, 201, 116, .08) 0%, transparent 55%),
+    var(--black-deep);
   border-radius: var(--radius-lg);
   color: #fff;
 }
@@ -485,7 +555,8 @@ a:hover .arrow,
 
 .venue {
   padding: 24px;
-  background: var(--blue-dark);
+  background: var(--black);
+  border: 1px solid rgba(235, 201, 116, .18);
   border-radius: var(--radius);
 }
 
@@ -511,7 +582,9 @@ a:hover .arrow,
 .site-footer {
   margin-top: clamp(40px, 6vw, 72px);
   padding-top: clamp(40px, 5vw, 60px);
-  background: var(--navy-deep);
+  background: var(--black-deep);
+  border-top: 2px solid transparent;
+  border-image: var(--gold-sweep) 1;
   color: var(--text-on-dark);
 }
 
@@ -528,7 +601,7 @@ a:hover .arrow,
   font-weight: 800;
   letter-spacing: .02em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--gold);
 }
 
 .footer__text { max-width: 38ch; font-size: .875rem; }
@@ -552,7 +625,7 @@ a:hover .arrow,
 
 .contact { display: grid; gap: 12px; font-size: .875rem; }
 .contact li { display: flex; align-items: flex-start; gap: 10px; }
-.contact svg { flex: none; width: 17px; height: 17px; margin-top: 3px; color: var(--orange); }
+.contact svg { flex: none; width: 17px; height: 17px; margin-top: 3px; color: var(--gold); }
 .contact a:hover { color: #fff; }
 
 .socials { display: flex; gap: 10px; margin-top: 20px; }
@@ -561,11 +634,11 @@ a:hover .arrow,
   place-items: center;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid rgba(235, 201, 116, .3);
   border-radius: var(--radius);
   transition: background-color .2s var(--ease);
 }
-.socials a:hover { background: rgba(255, 255, 255, .12); }
+.socials a:hover { background: rgba(235, 201, 116, .14); }
 .socials svg { width: 17px; height: 17px; }
 
 .footer__bottom {
@@ -608,20 +681,26 @@ a:hover .arrow,
   gap: 18px;
 }
 
+/* Cartes noires : seule facon d'avoir le vrai degrade du logo sur les numeros.
+   Sur blanc il plafonnerait a 1,60:1, soit illisible. */
 .step {
   padding: 24px;
-  background: var(--white);
-  border: 1px solid var(--border);
+  background:
+    radial-gradient(130% 100% at 0% 0%, rgba(235, 201, 116, .10) 0%, transparent 62%),
+    var(--black-deep);
+  border: 1px solid rgba(235, 201, 116, .24);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
+.step__title { color: #fff; }
+.step__text  { color: var(--text-on-dark); }
 
 .step__num {
   margin-bottom: 14px;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
   line-height: 1;
-  color: var(--orange);
+  color: var(--gold-ink);
 }
 
 .step__title {
@@ -675,12 +754,12 @@ a:hover .arrow,
   flex: none;
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--orange);
+  color: var(--gold-ink);
 }
 
 .pricing__note { margin-top: 16px; font-size: .8125rem; color: var(--text-muted); }
 
-.qr__eyebrow { display: flex; align-items: center; gap: 8px; }
+.qr__eyebrow { display: flex; align-items: center; gap: 8px; color: var(--gold); }
 .qr__eyebrow svg { flex: none; width: 15px; height: 15px; }
 
 .qr__frame {
@@ -695,7 +774,7 @@ a:hover .arrow,
   padding: 20px;
   background: #fff;
   border-radius: var(--radius);
-  color: var(--navy);
+  color: var(--black);
 }
 
 .qr__glyph { width: 72px; height: 72px; }
@@ -725,7 +804,7 @@ a:hover .arrow,
 }
 
 .section-title { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
-.section-title__icon { flex: none; width: 26px; height: 26px; color: var(--orange); }
+.section-title__icon { flex: none; width: 26px; height: 26px; color: var(--gold-ink); }
 
 .docs__grid {
   display: grid;
@@ -743,7 +822,7 @@ a:hover .arrow,
 
 .docs__note { margin-top: 22px; font-size: .875rem; color: var(--text-muted); }
 
-.link--inline { color: var(--orange); font-weight: 600; }
+.link--inline { color: var(--gold-ink); font-weight: 600; }
 .link--inline:hover { text-decoration: underline; }
 
 /* ============================================================
@@ -777,9 +856,9 @@ a:hover .arrow,
 }
 
 /* Repli visuel tant que les photos ne sont pas fournies */
-.venue-block__photo--1 { background-image: url('../img/gymnase-1.jpg'), linear-gradient(140deg, #1d4f8c, #0b1d38); }
-.venue-block__photo--2 { background-image: url('../img/gymnase-2.jpg'), linear-gradient(140deg, #1160b0, #12365f); }
-.venue-block__photo--3 { background-image: url('../img/gymnase-3.jpg'), linear-gradient(140deg, #0f3a6b, #071528); }
+.venue-block__photo--1 { background-image: url('../img/gymnase-1.jpg'), linear-gradient(140deg, #3a2f18, #0b0b0b); }
+.venue-block__photo--2 { background-image: url('../img/gymnase-2.jpg'), linear-gradient(140deg, #4a3a1c, #141414); }
+.venue-block__photo--3 { background-image: url('../img/gymnase-3.jpg'), linear-gradient(140deg, #453718, #0b0b0b); }
 
 .venue-block__map {
   margin-top: 16px;
@@ -816,7 +895,7 @@ a:hover .arrow,
 }
 .map-consent:hover { background: rgba(16, 40, 74, .04); }
 
-.map-consent__icon { width: 30px; height: 30px; color: var(--orange); }
+.map-consent__icon { width: 30px; height: 30px; color: var(--gold-ink); }
 
 .map-consent__label {
   font-size: .8125rem;
@@ -847,7 +926,7 @@ a:hover .arrow,
   width: 19px;
   height: 19px;
   margin-top: 3px;
-  color: var(--orange);
+  color: var(--gold-ink);
 }
 
 .venue-block__access { margin-top: 12px; font-size: .875rem; color: var(--text-muted); }
@@ -896,11 +975,11 @@ a:hover .arrow,
   display: inline-block;
   padding: 4px 11px;
   border-radius: 999px;
-  background: rgba(225, 81, 31, .12);
+  background: rgba(138, 106, 30, .13);
   font-size: .6875rem;
   font-weight: 700;
   letter-spacing: .03em;
-  color: var(--orange-dark);
+  color: var(--gold-ink-dark);
 }
 
 /* Libellé réservé aux lecteurs d'écran */
@@ -938,7 +1017,7 @@ a:hover .arrow,
     width: min(320px, 86vw);
     height: 100dvh;
     padding: 84px 24px 32px;
-    background: var(--white);
+    background: var(--black-pure);
     box-shadow: var(--shadow-md);
     overflow-y: auto;
     transform: translateX(100%);
@@ -947,6 +1026,7 @@ a:hover .arrow,
   .nav.is-open { transform: translateX(0); }
 
   .nav__list { flex-direction: column; align-items: stretch; gap: 2px; }
+  .nav__link.is-active::after { inset: auto 14px 6px; }
   .nav__link { padding: 12px 14px; font-size: .9375rem; }
   .nav__cta { width: 100%; }
 }
