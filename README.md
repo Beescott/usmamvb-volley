@@ -8,6 +8,7 @@ Site statique, sans build ni dépendance. Ouvrir `index.html` dans un navigateur
 index.html            page d'accueil
 adhesion.html         comment rejoindre le club, tarifs, documents
 gymnases.html         les trois salles : cartes, accès, créneaux
+equipes.html          les 15 équipes, filtrables par format
 assets/css/style.css  feuille de style unique
 assets/js/main.js     menu mobile, chargement des cartes au clic
 assets/img/           logo et photos (voir plus bas)
@@ -185,6 +186,30 @@ Au-dessus de 620 px, le tableau tient pile dans sa colonne. La marge est faible 
 une étiquette de niveau plus longue que « Débutant à intermédiaire » le fera
 défiler horizontalement dans son cadre. Ce n’est pas cassé — `.slots` reste un
 conteneur de défilement — mais c’est moins joli.
+
+## Page équipes
+
+Les 15 encarts sont **générés**, pas écrits à la main : le script
+`gen-equipes.js` (hors dépôt, dans le scratchpad de la session) construit la
+page à partir d'un tableau de catégories et recopie header et footer depuis
+`gymnases.html`, ce qui garantit qu'ils restent identiques. Le fichier produit
+est du HTML statique ordinaire : il se modifie directement, le script n'a pas à
+être rejoué.
+
+Répartition actuelle : 5 féminines 4×4, 5 mixtes 4×4, 3 mixtes 6×6, 2 équimixtes.
+
+Le filtrage se fait en JavaScript sur l'attribut `data-categorie`. Sans JS, les
+15 équipes restent toutes visibles — les boutons ne font simplement rien.
+Attention à `.team-card[hidden] { display: none }` dans le CSS : sans cette
+règle, le `display: flex` de la carte l'emporte sur le comportement par défaut
+de `[hidden]` et le filtre ne masque rien.
+
+**Données manquantes.** Chaque carte ne porte que ce qui est connu : le format,
+le numéro et une description de catégorie. Il manque, par équipe, l'encadrement,
+l'effectif, le championnat et le créneau — c'est ce que montrait la maquette.
+Rien n'a été inventé, en particulier aucun nom d'entraîneur. Les photos sont des
+emplacements : quatre dégradés en rotation, à remplacer par une photo par équipe
+dans `assets/img/`.
 
 ## RGPD
 

@@ -1078,6 +1078,106 @@ a:hover .arrow,
 
 .aide .link { margin-top: auto; }
 
+
+/* ============================================================
+   PAGE ÉQUIPES
+   ============================================================ */
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.filtre {
+  padding: 10px 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font: inherit;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.filtre:hover { border-color: var(--gold-ink); }
+
+.filtre.is-active {
+  background: var(--black-deep);
+  border-color: var(--black-deep);
+  color: var(--gold);
+}
+
+.teams-list { padding-block: clamp(36px, 5vw, 64px); background: var(--cream-soft); }
+
+.teams-list__compte {
+  margin-bottom: 20px;
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.teams-list__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* La regle display de l'auteur l'emporte sur le display:none que le navigateur
+   applique a [hidden] : sans ceci, le filtrage ne masquerait aucune carte. */
+.team-card[hidden] { display: none; }
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Emplacements photo : un dégradé chaud tient la place tant que les clichés
+   ne sont pas pris, pour que la grille reste présentable. */
+.team-card__photo {
+  display: block;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+}
+.team-card__photo--1 { background-image: url('../img/equipe-1.jpg'), linear-gradient(140deg, #3a2f18, #0b0b0b); }
+.team-card__photo--2 { background-image: url('../img/equipe-2.jpg'), linear-gradient(140deg, #4a3a1c, #141414); }
+.team-card__photo--3 { background-image: url('../img/equipe-3.jpg'), linear-gradient(140deg, #2f2615, #0b0b0b); }
+.team-card__photo--4 { background-image: url('../img/equipe-4.jpg'), linear-gradient(140deg, #453718, #0b0b0b); }
+
+.team-card__body { display: flex; flex-direction: column; flex: 1; padding: 22px; }
+
+.team-card__name {
+  margin-bottom: 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.team-card__text { font-size: .875rem; color: var(--text-muted); }
+
+.teams-list__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 28px;
+}
+.teams-list__cta-texte { max-width: 56ch; margin: 0; color: var(--text-on-dark); }
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -1125,6 +1225,7 @@ a:hover .arrow,
 
   .steps__grid   { grid-template-columns: repeat(2, 1fr); }
   .aides__grid   { grid-template-columns: 1fr; }
+  .teams-list__grid { grid-template-columns: repeat(2, 1fr); }
   .pricing__grid { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
 
@@ -1149,6 +1250,9 @@ a:hover .arrow,
   .venues .btn      { width: 100%; }
 
   .steps__grid      { grid-template-columns: 1fr; }
+  .teams-list__grid { grid-template-columns: 1fr; }
+  .filtre           { padding: 9px 15px; font-size: .75rem; }
+  .teams-list__cta .btn { width: 100%; }
   .price            { padding-inline: 20px; gap: 14px; }
   .price__amount    { font-size: 1.25rem; }
 
