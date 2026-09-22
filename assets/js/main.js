@@ -135,3 +135,80 @@
     });
   });
 })();
+
+/* Fiche équipe. Le contenu vit dans le HTML de chaque carte : le clic ne fait
+   que le recopier dans la boîte. <dialog>.showModal() apporte le piège du focus,
+   la fermeture par Échap et le retour du focus sur le déclencheur. */
+(function () {
+  'use strict';
+
+  var dialog = document.getElementById('fiche-equipe');
+
+  if (!dialog || typeof dialog.showModal !== 'function') {
+    return;
+  }
+
+  var photo = document.getElementById('fiche-photo');
+  var category = document.getElementById('fiche-categorie');
+  var title = document.getElementById('fiche-titre');
+  var body = document.getElementById('fiche-contenu');
+  var closeButton = document.getElementById('fiche-fermer');
+  var lastTrigger = null;
+
+  function open(card) {
+    var detail = card.querySelector('.team-card__detail');
+
+    if (!detail) {
+      return;
+    }
+
+    photo.className = 'fiche__photo ' + detail.getAttribute('data-photo');
+    photo.setAttribute('aria-label', "Photo à venir de l'équipe " + detail.getAttribute('data-categorie-label') + ' ' + detail.getAttribute('data-titre'));
+    category.textContent = detail.getAttribute('data-categorie-label');
+    title.textContent = detail.getAttribute('data-titre');
+    body.innerHTML = detail.innerHTML;
+
+    lastTrigger = card.querySelector('.team-card__trigger');
+    dialog.showModal();
+  }
+
+  /* Échap et retour du focus sont gérés ici plutôt que laissés au navigateur :
+     tous les moteurs n'emettent pas l'evenement cancel de <dialog>. */
+  function close() {
+    dialog.close();
+
+    if (lastTrigger) {
+      lastTrigger.focus();
+      lastTrigger = null;
+    }
+  }
+
+  document.addEventListener('click', function (event) {
+    var trigger = event.target.closest('.team-card__trigger');
+
+    if (trigger) {
+      open(trigger.closest('.team-card'));
+    }
+  });
+
+  closeButton.addEventListener('click', close);
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && dialog.open) {
+      event.preventDefault();
+      close();
+    }
+  });
+
+  /* Clic sur le fond : la boîte occupe toute la zone cliquable, on compare donc
+     la position du pointeur à ses bords plutôt que la cible de l'événement. */
+  dialog.addEventListener('click', function (event) {
+    var box = dialog.getBoundingClientRect();
+    var dehors = event.clientX < box.left || event.clientX > box.right ||
+                 event.clientY < box.top || event.clientY > box.bottom;
+
+    if (dehors) {
+      close();
+    }
+  });
+})();

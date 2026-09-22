@@ -211,6 +211,31 @@ paraissant fonctionner.
 Hiérarchie des titres : `h1` pour la page, `h2` par format, `h3` par équipe.
 Sans JavaScript, les quinze équipes restent visibles — les boutons ne font rien.
 
+### Fiche équipe
+
+Un clic sur une carte ouvre une fiche. Le contenu ne vit pas dans le JavaScript :
+chaque carte porte un `<div class="team-card__detail" hidden>` que le clic
+recopie dans un `<dialog>` unique. Le texte reste donc dans le HTML, lisible
+sans JS et indexable.
+
+Le déclencheur est un vrai `<button>` dans le `h3`, avec un `::after` qui couvre
+la carte : le clic porte partout, mais un seul élément est focusable et il est
+annoncé comme bouton.
+
+Échap et le retour du focus sont gérés **explicitement** dans `main.js` et non
+laissés à `<dialog>` : tous les moteurs n'émettent pas l'événement `cancel`, et
+le comportement natif s'est révélé absent à la vérification. Le clic sur le fond
+compare la position du pointeur aux bords de la boîte, la boîte occupant toute
+la zone cliquable.
+
+**Créneaux.** Ceux affichés dans les fiches viennent du planning de
+`gymnases.html`, au niveau de la **catégorie** : ce planning dit quel public
+s'entraîne quand, pas quelle équipe. Aucun créneau équimixte n'y figure, ces
+fiches affichent donc un message plutôt qu'un horaire inventé.
+
+**Effectifs.** Inconnus. La constante `EFFECTIFS` du générateur est vide ; la
+remplir fait apparaître la ligne dans les fiches concernées.
+
 **Données manquantes.** Chaque carte ne porte que ce qui est connu : le format,
 le numéro et une description de catégorie. Il manque, par équipe, l'encadrement,
 l'effectif, le championnat et le créneau — c'est ce que montrait la maquette.

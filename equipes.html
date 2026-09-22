@@ -61,7 +61,7 @@
       <h1 class="page-head__title">Quatre formats, une seule bande</h1>
       <p class="page-head__lead">
         Du premier service aux matchs de championnat, chaque équipe a son rythme et son
-        encadrement. Filtrez pour trouver le groupe qui vous ressemble.
+        encadrement. Cliquez sur une équipe pour voir sa fiche.
       </p>
 
       <div class="filtres" role="group" aria-label="Filtrer les équipes par format">
@@ -77,7 +77,8 @@
   <!-- ============================================================
        LES ÉQUIPES — une section par format
        Photos : assets/img/equipe-1.jpg … equipe-4.jpg servent de variantes.
-       À remplacer par une photo par équipe quand elles seront prises.
+       Le bloc .team-card__detail porte le contenu de la fiche. Il vit dans le
+       HTML, donc reste lisible sans JavaScript et indexable.
        ============================================================ -->
   <div class="teams-list">
     <div class="wrap" id="equipes">
@@ -93,40 +94,140 @@
           <li class="team-card">
             <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 1"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 1</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Féminines 4×4 — </span>Équipe 1
+                </button>
+              </h3>
               <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 1"
+                 data-categorie-label="Féminines 4×4"
+                 data-photo="team-card__photo--2">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes féminines</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Mardi</strong> 20h30 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+                <li><strong>Jeudi</strong> 20h00 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 2"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 2</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Féminines 4×4 — </span>Équipe 2
+                </button>
+              </h3>
               <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 2"
+                 data-categorie-label="Féminines 4×4"
+                 data-photo="team-card__photo--3">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes féminines</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Mardi</strong> 20h30 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+                <li><strong>Jeudi</strong> 20h00 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 3"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 3</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Féminines 4×4 — </span>Équipe 3
+                </button>
+              </h3>
               <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 3"
+                 data-categorie-label="Féminines 4×4"
+                 data-photo="team-card__photo--4">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes féminines</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Mardi</strong> 20h30 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+                <li><strong>Jeudi</strong> 20h00 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 4"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 4</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Féminines 4×4 — </span>Équipe 4
+                </button>
+              </h3>
               <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 4"
+                 data-categorie-label="Féminines 4×4"
+                 data-photo="team-card__photo--1">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes féminines</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Mardi</strong> 20h30 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+                <li><strong>Jeudi</strong> 20h00 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Féminines 4×4 nº 5"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Féminines 4×4 — </span>Équipe 5</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Féminines 4×4 — </span>Équipe 5
+                </button>
+              </h3>
               <p class="team-card__text">Quatre joueuses sur le terrain : un format rapide où chacune touche beaucoup de ballons et défend large.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 5"
+                 data-categorie-label="Féminines 4×4"
+                 data-photo="team-card__photo--2">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes féminines</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Mardi</strong> 20h30 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+                <li><strong>Jeudi</strong> 20h00 – 22h30<span>Gymnase Municipal, Méry-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
         </ul>
@@ -142,40 +243,140 @@
           <li class="team-card">
             <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 1"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 1</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 4×4 — </span>Équipe 1
+                </button>
+              </h3>
               <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 1"
+                 data-categorie-label="Mixte 4×4"
+                 data-photo="team-card__photo--3">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 2"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 2</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 4×4 — </span>Équipe 2
+                </button>
+              </h3>
               <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 2"
+                 data-categorie-label="Mixte 4×4"
+                 data-photo="team-card__photo--4">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 3"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 3</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 4×4 — </span>Équipe 3
+                </button>
+              </h3>
               <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 3"
+                 data-categorie-label="Mixte 4×4"
+                 data-photo="team-card__photo--1">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 4"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 4</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 4×4 — </span>Équipe 4
+                </button>
+              </h3>
               <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 4"
+                 data-categorie-label="Mixte 4×4"
+                 data-photo="team-card__photo--2">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Mixte 4×4 nº 5"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 4×4 — </span>Équipe 5</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 4×4 — </span>Équipe 5
+                </button>
+              </h3>
               <p class="team-card__text">Le format le plus joué du club : équipes mixtes à quatre, rythme soutenu et rotations fréquentes.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 5"
+                 data-categorie-label="Mixte 4×4"
+                 data-photo="team-card__photo--3">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
         </ul>
@@ -191,24 +392,84 @@
           <li class="team-card">
             <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 nº 1"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 1</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 6×6 — </span>Équipe 1
+                </button>
+              </h3>
               <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 1"
+                 data-categorie-label="Mixte 6×6"
+                 data-photo="team-card__photo--4">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>6 contre 6</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--1" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 nº 2"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 2</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 6×6 — </span>Équipe 2
+                </button>
+              </h3>
               <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 2"
+                 data-categorie-label="Mixte 6×6"
+                 data-photo="team-card__photo--1">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>6 contre 6</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--2" role="img" aria-label="Photo à venir de l'équipe Mixte 6×6 nº 3"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Mixte 6×6 — </span>Équipe 3</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Mixte 6×6 — </span>Équipe 3
+                </button>
+              </h3>
               <p class="team-card__text">Le volley à six, format classique du championnat : postes définis, passes construites et jeu au filet.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 3"
+                 data-categorie-label="Mixte 6×6"
+                 data-photo="team-card__photo--2">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>6 contre 6</dd></div>
+                <div><dt>Composition</dt><dd>Équipes mixtes</dd></div>
+              </dl>
+              <h4 class="fiche__soustitre">Entraînements</h4>
+              <ul class="fiche__creneaux">
+                <li><strong>Lundi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+                <li><strong>Mercredi</strong> 20h30 – 22h30<span>Gymnase Bozon, Auvers-sur-Oise</span></li>
+              </ul>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
         </ul>
@@ -224,16 +485,48 @@
           <li class="team-card">
             <span class="team-card__photo team-card__photo--3" role="img" aria-label="Photo à venir de l'équipe Équimixte nº 1"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Équimixte — </span>Équipe 1</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Équimixte — </span>Équipe 1
+                </button>
+              </h3>
               <p class="team-card__text">Parité stricte sur le terrain : autant de joueuses que de joueurs, en permanence.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 1"
+                 data-categorie-label="Équimixte"
+                 data-photo="team-card__photo--3">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes équimixtes</dd></div>
+              </dl>
+              <p class="fiche__vide">Le créneau de cette équipe n'est pas encore publié. Écrivez-nous et nous vous indiquerons où elle s'entraîne.</p>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
 
           <li class="team-card">
             <span class="team-card__photo team-card__photo--4" role="img" aria-label="Photo à venir de l'équipe Équimixte nº 2"></span>
             <div class="team-card__body">
-              <h3 class="team-card__name"><span class="sr-only">Équimixte — </span>Équipe 2</h3>
+              <h3 class="team-card__name">
+                <button type="button" class="team-card__trigger" aria-haspopup="dialog">
+                  <span class="sr-only">Équimixte — </span>Équipe 2
+                </button>
+              </h3>
               <p class="team-card__text">Parité stricte sur le terrain : autant de joueuses que de joueurs, en permanence.</p>
+            </div>
+
+            <div class="team-card__detail" hidden
+                 data-titre="Équipe 2"
+                 data-categorie-label="Équimixte"
+                 data-photo="team-card__photo--4">
+              <dl class="fiche__infos">
+                <div><dt>Format</dt><dd>4 contre 4</dd></div>
+                <div><dt>Composition</dt><dd>Équipes équimixtes</dd></div>
+              </dl>
+              <p class="fiche__vide">Le créneau de cette équipe n'est pas encore publié. Écrivez-nous et nous vous indiquerons où elle s'entraîne.</p>
+              <a class="link link--gold" href="gymnases.html">Tous les créneaux du club <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
         </ul>
@@ -250,6 +543,23 @@
   </div>
 
 </main>
+
+<!-- ============================================================
+     FICHE ÉQUIPE — une seule boîte, remplie au clic
+     ============================================================ -->
+<dialog class="fiche" id="fiche-equipe" aria-labelledby="fiche-titre">
+  <button type="button" class="fiche__fermer" id="fiche-fermer" aria-label="Fermer la fiche">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
+  <div class="fiche__photo" id="fiche-photo" role="img" aria-label="Photo d'équipe à venir"></div>
+
+  <div class="fiche__corps">
+    <p class="eyebrow eyebrow--gold" id="fiche-categorie"></p>
+    <h2 class="fiche__titre" id="fiche-titre"></h2>
+    <div id="fiche-contenu"></div>
+  </div>
+</dialog>
 
 <!-- ============================================================
      FOOTER — identique sur toutes les pages
