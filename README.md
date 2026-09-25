@@ -329,18 +329,30 @@ Quelques fautes du PDF ont été corrigées dans les textes des tournois
 (« à permis » → « a permis », « sont essentielle » → « sont essentiels »,
 « nous sommes fier » → « fiers »). Le fond n'a pas été touché.
 
-### Divergences relevées dans le PDF, non appliquées
+### Données du club, alignées sur le PDF
 
-Le PDF contredit des données déjà en ligne. Rien n'a été modifié hors des deux
-pages demandées, mais c'est à trancher :
+Tout le contenu fictif hérité de la maquette a été remplacé :
 
-| Sujet | Site actuel | PDF |
-| --- | --- | --- |
-| Équipes | 5 fém. 4x4, 5 mixtes 4x4, 3 mixtes 6x6, 2 équimixtes | 6 fém. 4x4, 6 mixtes 4x4, 4 mixtes 6x6, 4 jeunes |
-| Gymnase de Mériel | « Gymnase de Mériel », repéré par coordonnées | Espace Rives Gauche, rue des Petits Prés |
-| Bozon, mercredi | 20h30 – 22h30 | 20h – 22h30 |
-| Méry, adresse | non renseignée | rue Courtil Bajou |
-| Contact | contact@vcc-volley.fr | contact@usmvb.asso.fr |
+| Sujet | Valeur |
+| --- | --- |
+| Fédération | FSGT, compétition loisirs (et non FFVB) |
+| Équipes | 6 fém. 4x4, 6 mixtes 4x4, 4 mixtes 6x6, 2 ados 6x6, 2 jeunes 4x4 — **20** |
+| Bozon | rue des Ponceaux, Auvers — lundi 20h30, mercredi **20h**, vendredi 20h30 |
+| Méry | gymnase municipal, **rue Courtil Bajou** — mardi, jeudi, samedi |
+| Mériel | **Espace Rives Gauche, rue des Petits Près** — mercredi |
+| Contact | contact@usmvb.asso.fr · 06 67 21 61 48 (Béatrice Goulain, présidente) |
+
+La catégorie **équimixte** a disparu de la page Équipes : le PDF ne l'inscrit pas
+dans les engagements 2025, alors qu'un règlement équimixte reste lié depuis la
+page Règles. À confirmer.
+
+Le créneau du **samedi à Méry** (12h45 – 14h30, 10-14 ans) ne figure pas dans le
+PDF mais a été donné oralement ; il est conservé. De même pour la répartition
+ados → Mériel le mercredi et jeunes → Méry le samedi, déduite des deux sources.
+
+Ce qui reste inconnu : le **nombre d'adhérents** (la statistique affichait 180,
+un chiffre inventé, remplacé par le nombre d'équipes) et l'**année de création**
+du club.
 Leurs liens de navigation pointent encore sur `#`.
 
 Données encore fictives, héritées de la maquette :
