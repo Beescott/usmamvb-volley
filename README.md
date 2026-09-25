@@ -9,6 +9,8 @@ index.html            page d'accueil
 adhesion.html         comment rejoindre le club, tarifs, documents
 gymnases.html         les trois salles : cartes, accès, créneaux
 equipes.html          les 15 équipes, filtrables par format
+tournois.html         les deux tournois du club
+regles.html           règlement du club et règlements FSGT
 assets/css/style.css  feuille de style unique
 assets/js/main.js     menu mobile, chargement des cartes au clic
 assets/img/           logo et photos (voir plus bas)
@@ -308,7 +310,37 @@ les pages depuis un gabarit, ou un générateur statique.
 
 ## À faire
 
-Pages restantes : Tournois, Bureau, Actualités.
+Pages restantes : Bureau, Actualités.
+
+### Contenu repris du PDF du club
+
+`regles.html` et `tournois.html` reprennent le contenu de
+`SITE WEB - USMAMVB.pdf`. Deux règlements FSGT y sont liés, hébergés par la
+fédération et mis à jour chaque saison :
+
+- Compétitions 4x4 et 6x6 : `unifoodclient.fr/…/R_C3_A9glement_20Volley-Ball_20FSGT60_202025-2026.pdf`
+- Équimixte : `unifoodclient.fr/…/2025-09_20R_C3_88GLEMENT_20VOLLEY-EQUIMIXTE.pdf`
+
+Le **règlement intérieur du club** est mentionné dans le PDF mais sans lien : sa
+carte renvoie provisoirement vers le secrétariat. Déposer le document dans
+`assets/` et remplacer le paragraphe `.reglement__attente` par un lien.
+
+Quelques fautes du PDF ont été corrigées dans les textes des tournois
+(« à permis » → « a permis », « sont essentielle » → « sont essentiels »,
+« nous sommes fier » → « fiers »). Le fond n'a pas été touché.
+
+### Divergences relevées dans le PDF, non appliquées
+
+Le PDF contredit des données déjà en ligne. Rien n'a été modifié hors des deux
+pages demandées, mais c'est à trancher :
+
+| Sujet | Site actuel | PDF |
+| --- | --- | --- |
+| Équipes | 5 fém. 4x4, 5 mixtes 4x4, 3 mixtes 6x6, 2 équimixtes | 6 fém. 4x4, 6 mixtes 4x4, 4 mixtes 6x6, 4 jeunes |
+| Gymnase de Mériel | « Gymnase de Mériel », repéré par coordonnées | Espace Rives Gauche, rue des Petits Prés |
+| Bozon, mercredi | 20h30 – 22h30 | 20h – 22h30 |
+| Méry, adresse | non renseignée | rue Courtil Bajou |
+| Contact | contact@vcc-volley.fr | contact@usmvb.asso.fr |
 Leurs liens de navigation pointent encore sur `#`.
 
 Données encore fictives, héritées de la maquette :

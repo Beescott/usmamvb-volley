@@ -1327,6 +1327,111 @@ a:hover .arrow,
   color: var(--text-muted);
 }
 
+
+/* ============================================================
+   PAGES RÈGLES ET TOURNOIS
+   ============================================================ */
+.reglements { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
+
+.reglements__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.reglement {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.reglement__icone { width: 30px; height: 30px; margin-bottom: 16px; color: var(--gold-ink); }
+.reglement__icone svg { display: block; width: 100%; height: 100%; }
+
+.reglement__titre {
+  margin-bottom: 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.reglement__texte { font-size: .875rem; color: var(--text-muted); }
+.reglement .link { margin-top: auto; padding-top: 18px; }
+
+.reglement__attente {
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: .8125rem;
+  color: var(--text-muted);
+}
+
+.reglements__note {
+  max-width: 70ch;
+  margin-top: 24px;
+  font-size: .8125rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Tournois ---------- */
+.tournois { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
+
+.tournoi {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(20px, 3vw, 44px);
+  padding: clamp(24px, 3vw, 34px);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.tournoi + .tournoi { margin-top: 20px; }
+
+.tournoi__nom {
+  font-size: clamp(1.375rem, 3vw, 2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+.tournoi__corps p { margin-bottom: 14px; color: var(--text-muted); }
+
+.tournoi__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 32px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: .9375rem;
+  font-weight: 700;
+}
+.tournoi__meta span {
+  display: block;
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tournois__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.tournois__cta-texte { max-width: 56ch; margin: 0; color: var(--text-on-dark); }
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -1375,6 +1480,8 @@ a:hover .arrow,
   .steps__grid   { grid-template-columns: repeat(2, 1fr); }
   .aides__grid   { grid-template-columns: 1fr; }
   .teams-list__grid { grid-template-columns: repeat(2, 1fr); }
+  .reglements__grid { grid-template-columns: repeat(2, 1fr); }
+  .tournoi          { grid-template-columns: 1fr; }
   .pricing__grid { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
 
@@ -1400,6 +1507,8 @@ a:hover .arrow,
 
   .steps__grid      { grid-template-columns: 1fr; }
   .teams-list__grid { grid-template-columns: 1fr; }
+  .reglements__grid { grid-template-columns: 1fr; }
+  .tournois__cta .btn { width: 100%; }
   .filtre           { padding: 9px 15px; font-size: .75rem; }
   .teams-list__cta .btn { width: 100%; }
   .price            { padding-inline: 20px; gap: 14px; }
