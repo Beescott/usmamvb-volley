@@ -308,7 +308,7 @@ les pages depuis un gabarit, ou un générateur statique.
 
 ## À faire
 
-Pages restantes : Équipes, Tournois, Règles, Bureau, Actualités.
+Pages restantes : Tournois, Bureau, Actualités.
 Leurs liens de navigation pointent encore sur `#`.
 
 Données encore fictives, héritées de la maquette :
