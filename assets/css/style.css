@@ -1437,14 +1437,76 @@ a:hover .arrow,
    ============================================================ */
 .bureau { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
 
+/* ---------- Sommaire ----------
+   Quatre ancres, une par catégorie. Reprise des pastilles de filtre de la page
+   Équipes (.filtre), en version lien. */
+.bureau__sommaire { margin-bottom: clamp(28px, 4vw, 44px); }
+
+.bureau__sommaire-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bureau__sommaire-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text);
+  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.bureau__sommaire-link:hover { border-color: var(--gold-ink); color: var(--gold-ink-dark); }
+
+/* ---------- Catégories ----------
+   Même squelette que .teams-group (page Équipes) : en-tête souligné, titre
+   majuscule, compteur. scroll-margin-top parce que le header est collant et
+   masquerait le titre visé par une ancre. */
+.bureau__groupe { scroll-margin-top: 92px; }
+
+.bureau__groupe + .bureau__groupe { margin-top: clamp(36px, 4vw, 52px); }
+
+.bureau__groupe-entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bureau__groupe-titre {
+  font-size: clamp(1.25rem, 2.4vw, 1.625rem);
+  font-weight: 800;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.bureau__groupe-compte {
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 .bureau__grid {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
+/* Carte membre : verticale comme .team-card, pour que dix cartes tiennent dans
+   une grille de trois colonnes au lieu d'empiler dix bandeaux. */
 .membre {
-  display: grid;
-  grid-template-columns: minmax(220px, 340px) 1fr;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: var(--white);
   border: 1px solid var(--border);
@@ -1452,23 +1514,42 @@ a:hover .arrow,
   box-shadow: var(--shadow-sm);
 }
 
+/* Le repli `none` est indispensable : sans modificateur, la premiere couche
+   reste vide et seul le dégradé chaud s'affiche, la page demeure présentable.
+   Un var() sans repli rendrait toute la déclaration invalide et ferait
+   disparaitre le dégradé lui-même. */
 .membre__photo {
   display: block;
-  min-height: 260px;
-  background-image: url('../img/bureau-presidente.jpg'), linear-gradient(140deg, #3a2f18, #0b0b0b);
+  aspect-ratio: 1 / 1;
+  background-image: var(--membre-photo, none), linear-gradient(140deg, #3a2f18, #0b0b0b);
   background-size: cover;
   background-position: center;
 }
 
+/* Un modificateur par personne, sur le modele de .team-card__photo--1 … --4.
+   Le chemin est relatif a la feuille de style, pas a la page. Nom de classe
+   sans accent : la page, elle, garde l'orthographe exacte du nom. */
+.membre__photo--goulain    { --membre-photo: url('../img/bureau-goulain.jpg'); }
+.membre__photo--cledassou  { --membre-photo: url('../img/bureau-cledassou.jpg'); }
+.membre__photo--cabarrou   { --membre-photo: url('../img/bureau-cabarrou.jpg'); }
+.membre__photo--boullay    { --membre-photo: url('../img/bureau-boullay.jpg'); }
+.membre__photo--pissoort   { --membre-photo: url('../img/bureau-pissoort.jpg'); }
+.membre__photo--champenois { --membre-photo: url('../img/bureau-champenois.jpg'); }
+.membre__photo--maillard   { --membre-photo: url('../img/bureau-maillard.jpg'); }
+.membre__photo--baron      { --membre-photo: url('../img/bureau-baron.jpg'); }
+.membre__photo--barthelemy { --membre-photo: url('../img/bureau-barthelemy.jpg'); }
+.membre__photo--torossian  { --membre-photo: url('../img/bureau-torossian.jpg'); }
+
 .membre__body { display: flex; flex-direction: column; flex: 1; padding: 22px; }
 
+/* Même rythme que .team-card__name : le nom est l'info principale de la carte. */
 .membre__nom {
-  margin: 6px 0 12px;
-  font-size: 1.375rem;
-  font-weight: 800;
-  letter-spacing: .02em;
+  margin: 0 0 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: .03em;
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .membre__texte { font-size: .875rem; color: var(--text-muted); }
@@ -1565,7 +1646,7 @@ a:hover .arrow,
   .teams-list__grid { grid-template-columns: repeat(2, 1fr); }
   .reglements__grid { grid-template-columns: repeat(2, 1fr); }
   .tournoi          { grid-template-columns: 1fr; }
-  .membre           { grid-template-columns: 1fr; }
+  .bureau__grid     { grid-template-columns: repeat(2, 1fr); }
   .pricing__grid { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
 
@@ -1594,7 +1675,7 @@ a:hover .arrow,
   .reglements__grid { grid-template-columns: 1fr; }
   .tournois__cta .btn { width: 100%; }
   .bureau__cta .btn   { width: 100%; }
-  .membre__photo      { min-height: 200px; }
+  .bureau__grid       { grid-template-columns: 1fr; }
   .filtre           { padding: 9px 15px; font-size: .75rem; }
   .teams-list__cta .btn { width: 100%; }
   .price            { padding-inline: 20px; gap: 14px; }
