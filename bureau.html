@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Le bureau — USMAMVB</title>
-<meta name="description" content="Le bureau de l'USMAMVB : Béatrice Goulain, présidente, et les contacts du club à Auvers-sur-Oise, Méry-sur-Oise et Mériel.">
-<meta property="og:title" content="Le bureau">
-<meta property="og:description" content="Présidence et contacts du club de volley-ball USMAMVB.">
+<title>Le bureau et les coachs — USMAMVB</title>
+<meta name="description" content="Le bureau et les coachs de l'USMAMVB : Béatrice Goulain, présidente, le secrétariat, la trésorerie et l'encadrement des équipes adultes mixtes, jeunes et féminines.">
+<meta property="og:title" content="Le bureau et les coachs">
+<meta property="og:description" content="Bureau, secrétariat, trésorerie et encadrement sportif du club de volley-ball USMAMVB.">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -58,49 +58,215 @@
   <section class="page-head">
     <div class="wrap page-head__inner">
       <p class="eyebrow eyebrow--gold">Le club</p>
-      <h1 class="page-head__title">Le bureau</h1>
+      <h1 class="page-head__title">Le bureau et les coachs</h1>
       <p class="page-head__lead">
-        L'association est représentée par son bureau. Pour toute question d'inscription,
-        de licence ou de vie du club, c'est par ici.
+        Bureau et encadrement sportif : les dix personnes qui font vivre le club au
+        quotidien. Pour toute question d'inscription, de licence ou de vie du club,
+        c'est par ici.
       </p>
     </div>
   </section>
 
   <!-- ============================================================
-       MEMBRES — seuls les noms confirmés sont affichés
-       Photo : assets/img/bureau-presidente.jpg (dégradé de repli si absente)
+       MEMBRES — quatre catégories, du bureau vers les terrains.
+       Un portrait par personne : assets/img/bureau-<nom>.jpg, déclaré par le
+       modificateur .membre__photo--<nom> (dégradé de repli tant que le fichier
+       est absent). Coordonnées : seule une adresse déjà publiée par le club est
+       affichée — rien n'est ajouté sans accord de la personne concernée.
        ============================================================ -->
   <section class="bureau">
     <div class="wrap">
 
-      <ul class="bureau__grid">
-        <li class="membre">
-          <span class="membre__photo" role="img" aria-label="Photo à venir de Béatrice Goulain"></span>
-          <div class="membre__body">
-            <p class="eyebrow">Présidente</p>
-            <h2 class="membre__nom">Béatrice Goulain</h2>
-            <p class="membre__texte">
-              Présidente de l'USMAMVB. Premier contact pour le club, les inscriptions
-              et les questions du quotidien.
-            </p>
-            <ul class="membre__contact">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>
-                <a href="tel:+33667216148">06 67 21 61 48</a>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
-                <a href="mailto:contact@usmvb.asso.fr">contact@usmvb.asso.fr</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+      <!-- Une ancre par catégorie ; le header est collant, d'où le
+           scroll-margin-top posé sur .bureau__groupe. -->
+      <nav class="bureau__sommaire" aria-label="Catégories du bureau et des coachs">
+        <ul class="bureau__sommaire-liste">
+          <li><a class="bureau__sommaire-link" href="#bureau">Bureau</a></li>
+          <li><a class="bureau__sommaire-link" href="#coachs-adultes-mixtes">Coachs adultes mixtes</a></li>
+          <li><a class="bureau__sommaire-link" href="#coachs-jeunes">Coachs jeunes</a></li>
+          <li><a class="bureau__sommaire-link" href="#coachs-adultes-feminines">Coachs adultes féminines</a></li>
+        </ul>
+      </nav>
+
+      <!-- ---------- 1. Le bureau ---------- -->
+      <section class="bureau__groupe" id="bureau" aria-labelledby="titre-bureau">
+        <div class="bureau__groupe-entete">
+          <h2 class="bureau__groupe-titre" id="titre-bureau">Bureau</h2>
+          <p class="bureau__groupe-compte">3 membres</p>
+        </div>
+
+        <ul class="bureau__grid">
+          <li class="membre">
+            <span class="membre__photo membre__photo--goulain" role="img" aria-label="Photo à venir de Béatrice Goulain"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Présidente</p>
+              <h3 class="membre__nom">Béatrice Goulain</h3>
+              <p class="membre__texte">
+                Présidente de l'USMAMVB. Premier contact pour le club, les inscriptions
+                et les questions du quotidien.
+              </p>
+              <ul class="membre__contact">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2z"/></svg>
+                  <a href="tel:+33667216148">06 67 21 61 48</a>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+                  <a href="mailto:contact@usmvb.asso.fr">contact@usmvb.asso.fr</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="membre">
+            <span class="membre__photo membre__photo--cledassou" role="img" aria-label="Photo à venir de Romain Cledassou"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Secrétaire</p>
+              <h3 class="membre__nom">Romain Cledassou</h3>
+              <p class="membre__texte">
+                Secrétaire du club : courriers, dossiers et vie administrative.
+                Le secrétariat est joignable à l'adresse ci-contre.
+              </p>
+              <ul class="membre__contact">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+                  <a href="mailto:contact@usmvb.asso.fr">contact@usmvb.asso.fr</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="membre">
+            <span class="membre__photo membre__photo--cabarrou" role="img" aria-label="Photo à venir d'Adeline Cabarrou"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Trésorerie</p>
+              <h3 class="membre__nom">Adeline Cabarrou</h3>
+              <p class="membre__texte">
+                En charge des cotisations et des comptes de l'association. Pour une
+                question de règlement, écrivez au secrétariat, il transmettra.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ---------- 2. Coachs adultes mixtes ---------- -->
+      <section class="bureau__groupe" id="coachs-adultes-mixtes" aria-labelledby="titre-coachs-adultes-mixtes">
+        <div class="bureau__groupe-entete">
+          <h2 class="bureau__groupe-titre" id="titre-coachs-adultes-mixtes">Coachs adultes mixtes</h2>
+          <p class="bureau__groupe-compte">2 coachs</p>
+        </div>
+
+        <ul class="bureau__grid">
+          <li class="membre">
+            <span class="membre__photo membre__photo--boullay" role="img" aria-label="Photo à venir de Norbert Boullay"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Coach adultes</p>
+              <h3 class="membre__nom">Norbert Boullay</h3>
+              <p class="membre__texte">
+                Sur les créneaux et en compétition avec les équipes adultes mixtes
+                du club.
+              </p>
+            </div>
+          </li>
+
+          <li class="membre">
+            <span class="membre__photo membre__photo--pissoort" role="img" aria-label="Photo à venir de Marc Pissoort"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Coach adultes</p>
+              <h3 class="membre__nom">Marc Pissoort</h3>
+              <p class="membre__texte">
+                Encadrement des équipes adultes mixtes, de l'entraînement au jour
+                de match.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ---------- 3. Coachs jeunes ---------- -->
+      <section class="bureau__groupe" id="coachs-jeunes" aria-labelledby="titre-coachs-jeunes">
+        <div class="bureau__groupe-entete">
+          <h2 class="bureau__groupe-titre" id="titre-coachs-jeunes">Coachs jeunes</h2>
+          <p class="bureau__groupe-compte">3 coachs</p>
+        </div>
+
+        <ul class="bureau__grid">
+          <li class="membre">
+            <span class="membre__photo membre__photo--champenois" role="img" aria-label="Photo à venir de Marie-Laure Champenois"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Encadrante jeunes</p>
+              <h3 class="membre__nom">Marie-Laure Champenois</h3>
+              <p class="membre__texte">
+                Encadrement des jeunes du club, des plateaux d'entraînement aux
+                rencontres.
+              </p>
+            </div>
+          </li>
+
+          <li class="membre">
+            <span class="membre__photo membre__photo--maillard" role="img" aria-label="Photo à venir de Marie-Paule Maillard"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Coach jeunes</p>
+              <h3 class="membre__nom">Marie-Paule Maillard</h3>
+              <p class="membre__texte">
+                Coaching des équipes jeunes, de l'entraînement à la rencontre.
+              </p>
+            </div>
+          </li>
+
+          <li class="membre">
+            <span class="membre__photo membre__photo--baron" role="img" aria-label="Photo à venir d'Alexandre Baron"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Coach ados</p>
+              <h3 class="membre__nom">Alexandre Baron</h3>
+              <p class="membre__texte">
+                Coaching des équipes ados du club.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ---------- 4. Coachs adultes féminines ---------- -->
+      <section class="bureau__groupe" id="coachs-adultes-feminines" aria-labelledby="titre-coachs-adultes-feminines">
+        <div class="bureau__groupe-entete">
+          <h2 class="bureau__groupe-titre" id="titre-coachs-adultes-feminines">Coachs adultes féminines</h2>
+          <p class="bureau__groupe-compte">2 coachs</p>
+        </div>
+
+        <ul class="bureau__grid">
+          <li class="membre">
+            <span class="membre__photo membre__photo--barthelemy" role="img" aria-label="Photo à venir d'Olivier Barthelemy"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Coach sénior féminines</p>
+              <h3 class="membre__nom">Olivier Barthelemy</h3>
+              <p class="membre__texte">
+                Encadrement des équipes féminines du club, en compétition loisirs.
+              </p>
+            </div>
+          </li>
+
+          <li class="membre">
+            <span class="membre__photo membre__photo--torossian" role="img" aria-label="Photo à venir de Christophe Torossian"></span>
+            <div class="membre__body">
+              <p class="eyebrow">Coach sénior féminines</p>
+              <h3 class="membre__nom">Christophe Torossian</h3>
+              <p class="membre__texte">
+                Encadrement des équipes féminines, des entraînements de la semaine
+                aux rencontres.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
 
       <p class="bureau__note">
-        Les autres membres du bureau (secrétariat, trésorerie, responsables d'équipes)
-        seront présentés ici dès que leurs portraits et fonctions seront confirmés.
-        En attendant, le secrétariat répond à <a class="link--inline" href="mailto:contact@usmvb.asso.fr">contact@usmvb.asso.fr</a>.
+        Les portraits photographiques ne sont pas encore réalisés : les emplacements
+        restent affichés en attendant. Les coordonnées publiées ici sont celles du
+        club — le secrétariat répond à <a class="link--inline" href="mailto:contact@usmvb.asso.fr">contact@usmvb.asso.fr</a>
+        et transmet à la personne concernée. Pour figurer sur cette page avec un
+        numéro ou un mail personnel, merci de nous le confirmer par écrit.
       </p>
 
       <aside class="card card--dark bureau__cta">
