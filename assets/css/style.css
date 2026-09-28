@@ -1438,25 +1438,27 @@ a:hover .arrow,
 .bureau { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
 
 /* ---------- Sommaire ----------
-   Quatre ancres, une par catégorie, posées à plat sur une seule ligne : de
-   simples liens texte, sans pastille (ni fond, ni bordure, ni radius), pour
-   que le menu reste discret au-dessus du contenu. Chaque lien est `nowrap` :
-   le retour à la ligne se fait entre deux entrées, jamais au milieu d'un
-   libellé. L'or est --gold-ink, pas --gold : 5,00:1 sur cream-soft contre
-   1,60:1 pour l'or du logo. */
+   Quatre ancres, une par catégorie, centrées au-dessus du contenu. Chaque lien
+   se présente comme un bouton léger : fond blanc, filet de bordure et radius
+   999 px, sur le modele des pastilles de filtre de la page Équipes (.filtre).
+   Le libellé reste `nowrap` : le retour à la ligne se fait entre deux entrées,
+   jamais au milieu d'un libellé. L'or est --gold-ink, pas --gold : 5,21:1 sur
+   blanc contre 1,60:1 pour l'or du logo. */
 .bureau__sommaire { margin-bottom: clamp(20px, 3vw, 32px); }
 
 .bureau__sommaire-liste {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 20px;
+  justify-content: center;
+  gap: 10px 12px;
 }
 
 .bureau__sommaire-link {
   display: inline-block;
-  padding-block: 8px;
-  border-bottom: 1px solid transparent;
+  padding: 9px 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
   font-size: .8125rem;
   font-weight: 700;
   line-height: 1.2;
@@ -1464,11 +1466,11 @@ a:hover .arrow,
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--gold-ink);
-  transition: color .2s var(--ease), border-color .2s var(--ease);
+  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
 }
 .bureau__sommaire-link:hover {
+  border-color: var(--gold-ink);
   color: var(--gold-ink-dark);
-  border-bottom-color: currentColor;
 }
 
 /* ---------- Catégories ----------
@@ -1687,6 +1689,7 @@ a:hover .arrow,
   .bureau__cta .btn   { width: 100%; }
   .bureau__grid       { grid-template-columns: 1fr; }
   .filtre           { padding: 9px 15px; font-size: .75rem; }
+  .bureau__sommaire-link { padding: 8px 14px; font-size: .75rem; }
   .teams-list__cta .btn { width: 100%; }
   .price            { padding-inline: 20px; gap: 14px; }
   .price__amount    { font-size: 1.25rem; }
