@@ -1438,38 +1438,48 @@ a:hover .arrow,
 .bureau { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
 
 /* ---------- Sommaire ----------
-   Quatre ancres, une par catégorie. Reprise des pastilles de filtre de la page
-   Équipes (.filtre), en version lien. */
-.bureau__sommaire { margin-bottom: clamp(28px, 4vw, 44px); }
+   Quatre ancres, une par catégorie, posées à plat sur une seule ligne : de
+   simples liens texte, sans pastille (ni fond, ni bordure, ni radius), pour
+   que le menu reste discret au-dessus du contenu. Chaque lien est `nowrap` :
+   le retour à la ligne se fait entre deux entrées, jamais au milieu d'un
+   libellé. L'or est --gold-ink, pas --gold : 5,00:1 sur cream-soft contre
+   1,60:1 pour l'or du logo. */
+.bureau__sommaire { margin-bottom: clamp(20px, 3vw, 32px); }
 
 .bureau__sommaire-liste {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  align-items: baseline;
+  gap: 4px 20px;
 }
 
 .bureau__sommaire-link {
   display: inline-block;
-  padding: 10px 20px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  padding-block: 8px;
+  border-bottom: 1px solid transparent;
   font-size: .8125rem;
   font-weight: 700;
+  line-height: 1.2;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--text);
-  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+  white-space: nowrap;
+  color: var(--gold-ink);
+  transition: color .2s var(--ease), border-color .2s var(--ease);
 }
-.bureau__sommaire-link:hover { border-color: var(--gold-ink); color: var(--gold-ink-dark); }
+.bureau__sommaire-link:hover {
+  color: var(--gold-ink-dark);
+  border-bottom-color: currentColor;
+}
 
 /* ---------- Catégories ----------
    Même squelette que .teams-group (page Équipes) : en-tête souligné, titre
    majuscule, compteur. scroll-margin-top parce que le header est collant et
-   masquerait le titre visé par une ancre. */
+   masquerait le titre visé par une ancre. La marge entre deux catégories est
+   volontairement généreuse : sans elle, la dernière carte d'un groupe et le
+   titre du suivant se collent et la frontière entre catégories s'efface. */
 .bureau__groupe { scroll-margin-top: 92px; }
 
-.bureau__groupe + .bureau__groupe { margin-top: clamp(36px, 4vw, 52px); }
+.bureau__groupe + .bureau__groupe { margin-top: clamp(52px, 6vw, 76px); }
 
 .bureau__groupe-entete {
   display: flex;
