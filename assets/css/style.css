@@ -673,7 +673,9 @@ a:hover .arrow,
   padding-block: clamp(40px, 6vw, 72px);
   background: var(--cream);
 }
-.page-head__inner { max-width: 760px; }
+/* Colonne du bandeau de titre : 880 px pour que les deux phrases du lead aient
+   leur place (la plus longue demande ~600 px) sans être coupées en deux. */
+.page-head__inner { max-width: 880px; }
 
 .page-head__title {
   margin-bottom: 20px;
@@ -684,7 +686,9 @@ a:hover .arrow,
   text-transform: uppercase;
 }
 
-.page-head__lead { max-width: 60ch; color: var(--text-muted); }
+/* 90ch et non 80ch : sous 880 px de colonne, 80ch (690 px) restait le vrai
+   plafond et coupait la première phrase du lead en deux. */
+.page-head__lead { max-width: 90ch; color: var(--text-muted); }
 
 /* Les 4 étapes */
 .steps {
@@ -1435,7 +1439,13 @@ a:hover .arrow,
 /* ============================================================
    PAGE BUREAU
    ============================================================ */
-.bureau { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
+/* Le bandeau de titre (.page-head, crème) a déjà ses 72 px de respiration en
+   bas : cumulés avec les 72 px du haut de .bureau, le menu sommaire tombait à
+   144 px du lead. Le haut est réduit, le bas reste ample. */
+.bureau {
+  padding-block: clamp(16px, 2.5vw, 28px) clamp(40px, 6vw, 72px);
+  background: var(--cream-soft);
+}
 
 /* ---------- Sommaire ----------
    Quatre ancres, une par catégorie, centrées au-dessus du contenu. Chaque lien
