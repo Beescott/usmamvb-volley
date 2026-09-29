@@ -1550,7 +1550,10 @@ a:hover .arrow,
 
 /* Un modificateur par personne, sur le modele de .team-card__photo--1 … --4.
    Le chemin est relatif a la feuille de style, pas a la page. Nom de classe
-   sans accent : la page, elle, garde l'orthographe exacte du nom. */
+   sans accent : la page, elle, garde l'orthographe exacte du nom.
+   Fichier attendu : 840x840. Le recadrage carre est deja dans l'image — il est
+   ancre vers le haut a la preparation — donc `center` ne peut pas couper un
+   visage, la ou un recadrage centre dans le navigateur en couperait le tiers. */
 .membre__photo--goulain    { --membre-photo: url('../img/bureau-goulain.jpg'); }
 .membre__photo--cledassou  { --membre-photo: url('../img/bureau-cledassou.jpg'); }
 .membre__photo--cabarrou   { --membre-photo: url('../img/bureau-cabarrou.jpg'); }

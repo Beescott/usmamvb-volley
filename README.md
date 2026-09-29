@@ -101,6 +101,26 @@ zones plus claires à droite.
 | `gymnase-1.jpg` | gymnase Bozon, Auvers | 3:2, ≥ 1200×800 |
 | `gymnase-2.jpg` | gymnase Municipal, Méry | 3:2, ≥ 1200×800 |
 | `gymnase-3.jpg` | gymnase de Mériel | 3:2, ≥ 1200×800 |
+| `bureau-<nom>.jpg` | portraits de la page Bureau | carré, 840×840 |
+
+Les huit portraits reçus à ce jour sont `bureau-goulain.jpg`,
+`bureau-cledassou.jpg`, `bureau-cabarrou.jpg`, `bureau-boullay.jpg`,
+`bureau-pissoort.jpg`, `bureau-baron.jpg`, `bureau-barthelemy.jpg` et
+`bureau-torossian.jpg` : 840×840, de 41 à 84 Ko pièce. Ils viennent des photos
+transmises par le club — `Béatrice Goulain.jpg`, `Alexandre.jpg`,
+`olivier barthelemy.jpeg`… — renommées au format du site, sans espace ni accent.
+Les fichiers d'origine (de 43 Ko à 3,3 Mo) ne sont référencés par aucune page et
+peuvent être retirés de `assets/img/`.
+
+Ils ont été recadrés au carré **ancré vers le haut** plutôt que centré : la carte
+est en `aspect-ratio: 1/1` avec `background-size: cover`, et centrer le recadrage
+d'un portrait vertical en couperait le haut — c'est-à-dire la tête. Le réencodage
+est reparti d'un bitmap neuf, donc l'EXIF et un éventuel GPS pris par le téléphone
+ne partent pas sur le site. Manquent encore `bureau-champenois.jpg` et
+`bureau-maillard.jpg`, affichés en dégradé de repli.
+
+`photo_1.jpeg` (3088×2320) attend toujours d'être identifiée : aucune carte de la
+page Bureau à laquelle l'associer.
 
 `logo.png` est déjà en place : écusson USMAMVB détouré et recadré au carré
 (729×729, fond transparent), affiché à 44 px dans le header et servant de favicon.
