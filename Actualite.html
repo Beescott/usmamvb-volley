@@ -62,19 +62,22 @@
 
       <!-- ---------- Les trois communes ----------
            Emblèmes Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre
-           du bas de page. Les trois fichiers ont été fournis par le club ;
-           ils sont de formats différents (217×220, 253×227, 178×204), d'où
-           le `object-fit: contain` : aucune déformation, aucun rognage.
-           L'ordre des noms de fichier diffère de celui de la liste. -->
+           du bas de page. Le fond de chaque fichier a été passé en #f2f0ec,
+           exactement la valeur de `--cream` sur laquelle `.page-head` est
+           peint : ils se posent donc dessus sans rectangle visible.
+           Les formats diffèrent (425×470, 217×233, 192×192) — d'où le
+           `object-fit: contain`, qui évite de rogner le blason de Mériel.
+           `width`/`height` reprennent la taille réelle de chaque fichier ;
+           les mettre à jour évite un saut de mise en page au chargement. -->
       <ul class="communes">
         <li class="commune">
-          <img class="commune__embleme" src="assets/img/emblemeauvers.png" alt="Blason d'Auvers-sur-Oise" width="217" height="220">
+          <img class="commune__embleme" src="assets/img/emblemeauvers.png" alt="Blason d'Auvers-sur-Oise" width="425" height="470">
         </li>
         <li class="commune">
-          <img class="commune__embleme" src="assets/img/Emblememery.png" alt="Blason de Méry-sur-Oise" width="253" height="227">
+          <img class="commune__embleme" src="assets/img/Emblememery.png" alt="Blason de Méry-sur-Oise" width="217" height="233">
         </li>
         <li class="commune">
-          <img class="commune__embleme" src="assets/img/emblememeriel.png" alt="Blason de Mériel" width="178" height="204">
+          <img class="commune__embleme" src="assets/img/emblememeriel.png" alt="Blason de Mériel" width="192" height="192">
         </li>
       </ul>
       <p class="communes__note">Un club, trois communes du Val-d'Oise.</p>

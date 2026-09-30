@@ -366,28 +366,31 @@ transmet : `actu-inscriptions.jpg`, `actu-aides.jpg`, `actu-amazones.jpg`,
 
 **Blasons des trois communes.** Le bandeau de titre (`.page-head`) porte les
 emblèmes d'Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre du pied de
-page. **Le fond beige d'origine (`#DAB86A`) a été remplacé par du blanc dans
-les trois fichiers**, ce qui permet de les poser sans cadre ni carte. Les
-originaux sont archivés dans `.tmp/emblemes-origine/` si le club veut les
-reprendre.
+page. **Le fond de chaque PNG a été passé en `#f2f0ec`**, exactement la valeur de
+`--cream` sur laquelle `.page-head` est peint : les trois se posent dessus sans
+rectangle visible.
 
-Le nettoyage n'est pas un remplacement global de couleur : dans l'emblème de
-Méry, le `#D9B769` du « M » n'est qu'à **4 unités** du fond, une substitution
-par tolérance l'aurait rongé. Seuls les pixels **connectés au bord** ont donc été
-blanchis, puis un liseré d'antircrénelage a été nettoyé en ne touchant que les
-pixels beiges **adjacents à une zone déjà blanche** — l'intérieur des écussons
-et des lettres, entouré de dessin, n'est jamais adjacent au blanc et reste donc
-intact. Les trois blasons ont été vérifiés pixel par pixel après traitement :
-0 tache résiduelle sur Méry et Mériel, 3 pixels légitimes dans le lettrage doré
-d'Auvers.
+⚠ **La couleur est cuite dans les images.** Si `--cream` change un jour, il faut
+refaire les trois PNG — le CSS ne peut plus les corriger. C'est le prix d'un fond
+opaque ; mieux aurait été de les enregistrer en PNG transparent, qui se
+compatteraient avec n'importe quel fond.
 
-Ils sont posés en `flex` et centrés (`justify-content: center`) sur la largeur de
-`.page-head__inner` (880 px), donc sur le même axe que le titre et le chapô.
-`align-items: flex-end` aligne leurs pieds : les trois hauteurs diffèrent
-(204, 220 et 227 px) et un alignement par le haut laisserait des blancs
-irréguliers. La classe est `.commune__embleme`, **sans accent**, comme
-`.membre__photo--<nom>` ; le nom de fichier `Emblememery.png` conserve en
-revanche sa majuscule, il est fourni tel quel.
+Trois passes ont été nécessaires sur ces fichiers, chacune avec sa raison :
+
+| Passe | Ce qu'elle traite |
+| --- | --- |
+| Blanc → crème, par diffusion depuis les bords | Le fond uni d'origine. Seul le fond **connecté au bord** est remplacé : l'intérieur des écussons, entouré de dessin, n'est jamais touché. |
+| Aplatissement du dégradé | Le fond d'Auvers n'est pas un aplat mais un dégradé gris clair (`#ECECEC` → `#F4F4F4`), à 31 unités du blanc mais 6 unités du crème — la première passe ne l'attrapait pas. |
+| Nettoyage des artefacts de bord | La source d'Aversions portait un cadre résiduel d'export : une bande verticale sombre à gauche et un trait noir en haut (29 051 px). Visibles une fois le fond crème en place. |
+
+Le retrait des artefacts ne prend que des pixels **peu saturés qui touchent le
+bord**. Le dessin, très saturé (écart R-B > 160 sur le bleu, le rouge, l'or) et
+entouré de crème, est intouchable. Les `width`/`height` du HTML suivent les
+formats réels (425×470, 217×233, 192×192) : les fichiers ayant été remplacés,
+elles étaient périmées et provoquaient un saut de mise en page.
+
+Les originaux sont archivés dans `.tmp/emblemes-origine/` (avant tout traitement)
+et `.tmp/emblemes-blanc/` (versions à fond blanc fournies le jour même).
 
 **Contenu.** Tout est repris de ce qui est déjà attesté ailleurs sur le site ou
 dans le PDF du club (page « club », section « VIE ASSOCIATIVE ») : Méry'Plouz,

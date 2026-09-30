@@ -1893,12 +1893,14 @@ a:hover .arrow,
 }
 
 /* ---------- Les trois communes ----------
-   Blasons poses sous le titre de page. Le fond beige d'origine a ete remplace
-   par du blanc dans les trois fichiers : ils se posent donc directement sur la
-   bande creme, sans cadre ni carte. C'est ce qui autorise `object-fit: contain`
-   sans rogner : `cover` couperait le blason de Meriel, le plus haut des trois
-   (178x204 contre 253x227). Les trois formats etant differents, `contain` les
-   fait tenir dans un cadre commun sans les deformer.
+   Blasons poses sous le titre de page. Le fond de chaque PNG a ete mis a
+   #f2f0ec, valeur de `--cream` sur laquelle `.page-head` est peint : ils se
+   posent donc dessus sans rectangle visible. (Si `--cream` change un jour, il
+   faut refaire les images — la couleur est cuite dedans, pas stylée en CSS.)
+
+   Les formats etant differents (425x470, 217x233, 192x192), `object-fit:
+   contain` les fait tenir dans un cadre commun sans les deformer ni les
+   rogner ; `cover` couperait le blason de Meriel, le plus haut des trois.
 
    Le rang est centre sur la largeur de .page-head__inner (880 px) et non sur
    le `wrap` de 1180 px, pour partager l'axe du titre et du chapo. */
