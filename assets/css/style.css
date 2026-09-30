@@ -1622,6 +1622,146 @@ a:hover .arrow,
 .bureau__cta-texte { max-width: 56ch; margin: 0; color: var(--text-on-dark); }
 
 /* ============================================================
+   PAGE ACTUALITÉS
+   ============================================================ */
+.actus { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
+
+/* ---------- À la une ----------
+   Seule actu affichée en grand : média à gauche, texte à droite, sur la même
+   trame que .tournoi. Le reste de la page est une grille de cartes. */
+.actu-une {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(22px, 3vw, 40px);
+  padding: clamp(24px, 3vw, 34px);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Le repli `none` est indispensable : sans modificateur, la premiere couche
+   reste vide et seul le degrade chaud s'affiche, la page demeure presentable.
+   Meme raison, et meme ecriture, que .membre__photo. */
+.actu-une__media {
+  display: block;
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  background-image: var(--actu-photo, none), linear-gradient(140deg, #3a2f18, #0b0b0b);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Même rôle que .tournoi__corps : la colonne de texte. flex pour que le lien
+   « S'inscrire » se pose en bas quand la carte s'allonge. */
+.actu-une__corps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.actu-une__titre {
+  margin-bottom: 14px;
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+.actu-une__texte { margin-bottom: 16px; color: var(--text-muted); }
+
+/* ---------- Liste des autres actu ----------
+   Cartes verticales, meme grille trois colonnes que .membre et .team-card. */
+.actus__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.actu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.actu:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.actu__media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background-image: var(--actu-photo, none), linear-gradient(140deg, #3a2f18, #0b0b0b);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Un modificateur par photo, sur le modele de .membre__photo--<nom>. Le chemin
+   est relatif a la feuille de style, pas a la page. */
+.actu-une__media--inscriptions { --actu-photo: url('../img/actu-inscriptions.jpg'); }
+.actu__media--amazones           { --actu-photo: url('../img/actu-amazones.jpg'); }
+.actu__media--meryplouz          { --actu-photo: url('../img/meryplouz2022.png'); }
+.actu__media--trophees           { --actu-photo: url('../img/Remisetroph%C3%A9e.png'); }
+.actu__media--forums             { --actu-photo: url('../img/actu-forums.jpg'); }
+.actu__media--aides              { --actu-photo: url('../img/actu-aides.jpg'); }
+
+.actu__body { display: flex; flex-direction: column; flex: 1; padding: 22px; }
+
+/* Categorie et date sur une seule ligne. Le filet qui suit les deux fait
+   office de separation avec le titre, sans nouvelle bordure dans la carte. */
+.actu__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin-bottom: 10px;
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.actu__categorie { color: var(--gold-ink); }
+/* Le point de couture reste colle au mot qui le precede. */
+.actu__meta time::before { content: '· '; }
+
+.actu__titre {
+  margin-bottom: 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.actu__texte { font-size: .875rem; color: var(--text-muted); }
+
+/* Le lien descend en bas de carte : les cartes d'une meme ligne finissent
+   sur la meme ligne de base, quelle que soit la longueur du texte. */
+.actu__body .link { margin-top: auto; padding-top: 18px; align-self: flex-start; }
+
+.actus__note {
+  max-width: 70ch;
+  margin-top: 24px;
+  font-size: .8125rem;
+  color: var(--text-muted);
+}
+
+.actus__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.actus__cta-texte { max-width: 56ch; margin: 0; color: var(--text-on-dark); }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1080px) {
@@ -1672,6 +1812,7 @@ a:hover .arrow,
   .reglements__grid { grid-template-columns: repeat(2, 1fr); }
   .tournoi          { grid-template-columns: 1fr; }
   .bureau__grid     { grid-template-columns: repeat(2, 1fr); }
+  .actus__grid      { grid-template-columns: repeat(2, 1fr); }
   .pricing__grid { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
 
@@ -1701,6 +1842,12 @@ a:hover .arrow,
   .tournois__cta .btn { width: 100%; }
   .bureau__cta .btn   { width: 100%; }
   .bureau__grid       { grid-template-columns: 1fr; }
+  .actus__grid        { grid-template-columns: 1fr; }
+  .actus__cta .btn    { width: 100%; }
+
+  /* L'à la une s'empile : le texte passe sous la photo, comme .venue-block */
+  .actu-une            { grid-template-columns: 1fr; }
+  .actu-une__media     { aspect-ratio: 16 / 9; }
   .filtre           { padding: 9px 15px; font-size: .75rem; }
   .bureau__sommaire-link { padding: 8px 14px; font-size: .75rem; }
   .teams-list__cta .btn { width: 100%; }

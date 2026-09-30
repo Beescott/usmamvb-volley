@@ -11,6 +11,8 @@ gymnases.html         les trois salles : cartes, accès, créneaux
 equipes.html          les 15 équipes, filtrables par format
 tournois.html         les deux tournois du club
 regles.html           règlement du club et règlements FSGT
+bureau.html           le bureau, les coachs et les coordonnées
+Actualite.html        les actualités du club, à la une + grille
 assets/css/style.css  feuille de style unique
 assets/js/main.js     menu mobile, chargement des cartes au clic
 assets/img/           logo et photos (voir plus bas)
@@ -330,7 +332,41 @@ les pages depuis un gabarit, ou un générateur statique.
 
 ## À faire
 
-Pages restantes : Bureau, Actualités.
+Toutes les pages prévues existent. Pages restantes : aucune.
+
+## Page Actualités — `Actualite.html`
+
+Entrée `Actualités` de la « Navigation principale », et le lien « Toutes les
+actualités » de l'accueil. Le fichier s'appelle `Actualite.html` (sans accent,
+comme tous les autres noms de page du site) ; le libellé affiché, lui, reste
+accentué.
+
+**Structure.** Une actu à la une (`.actu-une`, deux colonnes, sur la trame de
+`.tournoi`), puis une grille de trois colonnes (`.actus__grid`) de six cartes
+`.actu`. Hiérarchie des titres : `h1` pour la page, `h2` pour l'à la une, `h3`
+par carte. Chaque date est dans un `<time datetime>`, chaque carte est un
+`<article>` : la page reste lisible sans JavaScript, qui n'intervient pas ici.
+
+**Photos.** Deux clichés sont déjà en place et utilisés : `meryplouz2022.png`
+(485×487,Méry'Plouz 2022) et `Remisetrophée.png` (370×370, remise des
+trophées). Le second porte un accent dans son nom : il est appelé en
+percent-encoding dans `style.css`, `url('../img/Remisetroph%C3%A9e.png')`, et
+non en clair. Les quatre autres emplacements affichent le dégradé de repli
+habituel — même mécanisme, et même raison, que `.membre__photo`. Fichiers
+attendus si le club les transmet : `actu-inscriptions.jpg`, `actu-aides.jpg`,
+`actu-amazones.jpg`, `actu-forums.jpg`.
+
+**Contenu.** Tout est repris de ce qui est déjà attesté ailleurs sur le site ou
+dans le PDF du club (page « club », section « VIE ASSOCIATIVE ») : Méry'Plouz,
+la remise des trophées, les forums des associations, les deux tournois,
+l'ouverture des adhesions. **Rien n'a été inventé**, en particulier aucune
+date de résultat, aucun score et aucun classement — le PDF ne les contient pas.
+
+Une réserve honnête : les dates affichées (« Septembre 2026 », « Été 2026 »…)
+sont des **valeurs de repli plausibles**, posées pour que la page soit
+présentable. Le club n'a fourni ni calendrier ni archives datées. Elles sont à
+remplacer par les dates réelles avant publication, et le `.actus__note` le
+signale au visiteur.
 
 ### Contenu repris du PDF du club
 
