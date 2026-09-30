@@ -343,18 +343,34 @@ accentué.
 
 **Structure.** Une actu à la une (`.actu-une`, deux colonnes, sur la trame de
 `.tournoi`), puis une grille de trois colonnes (`.actus__grid`) de six cartes
-`.actu`. Hiérarchie des titres : `h1` pour la page, `h2` pour l'à la une, `h3`
+`.actu`, le tout respirant largement (gouttière `clamp(28px, 3.4vw, 40px)` et
+marge haute `clamp(40px, 5vw, 64px)`, soit plus qu'une grille de cartes
+normale). Hiérarchie des titres : `h1` pour la page, `h2` pour l'à la une, `h3`
 par carte. Chaque date est dans un `<time datetime>`, chaque carte est un
 `<article>` : la page reste lisible sans JavaScript, qui n'intervient pas ici.
 
-**Photos.** Deux clichés sont déjà en place et utilisés : `meryplouz2022.png`
-(485×487,Méry'Plouz 2022) et `Remisetrophée.png` (370×370, remise des
-trophées). Le second porte un accent dans son nom : il est appelé en
-percent-encoding dans `style.css`, `url('../img/Remisetroph%C3%A9e.png')`, et
-non en clair. Les quatre autres emplacements affichent le dégradé de repli
-habituel — même mécanisme, et même raison, que `.membre__photo`. Fichiers
-attendus si le club les transmet : `actu-inscriptions.jpg`, `actu-aides.jpg`,
-`actu-amazones.jpg`, `actu-forums.jpg`.
+**Photos.** Les deux clichés fournis sont utilisés dans les actus du même
+sujet : `meryplouz2022.png` (485×487) sur « Le club à Méry'Plouz » et
+`Remisetrophée.png` (370×370) sur « Remise des trophées ». Ce sont des
+**planches-contact** : leurs légendes sont en haut et en bas, si bien que
+`.actu__media` est passé du 16/9 au **carré** — en 16:9, `cover` aurait rogné
+ces deux images. Elles sont écrites en `<img>` dans le HTML, et non en fond CSS
+comme les emplacements vides : le texte de remplacement est ainsi lu par les
+lecteurs d'écran et le fichier indexable. `Remisetrophée.png` porte un accent,
+appelé en percent-encoding : `Remisetroph%C3%A9e.png`.
+
+Les quatre autres emplacements affichent le dégradé de repli habituel — même
+mécanisme et même raison que `.membre__photo`. Fichiers attendus si le club les
+transmet : `actu-inscriptions.jpg`, `actu-aides.jpg`, `actu-amazones.jpg`,
+`actu-forums.jpg`.
+
+**Blasons des trois communes.** Le bandeau de titre (`.page-head`) porte les
+emblèmes d'Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre du pied de
+page. Les trois fichiers ont des formats différents (217×220, 253×227,
+178×204) : `object-fit: contain` les fait tenir dans un cadre commun sans les
+déformer ni les rogner. La classe est `.commune__embleme`, **sans accent**,
+comme `.membre__photo--<nom>` : le nom de fichier `Emblememery.png` conserve
+en revanche sa majuscule, il est fourni tel quel.
 
 **Contenu.** Tout est repris de ce qui est déjà attesté ailleurs sur le site ou
 dans le PDF du club (page « club », section « VIE ASSOCIATIVE ») : Méry'Plouz,

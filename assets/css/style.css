@@ -1626,6 +1626,47 @@ a:hover .arrow,
    ============================================================ */
 .actus { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
 
+/* ---------- Les trois communes ----------
+   Blasons poses sous le titre de page. Ils ont des formats differents
+   (253×227, 217×220, 178×204) : `contain` les fait tenir dans un cadre commun
+   sans les deformer ni les rogner, contrairement a `cover` qui couperait le
+   blason de Meriel, le plus haut des trois. `object-position: center` les
+   recentre. Le fond beige des trois fichiers est d'origine ; la carte blanche
+   les encadre et les detache de la bande creme. */
+.communes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 560px;
+  margin-top: clamp(28px, 4vw, 40px);
+}
+
+.commune {
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Nom de classe sans accent, sur le modele de .membre__photo--<nom> : la page,
+   elle, garde l'orthographe exacte dans ses textes. */
+.commune__embleme {
+  display: block;
+  width: 100%;
+  height: 84px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.communes__note {
+  margin-top: 12px;
+  font-size: .8125rem;
+  color: var(--text-muted);
+}
+
 /* ---------- À la une ----------
    Seule actu affichée en grand : média à gauche, texte à droite, sur la même
    trame que .tournoi. Le reste de la page est une grille de cartes. */
@@ -1672,12 +1713,14 @@ a:hover .arrow,
 .actu-une__texte { margin-bottom: 16px; color: var(--text-muted); }
 
 /* ---------- Liste des autres actu ----------
-   Cartes verticales, meme grille trois colonnes que .membre et .team-card. */
+   Cartes verticales, meme grille trois colonnes que .membre et .team-card.
+   Le gouttere est plus large que sur ces deux grilles (20 px) : chaque actu se
+   lit comme une entree de blog, et les planches-contact respirent entre elles. */
 .actus__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: clamp(28px, 4vw, 44px);
+  gap: clamp(28px, 3.4vw, 40px);
+  margin-top: clamp(40px, 5vw, 64px);
 }
 
 .actu {
@@ -1692,22 +1735,35 @@ a:hover .arrow,
 }
 .actu:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
+/* La photo est un carré (485×487 et 370×370) : la boîte passe au carré et
+   non au 16/9 des autres cartes, faute de quoi `cover` rognerait le haut et le
+   bas des planches-contact — dont les légendes sont justement en haut et en bas.
+   `object-fit: cover` ne rogne donc rien ici, et la grille garde ses alignements. */
 .actu__media {
   display: block;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
   background-image: var(--actu-photo, none), linear-gradient(140deg, #3a2f18, #0b0b0b);
   background-size: cover;
   background-position: center;
 }
 
-/* Un modificateur par photo, sur le modele de .membre__photo--<nom>. Le chemin
-   est relatif a la feuille de style, pas a la page. */
+/* Un modificateur par photo d'emplacement, sur le modele de
+   .membre__photo--<nom>. Le chemin est relatif a la feuille de style, pas a la
+   page. Les deux photos reellement fournies (meryplouz2022, Remisetrophée) ne
+   passent pas par ici : elles sont des <img> dans le HTML, pour que le texte de
+   remplacement soit lu par les lecteurs d'ecran et que le fichier soit indexable. */
 .actu-une__media--inscriptions { --actu-photo: url('../img/actu-inscriptions.jpg'); }
-.actu__media--amazones           { --actu-photo: url('../img/actu-amazones.jpg'); }
-.actu__media--meryplouz          { --actu-photo: url('../img/meryplouz2022.png'); }
-.actu__media--trophees           { --actu-photo: url('../img/Remisetroph%C3%A9e.png'); }
-.actu__media--forums             { --actu-photo: url('../img/actu-forums.jpg'); }
-.actu__media--aides              { --actu-photo: url('../img/actu-aides.jpg'); }
+.actu__media--aides         { --actu-photo: url('../img/actu-aides.jpg'); }
+.actu__media--amazones      { --actu-photo: url('../img/actu-amazones.jpg'); }
+.actu__media--forums        { --actu-photo: url('../img/actu-forums.jpg'); }
+
+/* Photo reelle dans la boite : elle occupe tout le cadre. */
+.actu__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .actu__body { display: flex; flex-direction: column; flex: 1; padding: 22px; }
 
@@ -1813,6 +1869,7 @@ a:hover .arrow,
   .tournoi          { grid-template-columns: 1fr; }
   .bureau__grid     { grid-template-columns: repeat(2, 1fr); }
   .actus__grid      { grid-template-columns: repeat(2, 1fr); }
+  .communes          { max-width: 420px; }
   .pricing__grid { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
 

@@ -59,6 +59,25 @@
       <p class="eyebrow eyebrow--gold">Actualités</p>
       <h1 class="page-head__title">La vie du club</h1>
       <p class="page-head__lead">Les annonces du club : ouverture des inscriptions, vie associative, tournois organisés et nouvelles des équipes.</p>
+
+      <!-- ---------- Les trois communes ----------
+           Emblèmes Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre
+           du bas de page. Les trois fichiers ont été fournis par le club ;
+           ils sont de formats différents (217×220, 253×227, 178×204), d'où
+           le `object-fit: contain` : aucune déformation, aucun rognage.
+           L'ordre des noms de fichier diffère de celui de la liste. -->
+      <ul class="communes">
+        <li class="commune">
+          <img class="commune__embleme" src="assets/img/emblemeauvers.png" alt="Blason d'Auvers-sur-Oise" width="217" height="220">
+        </li>
+        <li class="commune">
+          <img class="commune__embleme" src="assets/img/Emblememery.png" alt="Blason de Méry-sur-Oise" width="253" height="227">
+        </li>
+        <li class="commune">
+          <img class="commune__embleme" src="assets/img/emblememeriel.png" alt="Blason de Mériel" width="178" height="204">
+        </li>
+      </ul>
+      <p class="communes__note">Un club, trois communes du Val-d'Oise.</p>
     </div>
   </section>
 
@@ -123,7 +142,9 @@
 
         <li>
           <article class="actu">
-            <span class="actu__media actu__media--meryplouz" role="img" aria-label="Planche-contact du tournoi de Méry'Plouz 2022, au parc du château"></span>
+            <span class="actu__media">
+              <img class="actu__photo" src="assets/img/meryplouz2022.png" alt="Planche-contact du tournoi de Méry'Plouz 2022 au parc du château de Méry-sur-Oise : équipes sur le sable, ballon au centre et remise des prix." width="485" height="487" loading="lazy" decoding="async">
+            </span>
             <div class="actu__body">
               <p class="actu__meta">
                 <span class="actu__categorie">Vie associative</span>
@@ -141,7 +162,9 @@
 
         <li>
           <article class="actu">
-            <span class="actu__media actu__media--trophees" role="img" aria-label="Planche-contact de la remise des trophées, avec les équipes championnes de leur catégorie"></span>
+            <span class="actu__media">
+              <img class="actu__photo" src="assets/img/Remisetroph%C3%A9e.png" alt="Planche-contact de la remise des trophées par l'USM95 : équipe championne dans ses catégories, trophée et ballons de volley." width="370" height="370" loading="lazy" decoding="async">
+            </span>
             <div class="actu__body">
               <p class="actu__meta">
                 <span class="actu__categorie">Compétition</span>
