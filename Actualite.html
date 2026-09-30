@@ -54,109 +54,30 @@
   <!-- ============================================================
        TITRE DE PAGE
        ============================================================ -->
-  <section class="page-head actu-head">
+  <section class="page-head">
     <div class="wrap page-head__inner">
+      <p class="eyebrow eyebrow--gold">Actualités</p>
+      <h1 class="page-head__title">La vie du club</h1>
+      <p class="page-head__lead">Les annonces du club : ouverture des inscriptions, vie associative, tournois organisés et nouvelles des équipes.</p>
 
-      <!-- ---------- Colonne de gauche : titre + blasons ---------- -->
-      <div class="page-head__main">
-        <p class="eyebrow eyebrow--gold">Actualités</p>
-        <h1 class="page-head__title">La vie du club</h1>
-        <p class="page-head__lead">Les annonces du club : ouverture des inscriptions, vie associative, tournois organisés et nouvelles des équipes.</p>
-
-        <!-- ---------- Les trois communes ----------
-             Emblèmes Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre
-             du bas de page. Les trois fichiers ont été fournis par le club ;
-             ils sont de formats différents (217×220, 253×227, 178×204), d'où
-             le `object-fit: contain` : aucune déformation, aucun rognage.
-             L'ordre des noms de fichier diffère de celui de la liste. -->
-        <ul class="communes">
-          <li class="commune">
-            <img class="commune__embleme" src="assets/img/emblemeauvers.png" alt="Blason d'Auvers-sur-Oise" width="217" height="220">
-          </li>
-          <li class="commune">
-            <img class="commune__embleme" src="assets/img/Emblememery.png" alt="Blason de Méry-sur-Oise" width="253" height="227">
-          </li>
-          <li class="commune">
-            <img class="commune__embleme" src="assets/img/emblememeriel.png" alt="Blason de Mériel" width="178" height="204">
-          </li>
-        </ul>
-        <p class="communes__note">Un club, trois communes du Val-d'Oise.</p>
-      </div>
-
-      <!-- ---------- Colonne de droite : dépôt d'une actualité ----------
-           Panneau de rédaction, réservé au bureau. Le formulaire de saisie est
-           `hidden` dans le HTML et n'est démasqué par main.js qu'après un login
-           valide. Ce login est lui-même lisible dans le script : voir
-           l'avertissement sur .redac dans style.css et la section « Dépôt
-           d'une actualité » du README. -->
-      <aside class="redac" aria-labelledby="redac-titre">
-        <h2 class="redac__titre" id="redac-titre">Poster une actualité</h2>
-
-        <!-- ---------- Étape 1 : le login ---------- -->
-        <form class="redac__login" id="redac-login" novalidate>
-          <label class="redac__label" for="redac-code">Login</label>
-          <div class="redac__login-row">
-            <input class="redac__champ" type="password" id="redac-code" name="code"
-                   autocomplete="current-password" placeholder="Login du bureau">
-            <button class="btn btn--primary redac__bouton" type="submit">Entrer</button>
-          </div>
-          <p class="redac__erreur" id="redac-erreur" role="alert" hidden>Login incorrect.</p>
-        </form>
-
-        <!-- ---------- Étape 2 : le formulaire, caché par défaut ----------
-             `hidden` est retiré par main.js après un login valide. Sans
-             JavaScript il reste caché : le contenu du site ne dépend donc
-             pas du script. -->
-        <form class="redac__form" id="redac-form" hidden novalidate>
-          <p class="redac__note">
-            Les champs marqués d'un astérisque sont obligatoires.
-          </p>
-
-          <div class="redac__paire">
-            <div class="redac__bloc">
-              <label class="redac__label" for="redac-categorie">Catégorie *</label>
-              <input class="redac__champ" type="text" id="redac-categorie" name="categorie"
-                     list="redac-categories" placeholder="Inscriptions, Tournois…" required>
-              <datalist id="redac-categories">
-                <option value="Inscriptions"></option>
-                <option value="Compétition"></option>
-                <option value="Vie associative"></option>
-                <option value="Tournois"></option>
-              </datalist>
-            </div>
-
-            <div class="redac__bloc">
-              <label class="redac__label" for="redac-date">Date *</label>
-              <input class="redac__champ" type="date" id="redac-date" name="date" required>
-            </div>
-          </div>
-
-          <div class="redac__bloc">
-            <label class="redac__label" for="redac-titre-actus">Titre *</label>
-            <input class="redac__champ" type="text" id="redac-titre-actus" name="titre"
-                   placeholder="Ce que le club annonce" required maxlength="90">
-          </div>
-
-          <div class="redac__bloc">
-            <label class="redac__label" for="redac-texte">Paragraphe *</label>
-            <textarea class="redac__champ redac__champ--zone" id="redac-texte" name="texte"
-                      rows="5" placeholder="Le détail de l'actualité" required></textarea>
-          </div>
-
-          <p class="redac__erreur" id="redac-erreur-form" role="alert" hidden></p>
-
-          <div class="redac__actions">
-            <button class="btn btn--primary" type="submit">Poster</button>
-            <button class="btn btn--ghost redac__bouton" type="button" id="redac-deconnexion">Sortir</button>
-          </div>
-        </form>
-
-        <p class="redac__mention">
-          Ce panneau est réservé au bureau. Une fois postée, l'actualité
-          s'affiche en haut de la page et reste enregistrée sur cet appareil.
-        </p>
-      </aside>
-
+      <!-- ---------- Les trois communes ----------
+           Emblèmes Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre
+           du bas de page. Les trois fichiers ont été fournis par le club ;
+           ils sont de formats différents (217×220, 253×227, 178×204), d'où
+           le `object-fit: contain` : aucune déformation, aucun rognage.
+           L'ordre des noms de fichier diffère de celui de la liste. -->
+      <ul class="communes">
+        <li class="commune">
+          <img class="commune__embleme" src="assets/img/emblemeauvers.png" alt="Blason d'Auvers-sur-Oise" width="217" height="220">
+        </li>
+        <li class="commune">
+          <img class="commune__embleme" src="assets/img/Emblememery.png" alt="Blason de Méry-sur-Oise" width="253" height="227">
+        </li>
+        <li class="commune">
+          <img class="commune__embleme" src="assets/img/emblememeriel.png" alt="Blason de Mériel" width="178" height="204">
+        </li>
+      </ul>
+      <p class="communes__note">Un club, trois communes du Val-d'Oise.</p>
     </div>
   </section>
 
@@ -227,7 +148,7 @@
             <div class="actu__body">
               <p class="actu__meta">
                 <span class="actu__categorie">Vie associative</span>
-                <time datetime="2022-07-01">Juillet 2027</time>
+                <time datetime="2022-07-01">Juillet 2022</time>
               </p>
               <h3 class="actu__titre">Le club à Méry'Plouz</h3>
               <p class="actu__texte">
@@ -315,6 +236,112 @@
         </li>
 
       </ul>
+
+      <!-- ============================================================
+           DÉPÔT D'UNE ACTUALITÉ — en bas de page, replié.
+
+           <details>/<summary> est utilisé plutôt qu'un <div hidden> + un bouton
+           piloté en JavaScript : le repli fonctionne sans script, il est annoncé
+           correctement par les lecteurs d'écran (expanded) et le clavier s'en
+           occupe seul. Seuls le login et les champs de saisie, eux, dépendent
+           de main.js.
+
+           Réservé au bureau. ⚠ Le login est écrit en clair dans
+           assets/js/main.js : c'est un frein, pas une authentification, et une
+           actu postée ne reste que dans le localStorage de cet appareil.
+           Voir la section « Dépôt d'une actualité » du README.
+           ============================================================ -->
+      <details class="redac">
+        <summary class="redac__resume">
+          <span class="redac__resume-texte">Poster</span>
+        </summary>
+
+        <div class="redac__corps">
+          <h2 class="redac__titre">Poster une actualité</h2>
+
+          <!-- ---------- Étape 1 : le login ---------- -->
+          <form class="redac__login" id="redac-login" novalidate>
+            <label class="redac__label" for="redac-code">Login</label>
+            <div class="redac__login-row">
+              <input class="redac__champ" type="password" id="redac-code" name="code"
+                     autocomplete="current-password" placeholder="Login du bureau">
+              <button class="btn btn--primary redac__bouton" type="submit">Entrer</button>
+            </div>
+            <p class="redac__erreur" id="redac-erreur" role="alert" hidden>Login incorrect.</p>
+          </form>
+
+          <!-- ---------- Étape 2 : le formulaire, caché par défaut ----------
+               `hidden` est retiré par main.js après un login valide. Sans
+               JavaScript il reste caché : le contenu du site ne dépend donc
+               pas du script. -->
+          <form class="redac__form" id="redac-form" hidden novalidate>
+            <p class="redac__note">
+              Les champs marqués d'un astérisque sont obligatoires.
+            </p>
+
+            <div class="redac__paire">
+              <div class="redac__bloc">
+                <label class="redac__label" for="redac-categorie">Catégorie *</label>
+                <input class="redac__champ" type="text" id="redac-categorie" name="categorie"
+                       list="redac-categories" placeholder="Inscriptions, Tournois…" required>
+                <datalist id="redac-categories">
+                  <option value="Inscriptions"></option>
+                  <option value="Compétition"></option>
+                  <option value="Vie associative"></option>
+                  <option value="Tournois"></option>
+                </datalist>
+              </div>
+
+              <div class="redac__bloc">
+                <label class="redac__label" for="redac-date">Date *</label>
+                <input class="redac__champ" type="date" id="redac-date" name="date" required>
+              </div>
+            </div>
+
+            <div class="redac__bloc">
+              <label class="redac__label" for="redac-titre-actus">Titre *</label>
+              <input class="redac__champ" type="text" id="redac-titre-actus" name="titre"
+                     placeholder="Ce que le club annonce" required maxlength="90">
+            </div>
+
+            <div class="redac__bloc">
+              <label class="redac__label" for="redac-texte">Paragraphe *</label>
+              <textarea class="redac__champ redac__champ--zone" id="redac-texte" name="texte"
+                        rows="5" placeholder="Le détail de l'actualité" required></textarea>
+            </div>
+
+            <!-- ---------- Photos (facultatif) ----------
+                 `multiple` pour en accepter plusieurs d'un coup. Les fichiers
+                 ne partent sur aucun serveur : main.js les redimensionne et
+                 les range dans le localStorage, d'où les deux garde-fous
+                 posés plus bas (nombre et poids). -->
+            <div class="redac__bloc">
+              <label class="redac__label" for="redac-photos">Photos (facultatif)</label>
+              <input class="redac__champ redac__champ--fichier" type="file" id="redac-photos" name="photos"
+                     accept="image/*" multiple>
+              <p class="redac__aide" id="redac-photos-aide">
+                3 photos au maximum, 6 Mo par photo. Chacune est réduite à 1200 px
+                de large avant d'être enregistrée, et reste sur cet appareil.
+              </p>
+              <!-- La liste des vignettes est construite par main.js ; sans
+                   JavaScript, le champ reste vide et sans effet. -->
+              <ul class="redac__vignettes" id="redac-vignettes" hidden></ul>
+            </div>
+
+            <p class="redac__erreur" id="redac-erreur-form" role="alert" hidden></p>
+
+            <div class="redac__actions">
+              <button class="btn btn--primary" type="submit">Poster</button>
+              <button class="btn btn--ghost redac__bouton" type="button" id="redac-deconnexion">Sortir</button>
+            </div>
+          </form>
+
+          <p class="redac__mention">
+            Ce panneau est réservé au bureau. Une fois postée, l'actualité
+            s'affiche en haut de la page et reste enregistrée sur cet appareil.
+          </p>
+        </div>
+      </details>
 
       <p class="actus__note">
         Les dates exactes des prochaines éditions restent à confirmer par le club.

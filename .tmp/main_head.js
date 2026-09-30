@@ -1,4 +1,4 @@
-/* Menu mobile : tiroir latéral, verrou de scroll, fermeture clavier/clic extérieur. */
+﻿/* Menu mobile : tiroir lat├®ral, verrou de scroll, fermeture clavier/clic ext├®rieur. */
 (function () {
   'use strict';
 
@@ -56,8 +56,8 @@
   });
 })();
 
-/* Cartes Google Maps chargées à la demande. L'iframe n'existe pas dans le HTML :
-   aucune requête ne part vers Google tant que le visiteur n'a pas cliqué. */
+/* Cartes Google Maps charg├®es ├á la demande. L'iframe n'existe pas dans le HTML :
+   aucune requ├¬te ne part vers Google tant que le visiteur n'a pas cliqu├®. */
 (function () {
   'use strict';
 
@@ -88,9 +88,9 @@
   });
 })();
 
-/* Filtrage des équipes par format. Les sections sont masquées en bloc, pas les
-   cartes une a une : « Toutes » laisse donc apparaître les intertitres de
-   catégorie. Sans JavaScript tout reste visible, les boutons ne font rien. */
+/* Filtrage des ├®quipes par format. Les sections sont masqu├®es en bloc, pas les
+   cartes une a une : ┬½ Toutes ┬╗ laisse donc appara├«tre les intertitres de
+   cat├®gorie. Sans JavaScript tout reste visible, les boutons ne font rien. */
 (function () {
   'use strict';
 
@@ -119,7 +119,7 @@
     });
 
     if (counter) {
-      counter.textContent = shown + (shown > 1 ? ' équipes' : ' équipe');
+      counter.textContent = shown + (shown > 1 ? ' ├®quipes' : ' ├®quipe');
     }
   }
 
@@ -136,9 +136,9 @@
   });
 })();
 
-/* Fiche équipe. Le contenu vit dans le HTML de chaque carte : le clic ne fait
-   que le recopier dans la boîte. <dialog>.showModal() apporte le piège du focus,
-   la fermeture par Échap et le retour du focus sur le déclencheur. */
+/* Fiche ├®quipe. Le contenu vit dans le HTML de chaque carte : le clic ne fait
+   que le recopier dans la bo├«te. <dialog>.showModal() apporte le pi├¿ge du focus,
+   la fermeture par ├ëchap et le retour du focus sur le d├®clencheur. */
 (function () {
   'use strict';
 
@@ -163,7 +163,7 @@
     }
 
     photo.className = 'fiche__photo ' + detail.getAttribute('data-photo');
-    photo.setAttribute('aria-label', "Photo à venir de l'équipe " + detail.getAttribute('data-categorie-label') + ' ' + detail.getAttribute('data-titre'));
+    photo.setAttribute('aria-label', "Photo ├á venir de l'├®quipe " + detail.getAttribute('data-categorie-label') + ' ' + detail.getAttribute('data-titre'));
     category.textContent = detail.getAttribute('data-categorie-label');
     title.textContent = detail.getAttribute('data-titre');
     body.innerHTML = detail.innerHTML;
@@ -172,7 +172,7 @@
     dialog.showModal();
   }
 
-  /* Échap et retour du focus sont gérés ici plutôt que laissés au navigateur :
+  /* ├ëchap et retour du focus sont g├®r├®s ici plut├┤t que laiss├®s au navigateur :
      tous les moteurs n'emettent pas l'evenement cancel de <dialog>. */
   function close() {
     dialog.close();
@@ -200,8 +200,8 @@
     }
   });
 
-  /* Clic sur le fond : la boîte occupe toute la zone cliquable, on compare donc
-     la position du pointeur à ses bords plutôt que la cible de l'événement. */
+  /* Clic sur le fond : la bo├«te occupe toute la zone cliquable, on compare donc
+     la position du pointeur ├á ses bords plut├┤t que la cible de l'├®v├®nement. */
   dialog.addEventListener('click', function (event) {
     var box = dialog.getBoundingClientRect();
     var dehors = event.clientX < box.left || event.clientX > box.right ||
@@ -214,27 +214,27 @@
 })();
 
 /* ============================================================================
-   DÉPÔT D'UNE ACTUALITÉ (page Actualite.html)
+   D├ëP├öT D'UNE ACTUALIT├ë (page Actualite.html)
 
-   ⚠ LE LOGIN N'EST PAS UNE SÉCURITÉ. « usmamvb95 » est écrit en clair dans ce
-   fichier, que le navigateur envoie à tout le monde : n'importe qui peut le
+   ÔÜá LE LOGIN N'EST PAS UNE S├ëCURIT├ë. ┬½ usmamvb95 ┬╗ est ├®crit en clair dans ce
+   fichier, que le navigateur envoie ├á tout le monde : n'importe qui peut le
    lire dans les sources ou la console, poster sans passer par le formulaire, ou
-   vider le localStorage. Ce mécanisme protège d'un clic accidentel, pas d'un
-   visiteur déterminé. Une vraie modération exige un serveur qui valide et
-   stocke — le site est statique, il n'y en a pas.
+   vider le localStorage. Ce m├®canisme prot├¿ge d'un clic accidentel, pas d'un
+   visiteur d├®termin├®. Une vraie mod├®ration exige un serveur qui valide et
+   stocke ÔÇö le site est statique, il n'y en a pas.
 
-   CONSÉQUENCE : une actualité postée ici reste dans le localStorage du
-   navigateur qui l'a écrite. Elle n'est visible que sur cet appareil et
-   disparaît si ses données de site sont effacées. C'est une maquette de
-   publication pour voir à quoi ressemble une carte, pas une base de données.
+   CONS├ëQUENCE : une actualit├® post├®e ici reste dans le localStorage du
+   navigateur qui l'a ├®crite. Elle n'est visible que sur cet appareil et
+   dispara├«t si ses donn├®es de site sont effac├®es. C'est une maquette de
+   publication pour voir ├á quoi ressemble une carte, pas une base de donn├®es.
    ========================================================================== */
 (function () {
   'use strict';
 
   var CODE = 'usmamvb95';
   var CLE = 'usmamvb.actus';
-  var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
-              'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  var MOIS = ['janvier', 'f├®vrier', 'mars', 'avril', 'mai', 'juin',
+              'juillet', 'ao├╗t', 'septembre', 'octobre', 'novembre', 'd├®cembre'];
 
   var formLogin = document.getElementById('redac-login');
   var formActu = document.getElementById('redac-form');
@@ -243,148 +243,17 @@
   var erreurForm = document.getElementById('redac-erreur-form');
   var deconnexion = document.getElementById('redac-deconnexion');
   var champDate = document.getElementById('redac-date');
-  var champPhotos = document.getElementById('redac-photos');
-  var listeVignettes = document.getElementById('redac-vignettes');
   var grille = document.querySelector('.actus__grid');
 
-  /* Le script est chargé sur toutes les pages : sans les éléments de cette
+  /* Le script est charg├® sur toutes les pages : sans les ├®l├®ments de cette
      page, on sort sans rien faire, comme les autres modules. */
   if (!formLogin || !formActu || !grille) {
     return;
   }
 
-  /* ---------- Photos ----------
-     Elles sont réduites dans le navigateur puis rangées dans le localStorage
-     sous forme de data-URL. Aucun fichier n'est envoyé nulle part : le site est
-     statique, il n'y a pas d'endroit où les envoyer.
-
-     Le redimensionnement n'est pas un détail : un JPEG de 4 Mo d'appareil photo
-     tient mal dans le quota de ~5 Mo du localStorage. En le ramenant à 1200 px
-     de large, un même cliché tombe autour de 150 Ko. */
-  var PHOTOS_MAX = 3;
-  var PHOTO_POIDS_MAX = 6 * 1024 * 1024;
-  var PHOTO_LARGEUR_MAX = 1200;
-  var QUALITE = 0.72;
-
-  /* Data-URL des photos retenues, dans l'ordre de sélection. Tant qu'aucune
-     actu n'est postée, ce tableau ne vit que dans la page : le champ
-     `<input type="file">` n'est pas lisible après un rechargement. */
-  var photosChoisies = [];
-
-  function reduire(fichier) {
-    return new Promise(function (resolve, reject) {
-      var lecteur = new FileReader();
-
-      lecteur.onload = function () {
-        var image = new Image();
-
-        image.onload = function () {
-          var ratio = Math.min(1, PHOTO_LARGEUR_MAX / image.width);
-          var largeur = Math.round(image.width * ratio);
-          var hauteur = Math.round(image.height * ratio);
-          var toile = document.createElement('canvas');
-
-          toile.width = largeur;
-          toile.height = hauteur;
-          toile.getContext('2d').drawImage(image, 0, 0, largeur, hauteur);
-
-          resolve(toile.toDataURL('image/jpeg', QUALITE));
-        };
-
-        image.onerror = function () {
-          reject(new Error('image illisible'));
-        };
-
-        image.src = lecteur.result;
-      };
-
-      lecteur.onerror = function () {
-        reject(new Error('lecture impossible'));
-      };
-
-      lecteur.readAsDataURL(fichier);
-    });
-  }
-
-  function afficherVignettes() {
-    if (!listeVignettes) {
-      return;
-    }
-
-    listeVignettes.replaceChildren();
-    listeVignettes.hidden = photosChoisies.length === 0;
-
-    photosChoisies.forEach(function (photo, index) {
-      var li = document.createElement('li');
-      li.className = 'redac__vignette';
-
-      var img = document.createElement('img');
-      img.src = photo;
-      img.alt = 'Photo jointe ' + (index + 1);
-      li.appendChild(img);
-
-      var retirer = document.createElement('button');
-      retirer.type = 'button';
-      retirer.className = 'redac__retirer';
-      retirer.textContent = '×';
-      retirer.setAttribute('aria-label', 'Retirer la photo ' + (index + 1));
-
-      retirer.addEventListener('click', function () {
-        photosChoisies.splice(index, 1);
-        afficherVignettes();
-      });
-
-      li.appendChild(retirer);
-      listeVignettes.appendChild(li);
-    });
-  }
-
-  if (champPhotos) {
-    champPhotos.addEventListener('change', function () {
-      var fichiers = Array.prototype.slice.call(champPhotos.files || []);
-
-      if (!fichiers.length) {
-        return;
-      }
-
-      masquerErreur(erreurForm);
-
-      fichiers.forEach(function (fichier) {
-        if (photosChoisies.length >= PHOTOS_MAX) {
-          montrerErreur(erreurForm, PHOTOS_MAX + ' photos au maximum.');
-          champPhotos.value = '';
-          return;
-        }
-
-        if (fichier.size > PHOTO_POIDS_MAX) {
-          montrerErreur(erreurForm, '« ' + fichier.name + ' » dépasse 6 Mo.');
-          return;
-        }
-
-        /* Forme à deux arguments de `then` plutôt que `.then(…).catch(…)` :
-           le second callback reçoit le rejet. Le seul écart avec `.catch` est
-           qu'il ne rattrape pas une exception levée par le premier callback —
-           or celui-ci se limite à un push et un rendu de vignettes, il ne lève
-           rien. Le bénéfice : `catch` est un mot réservé, que certains
-           analyseurs anciens refusent après un point ; cette forme passe
-           partout et laisse le fichier vérifiable par main.checkjs. */
-        reduire(fichier).then(function (dataUrl) {
-          photosChoisies.push(dataUrl);
-          afficherVignettes();
-        }, function () {
-          montrerErreur(erreurForm, 'Impossible de lire « ' + fichier.name + ' ».');
-        });
-      });
-
-      /* Le champ est vidé pour permettre de re-sélectionner le même fichier
-         juste après : sans cela, `change` ne se déclencherait plus. */
-      champPhotos.value = '';
-    });
-  }
-
   /* ---------- Date ---------- */
-  /* Le champ donne « 2026-09-01 ». On affiche « Septembre 2026 », comme les
-     dates écrites en dur dans le HTML. */
+  /* Le champ donne ┬½ 2026-09-01 ┬╗. On affiche ┬½ Septembre 2026 ┬╗, comme les
+     dates ├®crites en dur dans le HTML. */
   function libellerDate(iso) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) {
       return '';
@@ -403,9 +272,9 @@
   }
 
   /* ---------- Stockage ---------- */
-  /* Tout passe par un try/catch : en navigation privée, ou quand le quota est
-     atteint, localStorage lève une exception. Le site doit rester utilisable
-     dans ce cas — l'actu est alors affichée mais non conservée. */
+  /* Tout passe par un try/catch : en navigation priv├®e, ou quand le quota est
+     atteint, localStorage l├¿ve une exception. Le site doit rester utilisable
+     dans ce cas ÔÇö l'actu est alors affich├®e mais non conserv├®e. */
   function lire() {
     try {
       var brut = window.localStorage.getItem(CLE);
@@ -419,18 +288,14 @@
   function ecrire(actus) {
     try {
       window.localStorage.setItem(CLE, JSON.stringify(actus));
-      return true;
     } catch (e) {
-      /* Quota dépassé (~5 Mo) ou stockage bloqué : le cas courant avec des
-         photos. L'actu reste affichée en page, mais elle sera perdue au
-         rechargement. Le retour permet d'avertir le bureau. */
-      return false;
+      /* quota atteint ou stockage bloqu├® : l'actu reste affich├®e en page */
     }
   }
 
   /* ---------- Rendu ----------
      Le texte saisi passe par textContent, jamais par innerHTML : un titre
-     contenant « <script> » doit s'afficher comme du texte, pas s'exécuter.
+     contenant ┬½ <script> ┬╗ doit s'afficher comme du texte, pas s'ex├®cuter.
      C'est aussi ce qui rend l'injection impossible sur ce formulaire. */
   function creerCarte(actu, postee) {
     var li = document.createElement('li');
@@ -440,23 +305,8 @@
 
     var media = document.createElement('span');
     media.className = 'actu__media';
-
-    /* Une actu postée peut être illustrée : la première photo tient lieu de
-       visuel de carte. Le `src` est une data-URL produite par `reduire()` —
-       du contenu de l'utilisateur, mais déjà repassé par le bitmap, donc on
-       l'écrit dans un attribut `src` et jamais dans du HTML assemblé à la
-       main. */
-    if (actu.photos && actu.photos.length) {
-      var image = document.createElement('img');
-      image.className = 'actu__photo';
-      image.src = actu.photos[0];
-      image.alt = 'Photo de l\'actualité : ' + actu.titre;
-      media.appendChild(image);
-    } else {
-      media.setAttribute('role', 'img');
-      media.setAttribute('aria-label', 'Photo à venir');
-    }
-
+    media.setAttribute('role', 'img');
+    media.setAttribute('aria-label', 'Photo ├á venir');
     article.appendChild(media);
 
     var corps = document.createElement('div');
@@ -465,7 +315,7 @@
     if (postee) {
       var mention = document.createElement('p');
       mention.className = 'actu__postee';
-      mention.textContent = 'Postée depuis ce navigateur';
+      mention.textContent = 'Post├®e depuis ce navigateur';
       corps.appendChild(mention);
     }
 
@@ -493,28 +343,6 @@
     texte.className = 'actu__texte';
     texte.textContent = actu.texte;
     corps.appendChild(texte);
-
-    /* Les photos 2 et 3, celles qui n'ont pas tenu lieu de visuel de carte,
-       sont rappelées en bandeau sous le paragraphe. Sans elles, elles seraient
-       invisibles alors qu'elles sont bien enregistrées. */
-    if (actu.photos && actu.photos.length > 1) {
-      var autres = document.createElement('ul');
-      autres.className = 'actu__galerie';
-
-      actu.photos.slice(1).forEach(function (photo, index) {
-        var liPhoto = document.createElement('li');
-
-        var vignette = document.createElement('img');
-        vignette.src = photo;
-        vignette.alt = 'Photo ' + (index + 2) + ' de l\'actualité : ' + actu.titre;
-        vignette.loading = 'lazy';
-        liPhoto.appendChild(vignette);
-
-        autres.appendChild(liPhoto);
-      });
-
-      corps.appendChild(autres);
-    }
 
     if (postee) {
       var pied = document.createElement('p');
@@ -546,9 +374,9 @@
     return li;
   }
 
-  /* Redessine la grille : actus écrites d'abord, les plus récentes en tête car
-     elles sont enregistrées en tête du tableau, puis le HTML figé. Le contenu
-     statique du site n'est jamais modifié. */
+  /* Redessine la grille : actus ├®crites d'abord, les plus r├®centes en t├¬te car
+     elles sont enregistr├®es en t├¬te du tableau, puis le HTML fig├®. Le contenu
+     statique du site n'est jamais modifi├®. */
   function afficher() {
     var premier = grille.firstElementChild;
 
@@ -582,8 +410,6 @@
     formLogin.hidden = false;
     masquerErreur(erreurForm);
     formActu.reset();
-    photosChoisies = [];
-    afficherVignettes();
     code.value = '';
     code.focus();
   }
@@ -605,7 +431,7 @@
 
   /* ---------- Poster ----------
      `novalidate` neutralise la validation native : le message d'erreur est
-     alors dans la langue du site et annoncé par le role="alert". */
+     alors dans la langue du site et annonc├® par le role="alert". */
   formActu.addEventListener('submit', function (event) {
     event.preventDefault();
     masquerErreur(erreurForm);
@@ -621,7 +447,7 @@
     }
 
     if (texte.length > 1200) {
-      montrerErreur(erreurForm, 'Le paragraphe est trop long (1200 caractères maximum).');
+      montrerErreur(erreurForm, 'Le paragraphe est trop long (1200 caract├¿res maximum).');
       return;
     }
 
@@ -631,30 +457,21 @@
       categorie: categorie,
       date: date,
       titre: titre,
-      texte: texte,
-      photos: photosChoisies.slice()
+      texte: texte
     };
 
     actus.unshift(nouvelle);
-    var enregistre = ecrire(actus);
+    ecrire(actus);
 
-    /* Première carte de la grille : l'actualité vient d'être postée. */
+    /* Premi├¿re carte de la grille : l'actualit├® vient d'├¬tre post├®e. */
     grille.insertBefore(creerCarte(nouvelle, true), grille.firstElementChild);
 
     formActu.reset();
     champDate.value = aujourdhui();
-    photosChoisies = [];
-    afficherVignettes();
     champDate.focus();
-
-    if (!enregistre) {
-      montrerErreur(erreurForm,
-        'Actualité affichée, mais non enregistrée : espace de stockage plein. ' +
-        'Elle disparaîtra au rechargement — retirez des photos ou effacez d\'anciennes actus.');
-    }
   });
 
-  /* ---------- Démarrage ---------- */
+  /* ---------- D├®marrage ---------- */
   champDate.value = aujourdhui();
   afficher();
 })();

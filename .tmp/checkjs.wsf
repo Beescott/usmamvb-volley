@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Verification de la syntaxe de assets/js/main.js.
+     Deux pieges rencontres, documentes ici pour ne pas les refaire :
+     1. OpenTextFile lit avec l'encodage systeme. Les fichiers UTF-8 SANS BOM
+        sont alors mal lus et un emoctet peut casser une chaine : le code est
+        accuse a tort. ADODB.Stream force l'UTF-8.
+     2. JScript (moteur de WSH, ES3/ES5 partiel) refuse des mots reserves
+        utilises comme nom de propriete apres un point — `.catch`notamment.
+        Aucun navigateur actuel ne fait cela, mais la forme
+        `then(onOk, onErr)` evite d avoir un fichier invérifiable ici.
+
+     main_head.js est le fichier HEAD, connu bon : temoin de reference. -->
+<job>
+<script language="JScript"><![CDATA[
+var base = "c:\\Users\\kazeo\\usmamvb-volley\\";
+
+function lireUtf8(nom) {
+  var st = new ActiveXObject("ADODB.Stream");
+  st.Type = 2; st.Charset = "utf-8"; st.Open();
+  st.LoadFromFile(base + nom);
+  var t = st.ReadText();
+  st.Close();
+  return t;
+}
+
+function t(nom) {
+  var src = lireUtf8(nom);
+  try { new Function(src); WScript.Echo(nom + " : SYNTAXE OK (" + src.split("\n").length + " lignes)"); }
+  catch (e) { WScript.Echo(nom + " : ERREUR - " + e.description + " (numero " + e.number + ")"); }
+}
+
+t(".tmp\\main_head.js");
+t("assets\\js\\main.js");
+]]></script>
+</job>

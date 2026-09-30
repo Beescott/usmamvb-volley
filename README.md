@@ -403,10 +403,24 @@ signale au visiteur.
 
 ### Dépôt d'une actualité — `.redac`
 
-Colonne de droite du bandeau de titre de `Actualite.html` : un champ **Login**
-puis, après validation, un formulaire (catégorie, date, titre, paragraphe) et un
-bouton **Poster**. La nouvelle carte s'insère en tête de `.actus__grid` et
-reste après rechargement.
+En **bas de page**, après la grille des actus, sous forme de `<details>` replié
+dont le résumé affiche le seul mot **« Poster »**. Cliquer le déploie et révèle
+la connexion ; le login ouvre ensuite le formulaire (catégorie, date, titre,
+paragraphe, photos) et le bouton **Poster** insère la carte en tête de
+`.actus__grid`, où elle reste après rechargement.
+
+`<details>` a été préféré à un `<div hidden>` piloté en JavaScript : le repli
+fonctionne sans script, `summary` porte déjà le bon état ARIA (`expanded`) et le
+clavier s'en occupe seul. Seul le login et les champs dépendent de `main.js`.
+
+**Photos.** Jusqu'à 3 clichés par actu, acceptés par un `<input type="file"
+multiple>`. Chaque image est **redimensionnée dans le navigateur** (1200 px de
+large, JPEG à 0,72) puis rangée dans le `localStorage` en data-URL ; la première
+devient l'illustration de la carte, les autres un bandeau sous le
+paragraphe. Trois garde-fous : maximum 3 photos, 6 Mo par fichier avant
+traitement, et un message explicite si l'écriture échoue (quota d'environ 5 Mo
+dépassé — l'actu reste alors affichée mais sera perdue au rechargement). Les
+vignettes permettent de retirer une photo avant de poster.
 
 **Ce que ce dispositif n'est pas.** Deux limites à connaître avant d'en parler
 au club :
@@ -424,14 +438,35 @@ branché sur un vrai back-end.
 
 **Sécurité du rendu.** Tout le texte saisi passe par `textContent`, jamais par
 `innerHTML` : un titre contenant `<script>` s'affiche comme du texte au lieu de
-s'exécuter. `localStorage` est enveloppé dans un `try/catch` — en navigation
-privée ou quota atteint, l'actu s'affiche mais n'est pas conservée.
+s'exécuter. Les data-URL d'images sont réencodées par le canvas avant d'être
+stockées, et n'écrites que dans un attribut `src`. `localStorage` est enveloppé
+dans un `try/catch` — en navigation privée ou quota atteint, l'actu s'affiche
+mais n'est pas conservée.
 
-`[hidden]` sur le formulaire, les deux messages d'erreur : même règle que
-`.teams-group[hidden]`, le `display` de l'auteur l'emporterait sinon sur le
-`display: none` du navigateur. Une carte postée porte `.actu--postee` (liseré
-doré) et la mention « Postée depuis ce navigateur », pour qu'un lecteur ne la
-prenne pas pour une annonce officielle.
+`[hidden]` sur le formulaire, les messages d'erreur et la liste des vignettes :
+même règle que `.teams-group[hidden]`, le `display` de l'auteur l'emporterait
+sinon sur le `display: none` du navigateur. Une carte postée porte
+`.actu--postee` (liseré doré) et la mention « Postée depuis ce navigateur », pour
+qu'un lecteur ne la prenne pas pour une annonce officielle.
+
+### Vérifier la syntaxe de `main.js`
+
+Ce script est chargé par **toutes** les pages : une faute de frappe casse le
+site entier, pas seulement le dépôt d'actualité. Ni Node ni un navigateur headless
+n’étant disponibles ici, le contrôle se fait avec le moteur JScript de Windows
+(`.tmp/checkjs.wsf`), via `new Function(src)` qui compile sans exécuter.
+
+Deux pièges à connaître avant de s’y fier :
+
+- **`OpenTextFile` lit avec l'encodage système.** Un fichier UTF-8 *sans BOM* est
+  alors mal décodé, un octet peut casser une chaîne, et le JavaScript est accusé
+  à tort. Il faut lire par `ADODB.Stream` en `utf-8`.
+- **JScript refuse les mots réservés après un point** — `.catch` notamment.
+  Aucun navigateur actuel ne fait cela (ES5 l’autorise), mais le harnais, si.
+  Le module utilise donc `then(onOk, onErr)` plutôt que `.then(…).catch(…)`.
+
+`main_head.js` (le fichier HEAD, connu bon) sert de témoin : s’il échoue, c’est
+le harnais qui est fautif, pas le code.
 
 ### Contenu repris du PDF du club
 
