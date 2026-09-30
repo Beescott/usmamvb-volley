@@ -401,6 +401,38 @@ présentable. Le club n'a fourni ni calendrier ni archives datées. Elles sont �
 remplacer par les dates réelles avant publication, et le `.actus__note` le
 signale au visiteur.
 
+### Dépôt d'une actualité — `.redac`
+
+Colonne de droite du bandeau de titre de `Actualite.html` : un champ **Login**
+puis, après validation, un formulaire (catégorie, date, titre, paragraphe) et un
+bouton **Poster**. La nouvelle carte s'insère en tête de `.actus__grid` et
+reste après rechargement.
+
+**Ce que ce dispositif n'est pas.** Deux limites à connaître avant d'en parler
+au club :
+
+| Limite | Conséquence |
+| --- | --- |
+| Le login est dans `main.js` | `usmamvb95` est lisible dans les sources. Ce n'est pas une authentification, c'est un frein. |
+| Le stockage est local | Une actu postée ne vit que dans le `localStorage` de l'appareil qui l'a écrite. Elle n'est pas publiée pour les visiteurs du site et disparaît si les données du navigateur sont effacées. |
+
+Le site est **statique, sans back-end** : rien ne peut modifier `Actualite.html`
+depuis le navigateur. Une vraie publication demande un service d'authentification
+et de stockage — un générateur statique, un CMS, ou une petite API. En attendant,
+le module sert à mettre au point le rendu d'une carte, et il est prêt à être
+branché sur un vrai back-end.
+
+**Sécurité du rendu.** Tout le texte saisi passe par `textContent`, jamais par
+`innerHTML` : un titre contenant `<script>` s'affiche comme du texte au lieu de
+s'exécuter. `localStorage` est enveloppé dans un `try/catch` — en navigation
+privée ou quota atteint, l'actu s'affiche mais n'est pas conservée.
+
+`[hidden]` sur le formulaire, les deux messages d'erreur : même règle que
+`.teams-group[hidden]`, le `display` de l'auteur l'emporterait sinon sur le
+`display: none` du navigateur. Une carte postée porte `.actu--postee` (liseré
+doré) et la mention « Postée depuis ce navigateur », pour qu'un lecteur ne la
+prenne pas pour une annonce officielle.
+
 ### Contenu repris du PDF du club
 
 `regles.html` et `tournois.html` reprennent le contenu de

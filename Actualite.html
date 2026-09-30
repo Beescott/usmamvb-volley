@@ -54,30 +54,109 @@
   <!-- ============================================================
        TITRE DE PAGE
        ============================================================ -->
-  <section class="page-head">
+  <section class="page-head actu-head">
     <div class="wrap page-head__inner">
-      <p class="eyebrow eyebrow--gold">Actualités</p>
-      <h1 class="page-head__title">La vie du club</h1>
-      <p class="page-head__lead">Les annonces du club : ouverture des inscriptions, vie associative, tournois organisés et nouvelles des équipes.</p>
 
-      <!-- ---------- Les trois communes ----------
-           Emblèmes Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre
-           du bas de page. Les trois fichiers ont été fournis par le club ;
-           ils sont de formats différents (217×220, 253×227, 178×204), d'où
-           le `object-fit: contain` : aucune déformation, aucun rognage.
-           L'ordre des noms de fichier diffère de celui de la liste. -->
-      <ul class="communes">
-        <li class="commune">
-          <img class="commune__embleme" src="assets/img/emblemeauvers.png" alt="Blason d'Auvers-sur-Oise" width="217" height="220">
-        </li>
-        <li class="commune">
-          <img class="commune__embleme" src="assets/img/Emblememery.png" alt="Blason de Méry-sur-Oise" width="253" height="227">
-        </li>
-        <li class="commune">
-          <img class="commune__embleme" src="assets/img/emblememeriel.png" alt="Blason de Mériel" width="178" height="204">
-        </li>
-      </ul>
-      <p class="communes__note">Un club, trois communes du Val-d'Oise.</p>
+      <!-- ---------- Colonne de gauche : titre + blasons ---------- -->
+      <div class="page-head__main">
+        <p class="eyebrow eyebrow--gold">Actualités</p>
+        <h1 class="page-head__title">La vie du club</h1>
+        <p class="page-head__lead">Les annonces du club : ouverture des inscriptions, vie associative, tournois organisés et nouvelles des équipes.</p>
+
+        <!-- ---------- Les trois communes ----------
+             Emblèmes Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre
+             du bas de page. Les trois fichiers ont été fournis par le club ;
+             ils sont de formats différents (217×220, 253×227, 178×204), d'où
+             le `object-fit: contain` : aucune déformation, aucun rognage.
+             L'ordre des noms de fichier diffère de celui de la liste. -->
+        <ul class="communes">
+          <li class="commune">
+            <img class="commune__embleme" src="assets/img/emblemeauvers.png" alt="Blason d'Auvers-sur-Oise" width="217" height="220">
+          </li>
+          <li class="commune">
+            <img class="commune__embleme" src="assets/img/Emblememery.png" alt="Blason de Méry-sur-Oise" width="253" height="227">
+          </li>
+          <li class="commune">
+            <img class="commune__embleme" src="assets/img/emblememeriel.png" alt="Blason de Mériel" width="178" height="204">
+          </li>
+        </ul>
+        <p class="communes__note">Un club, trois communes du Val-d'Oise.</p>
+      </div>
+
+      <!-- ---------- Colonne de droite : dépôt d'une actualité ----------
+           Panneau de rédaction, réservé au bureau. Le formulaire de saisie est
+           `hidden` dans le HTML et n'est démasqué par main.js qu'après un login
+           valide. Ce login est lui-même lisible dans le script : voir
+           l'avertissement sur .redac dans style.css et la section « Dépôt
+           d'une actualité » du README. -->
+      <aside class="redac" aria-labelledby="redac-titre">
+        <h2 class="redac__titre" id="redac-titre">Poster une actualité</h2>
+
+        <!-- ---------- Étape 1 : le login ---------- -->
+        <form class="redac__login" id="redac-login" novalidate>
+          <label class="redac__label" for="redac-code">Login</label>
+          <div class="redac__login-row">
+            <input class="redac__champ" type="password" id="redac-code" name="code"
+                   autocomplete="current-password" placeholder="Login du bureau">
+            <button class="btn btn--primary redac__bouton" type="submit">Entrer</button>
+          </div>
+          <p class="redac__erreur" id="redac-erreur" role="alert" hidden>Login incorrect.</p>
+        </form>
+
+        <!-- ---------- Étape 2 : le formulaire, caché par défaut ----------
+             `hidden` est retiré par main.js après un login valide. Sans
+             JavaScript il reste caché : le contenu du site ne dépend donc
+             pas du script. -->
+        <form class="redac__form" id="redac-form" hidden novalidate>
+          <p class="redac__note">
+            Les champs marqués d'un astérisque sont obligatoires.
+          </p>
+
+          <div class="redac__paire">
+            <div class="redac__bloc">
+              <label class="redac__label" for="redac-categorie">Catégorie *</label>
+              <input class="redac__champ" type="text" id="redac-categorie" name="categorie"
+                     list="redac-categories" placeholder="Inscriptions, Tournois…" required>
+              <datalist id="redac-categories">
+                <option value="Inscriptions"></option>
+                <option value="Compétition"></option>
+                <option value="Vie associative"></option>
+                <option value="Tournois"></option>
+              </datalist>
+            </div>
+
+            <div class="redac__bloc">
+              <label class="redac__label" for="redac-date">Date *</label>
+              <input class="redac__champ" type="date" id="redac-date" name="date" required>
+            </div>
+          </div>
+
+          <div class="redac__bloc">
+            <label class="redac__label" for="redac-titre-actus">Titre *</label>
+            <input class="redac__champ" type="text" id="redac-titre-actus" name="titre"
+                   placeholder="Ce que le club annonce" required maxlength="90">
+          </div>
+
+          <div class="redac__bloc">
+            <label class="redac__label" for="redac-texte">Paragraphe *</label>
+            <textarea class="redac__champ redac__champ--zone" id="redac-texte" name="texte"
+                      rows="5" placeholder="Le détail de l'actualité" required></textarea>
+          </div>
+
+          <p class="redac__erreur" id="redac-erreur-form" role="alert" hidden></p>
+
+          <div class="redac__actions">
+            <button class="btn btn--primary" type="submit">Poster</button>
+            <button class="btn btn--ghost redac__bouton" type="button" id="redac-deconnexion">Sortir</button>
+          </div>
+        </form>
+
+        <p class="redac__mention">
+          Ce panneau est réservé au bureau. Une fois postée, l'actualité
+          s'affiche en haut de la page et reste enregistrée sur cet appareil.
+        </p>
+      </aside>
+
     </div>
   </section>
 

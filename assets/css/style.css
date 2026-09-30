@@ -1626,6 +1626,146 @@ a:hover .arrow,
    ============================================================ */
 .actus { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
 
+/* ---------- Panneau de rédaction ----------
+   Colonne de droite du bandeau de titre, ouverte par le bureau.
+
+   ⚠ Le contrôle d'accès est un FREIN, pas une sécurité : le code est dans
+   assets/js/main.js, que le navigateur livre à tout le monde. N'importe qui
+   peut lire « usmamvb95 », contourner le formulaire, ou ouvrir la console pour
+   poster sans passer par lui. Il protège d'un clic accidentel — pas d'un
+   visiteur déterminé. Pour une vraie modération, il faut un serveur : le site
+   est statique, sans back-end, donc rien n'est stocké globalement.
+
+   Les actus postées ne vivent que dans le `localStorage` du navigateur qui les
+   écrit. Elles ne sont donc visibles que sur cet appareil, et disparaissent si
+   ses données de site sont effacées. C'est une maquette de publication, pas une
+   base de données. */
+.redac {
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.redac__titre {
+  margin-bottom: 4px;
+  font-size: .9375rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.redac__note {
+  margin-bottom: 14px;
+  font-size: .8125rem;
+  color: var(--text-muted);
+}
+
+.redac__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* `font: inherit` est indispensable : sans lui les champs retombent sur la
+   police par defaut du navigateur et jurent avec le reste de la page. */
+.redac__champ {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: .875rem;
+  line-height: 1.4;
+  color: var(--text);
+  transition: border-color .2s var(--ease);
+}
+.redac__champ:hover { border-color: rgba(20, 20, 20, .3); }
+.redac__champ:focus { border-color: var(--gold-ink); }
+.redac__champ--zone { resize: vertical; min-height: 96px; }
+
+/* Picker natif (date) : on le laisse tel quel, il est deja dans la langue du
+   systeme et reste plus robuste qu'une reconstruction en JavaScript. */
+.redac__champ[type='date'] { font-variant-numeric: tabular-nums; }
+
+.redac__login-row { display: flex; gap: 8px; }
+.redac__login-row .redac__champ { flex: 1; min-width: 0; }
+.redac__bouton { flex: none; padding-inline: 16px; }
+
+/* Même piège que .teams-group et .team-card : le `display` posé par l'auteur
+   l'emporterait sur le `display: none` que le navigateur applique à [hidden].
+   Aujourd'hui aucune règle ne fixe `display` sur ces blocs, donc [hidden]
+   suffit — on l'écrit quand même pour que l'ajout d'un `display: flex` au
+   passage ne réveille pas le formulaire de dépôt par accident. */
+.redac__form[hidden],
+.redac__login[hidden],
+.redac__erreur[hidden] { display: none; }
+
+.redac__paire { display: grid; grid-template-columns: 1fr auto; gap: 12px; }
+.redac__bloc { margin-bottom: 14px; }
+
+.redac__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.redac__erreur {
+  margin-top: 10px;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: #b3261e;
+}
+
+.redac__mention {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: .75rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* ---------- Actu postée depuis ce navigateur ----------
+   Se distingue des actus du site par un liseré doré : elle n'existe que dans
+   le localStorage du visiteur, un lecteur ne doit pas la prendre pour une
+   annonce officielle du club. */
+.actu--postee { border-color: var(--gold-ink); box-shadow: 0 0 0 1px var(--gold-ink), var(--shadow-sm); }
+
+.actu__postee {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: .625rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold-ink-dark);
+}
+
+.actu__supprimer {
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.actu__supprimer:hover { color: #b3261e; }
+
+/* Le bouton « Supprimer » se cale en bas de carte, comme le lien des actus
+   du site, pour que les cartes d'une même ligne finissent ensemble. */
+.actu__pied { margin-top: auto; padding-top: 18px; }
+
 /* ---------- Les trois communes ----------
    Blasons poses sous le titre de page. Le fond beige d'origine a ete remplace
    par du blanc dans les trois fichiers : ils se posent donc directement sur la
@@ -1636,6 +1776,25 @@ a:hover .arrow,
 
    Le rang est centre sur la largeur de .page-head__inner (880 px) et non sur
    le `wrap` de 1180 px, pour partager l'axe du titre et du chapo. */
+/* Sur cette page, le bandeau de titre se scinde en deux colonnes : le titre et
+   les blasons a gauche, le panneau de rédaction a droite. `.page-head__inner`
+   garde sa largeur de 880 px sur les autres pages — la grille ne s'applique
+   qu'ici, sur .actu-head. `align-items: start` évite que la colonne de gauche
+   ne s'étire sur la hauteur du formulaire, ce qui étirerait aussi les blasons. */
+.actu-head .page-head__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 330px);
+  gap: clamp(28px, 4vw, 48px);
+  align-items: start;
+  max-width: none;
+}
+
+/* `.page-head__main` n'a qu'une règle : c'est le porteur de la première colonne
+   de la grille, sans quoi le titre et le panneau de rédaction s'empilent au
+   lieu d'être deux colonnes. `min-width: 0` empêche le chapô, plus large que la
+   colonne, de la faire déborder — le défaut classique des enfants de grille. */
+.page-head__main { min-width: 0; }
+
 .communes {
   display: flex;
   justify-content: center;
@@ -1870,6 +2029,10 @@ a:hover .arrow,
   .bureau__grid     { grid-template-columns: repeat(2, 1fr); }
   .actus__grid      { grid-template-columns: repeat(2, 1fr); }
   .pricing__grid { grid-template-columns: 1fr; }
+
+  /* En dessous, le panneau de rédaction passe sous le titre : à 330 px de
+     côté, le chapo et les blasons ne tiendraient plus dans une seule colonne. */
+  .actu-head .page-head__inner { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
 
   /* L'alternance média/texte n'a plus de sens en pile : média toujours en tête */
