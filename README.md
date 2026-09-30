@@ -366,11 +366,28 @@ transmet : `actu-inscriptions.jpg`, `actu-aides.jpg`, `actu-amazones.jpg`,
 
 **Blasons des trois communes.** Le bandeau de titre (`.page-head`) porte les
 emblèmes d'Auvers-sur-Oise, Méry-sur-Oise et Mériel, dans l'ordre du pied de
-page. Les trois fichiers ont des formats différents (217×220, 253×227,
-178×204) : `object-fit: contain` les fait tenir dans un cadre commun sans les
-déformer ni les rogner. La classe est `.commune__embleme`, **sans accent**,
-comme `.membre__photo--<nom>` : le nom de fichier `Emblememery.png` conserve
-en revanche sa majuscule, il est fourni tel quel.
+page. **Le fond beige d'origine (`#DAB86A`) a été remplacé par du blanc dans
+les trois fichiers**, ce qui permet de les poser sans cadre ni carte. Les
+originaux sont archivés dans `.tmp/emblemes-origine/` si le club veut les
+reprendre.
+
+Le nettoyage n'est pas un remplacement global de couleur : dans l'emblème de
+Méry, le `#D9B769` du « M » n'est qu'à **4 unités** du fond, une substitution
+par tolérance l'aurait rongé. Seuls les pixels **connectés au bord** ont donc été
+blanchis, puis un liseré d'antircrénelage a été nettoyé en ne touchant que les
+pixels beiges **adjacents à une zone déjà blanche** — l'intérieur des écussons
+et des lettres, entouré de dessin, n'est jamais adjacent au blanc et reste donc
+intact. Les trois blasons ont été vérifiés pixel par pixel après traitement :
+0 tache résiduelle sur Méry et Mériel, 3 pixels légitimes dans le lettrage doré
+d'Auvers.
+
+Ils sont posés en `flex` et centrés (`justify-content: center`) sur la largeur de
+`.page-head__inner` (880 px), donc sur le même axe que le titre et le chapô.
+`align-items: flex-end` aligne leurs pieds : les trois hauteurs diffèrent
+(204, 220 et 227 px) et un alignement par le haut laisserait des blancs
+irréguliers. La classe est `.commune__embleme`, **sans accent**, comme
+`.membre__photo--<nom>` ; le nom de fichier `Emblememery.png` conserve en
+revanche sa majuscule, il est fourni tel quel.
 
 **Contenu.** Tout est repris de ce qui est déjà attesté ailleurs sur le site ou
 dans le PDF du club (page « club », section « VIE ASSOCIATIVE ») : Méry'Plouz,

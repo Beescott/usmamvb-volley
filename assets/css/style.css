@@ -1627,44 +1627,44 @@ a:hover .arrow,
 .actus { padding-block: clamp(40px, 6vw, 72px); background: var(--cream-soft); }
 
 /* ---------- Les trois communes ----------
-   Blasons poses sous le titre de page. Ils ont des formats differents
-   (253×227, 217×220, 178×204) : `contain` les fait tenir dans un cadre commun
-   sans les deformer ni les rogner, contrairement a `cover` qui couperait le
-   blason de Meriel, le plus haut des trois. `object-position: center` les
-   recentre. Le fond beige des trois fichiers est d'origine ; la carte blanche
-   les encadre et les detache de la bande creme. */
+   Blasons poses sous le titre de page. Le fond beige d'origine a ete remplace
+   par du blanc dans les trois fichiers : ils se posent donc directement sur la
+   bande creme, sans cadre ni carte. C'est ce qui autorise `object-fit: contain`
+   sans rogner : `cover` couperait le blason de Meriel, le plus haut des trois
+   (178x204 contre 253x227). Les trois formats etant differents, `contain` les
+   fait tenir dans un cadre commun sans les deformer.
+
+   Le rang est centre sur la largeur de .page-head__inner (880 px) et non sur
+   le `wrap` de 1180 px, pour partager l'axe du titre et du chapo. */
 .communes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  max-width: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(24px, 5vw, 56px);
   margin-top: clamp(28px, 4vw, 40px);
 }
 
+/* `align-items: flex-end` aligne les pieds des trois blasons : leurs hauteurs
+   reelles diffferent (204, 220 et 227 px), les aligner par le haut laisserait
+   des blancs irreguliers sous l'ecusson le moins haut. */
 .commune {
-  display: grid;
-  place-items: center;
-  padding: 14px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-end;
 }
 
-/* Nom de classe sans accent, sur le modele de .membre__photo--<nom> : la page,
-   elle, garde l'orthographe exacte dans ses textes. */
 .commune__embleme {
   display: block;
-  width: 100%;
-  height: 84px;
+  height: clamp(64px, 8vw, 88px);
+  width: auto;
+  max-width: 100%;
   object-fit: contain;
-  object-position: center;
 }
 
 .communes__note {
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: .8125rem;
   color: var(--text-muted);
+  text-align: center;
 }
 
 /* ---------- À la une ----------
@@ -1869,7 +1869,6 @@ a:hover .arrow,
   .tournoi          { grid-template-columns: 1fr; }
   .bureau__grid     { grid-template-columns: repeat(2, 1fr); }
   .actus__grid      { grid-template-columns: repeat(2, 1fr); }
-  .communes          { max-width: 420px; }
   .pricing__grid { grid-template-columns: 1fr; }
   .docs__grid    { grid-template-columns: 1fr; }
 
@@ -1905,6 +1904,11 @@ a:hover .arrow,
   /* L'à la une s'empile : le texte passe sous la photo, comme .venue-block */
   .actu-une            { grid-template-columns: 1fr; }
   .actu-une__media     { aspect-ratio: 16 / 9; }
+
+  /* Trois blasons côte à côte encombrent un écran étroit : la gouttière se
+     resserre et ils descendent en hauteur, plutôt que de déborder. */
+  .communes          { gap: 16px; }
+  .commune__embleme  { height: 58px; }
   .filtre           { padding: 9px 15px; font-size: .75rem; }
   .bureau__sommaire-link { padding: 8px 14px; font-size: .75rem; }
   .teams-list__cta .btn { width: 100%; }
