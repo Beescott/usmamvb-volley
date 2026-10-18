@@ -1304,7 +1304,9 @@ a:hover .arrow,
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.fiche__infos dd { margin: 0; font-size: .9375rem; font-weight: 700; }
+.fiche__infos dd { margin: 0; font-size: .9375rem; font-weight: 700; text-align: right; overflow-wrap: anywhere; }
+.fiche__infos dd a { text-decoration: underline; text-underline-offset: 3px; }
+.fiche__infos dd a:hover { text-decoration-thickness: 2px; }
 
 .fiche__soustitre {
   margin: 20px 0 12px;
