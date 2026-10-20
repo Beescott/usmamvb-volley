@@ -111,8 +111,8 @@ Les huit portraits reçus à ce jour sont `bureau-goulain.jpg`,
 `bureau-torossian.jpg` : 840×840, de 41 à 84 Ko pièce. Ils viennent des photos
 transmises par le club — `Béatrice Goulain.jpg`, `Alexandre.jpg`,
 `olivier barthelemy.jpeg`… — renommées au format du site, sans espace ni accent.
-Les fichiers d'origine (de 43 Ko à 3,3 Mo) ne sont référencés par aucune page et
-peuvent être retirés de `assets/img/`.
+Les fichiers d'origine (de 43 Ko à 3,3 Mo) n'étaient référencés par aucune page :
+ils ont été sortis du dépôt et archivés localement dans `.tmp/originaux-photos/`.
 
 Ils ont été recadrés au carré **ancré vers le haut** plutôt que centré : la carte
 est en `aspect-ratio: 1/1` avec `background-size: cover`, et centrer le recadrage
@@ -121,8 +121,8 @@ est reparti d'un bitmap neuf, donc l'EXIF et un éventuel GPS pris par le télé
 ne partent pas sur le site. Manquent encore `bureau-champenois.jpg` et
 `bureau-maillard.jpg`, affichés en dégradé de repli.
 
-`photo_1.jpeg` (3088×2320) attend toujours d'être identifiée : aucune carte de la
-page Bureau à laquelle l'associer.
+`photo_1.jpeg` (3088×2320), archivée au même endroit, attend toujours d'être
+identifiée : aucune carte de la page Bureau à laquelle l'associer.
 
 `logo.png` est déjà en place : écusson USMAMVB détouré et recadré au carré
 (729×729, fond transparent), affiché à 44 px dans le header et servant de favicon.
@@ -157,8 +157,8 @@ que le club est autorisé à utiliser :
 
 | Fichier | Source | Poids |
 | --- | --- | --- |
-| `assets/img/aide-pass-sport.jpg` | kit partenaires pass Sport, visuel « club » 1920×1080 | 252 Ko |
-| `assets/img/aide-labaz.jpg` | kit com labaz, visuel « Aide Sport et Culture » 1380×650 | 315 Ko |
+| `assets/img/aide-pass-sport.jpg` | kit partenaires pass Sport, visuel « club », réduit à 1200×675 | 123 Ko |
+| `assets/img/aide-labaz.jpg` | kit com labaz, visuel « Aide Sport et Culture », réduit à 1200×565 | 122 Ko |
 
 Elles ne sont **pas recadrées** : leurs formats diffèrent (16:9 et 2,12:1), donc
 les deux bandeaux n'ont pas exactement la même hauteur. Rogner une affiche
@@ -350,14 +350,14 @@ par carte. Chaque date est dans un `<time datetime>`, chaque carte est un
 `<article>` : la page reste lisible sans JavaScript, qui n'intervient pas ici.
 
 **Photos.** Les deux clichés fournis sont utilisés dans les actus du même
-sujet : `meryplouz2022.png` (485×487) sur « Le club à Méry'Plouz » et
-`Remisetrophée.png` (370×370) sur « Remise des trophées ». Ce sont des
+sujet : `meryplouz2022.jpg` (485×487) sur « Le club à Méry'Plouz » et
+`remise-trophee.jpg` (370×370) sur « Remise des trophées ». Ce sont des
 **planches-contact** : leurs légendes sont en haut et en bas, si bien que
 `.actu__media` est passé du 16/9 au **carré** — en 16:9, `cover` aurait rogné
 ces deux images. Elles sont écrites en `<img>` dans le HTML, et non en fond CSS
 comme les emplacements vides : le texte de remplacement est ainsi lu par les
-lecteurs d'écran et le fichier indexable. `Remisetrophée.png` porte un accent,
-appelé en percent-encoding : `Remisetroph%C3%A9e.png`.
+lecteurs d'écran et le fichier indexable. Reçues en PNG (715 et 256 Ko), elles
+sont réencodées en JPEG (147 et 69 Ko) : ce sont des photos sans transparence.
 
 Les quatre autres emplacements affichent le dégradé de repli habituel — même
 mécanisme et même raison que `.membre__photo`. Fichiers attendus si le club les
@@ -389,8 +389,9 @@ entouré de crème, est intouchable. Les `width`/`height` du HTML suivent les
 formats réels (425×470, 217×233, 192×192) : les fichiers ayant été remplacés,
 elles étaient périmées et provoquaient un saut de mise en page.
 
-Les originaux sont archivés dans `.tmp/emblemes-origine/` (avant tout traitement)
-et `.tmp/emblemes-blanc/` (versions à fond blanc fournies le jour même).
+Les originaux sont archivés localement, hors dépôt, dans `.tmp/emblemes-origine/`
+(avant tout traitement) et `.tmp/emblemes-blanc/` (versions à fond blanc fournies
+le jour même). `.tmp/` et `.vs/` sont ignorés par Git.
 
 **Contenu.** Tout est repris de ce qui est déjà attesté ailleurs sur le site ou
 dans le PDF du club (page « club », section « VIE ASSOCIATIVE ») : Méry'Plouz,
@@ -457,7 +458,7 @@ qu'un lecteur ne la prenne pas pour une annonce officielle.
 Ce script est chargé par **toutes** les pages : une faute de frappe casse le
 site entier, pas seulement le dépôt d'actualité. Ni Node ni un navigateur headless
 n’étant disponibles ici, le contrôle se fait avec le moteur JScript de Windows
-(`.tmp/checkjs.wsf`), via `new Function(src)` qui compile sans exécuter.
+(`.tmp/checkjs.wsf`, archive locale hors dépôt), via `new Function(src)` qui compile sans exécuter.
 
 Deux pièges à connaître avant de s’y fier :
 

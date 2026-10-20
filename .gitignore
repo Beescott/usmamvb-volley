@@ -9,3 +9,7 @@ Desktop.ini
 .idea/
 *.swp
 *~
+
+# Archives locales et caches, hors dépôt
+.tmp/
+.vs/
