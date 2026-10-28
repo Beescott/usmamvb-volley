@@ -13,9 +13,6 @@
 
 import { randomBytes, pbkdf2Sync } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { writeFileSync, unlinkSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 
 const BASE = 'usmamvb-actus';
 const ITERATIONS = 100000;
@@ -33,17 +30,16 @@ const code = tirerCode();
 const hash = hacher(code);
 const sql = `INSERT OR REPLACE INTO membres (email, code_hash) VALUES ('${email}', '${hash}');`;
 
-/* Le SQL passe par un fichier : une commande en ligne serait re-découpée
-   par le shell Windows à cause des espaces et des apostrophes. */
-const fichierSql = join(tmpdir(), 'usmamvb-membre-' + Date.now() + '.sql');
-writeFileSync(fichierSql, sql + '\n');
+/* `--command` et non `--file` : l'import de fichier passe par une route de
+   l'API que le jeton OAuth de `wrangler login` n'a pas le droit d'appeler.
+   La commande est assemblée en une seule chaîne, le SQL entre guillemets
+   doubles : il ne contient que des apostrophes et des hexadécimaux. */
+const commande = 'npx wrangler d1 execute ' + BASE + ' ' + cible + ' --command "' + sql + '"';
 
-const resultat = spawnSync('npx', ['wrangler', 'd1', 'execute', BASE, cible, '--file', '"' + fichierSql + '"'], {
+const resultat = spawnSync(commande, {
   stdio: 'inherit',
   shell: true
 });
-
-unlinkSync(fichierSql);
 
 if (resultat.status !== 0) {
   process.exit(resultat.status || 1);
