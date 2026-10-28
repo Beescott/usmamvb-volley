@@ -254,7 +254,7 @@
      d'appareil photo tombe autour de 150 Ko à 1200 px de large, ce qui tient
      dans la limite de 2 Mo de l'API et charge vite chez les visiteurs. */
   var PHOTOS_MAX = 3;
-  var PHOTO_POIDS_MAX = 6 * 1024 * 1024;
+  var PHOTO_POIDS_MAX = 25 * 1024 * 1024;
   var PHOTO_LARGEUR_MAX = 1200;
   var QUALITE = 0.72;
 
@@ -362,7 +362,7 @@
         }
 
         if (fichier.size > PHOTO_POIDS_MAX) {
-          montrerErreur(erreurForm, '« ' + fichier.name + ' » dépasse 6 Mo.');
+          montrerErreur(erreurForm, '« ' + fichier.name + ' » dépasse 25 Mo.');
           return;
         }
 
