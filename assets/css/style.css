@@ -791,35 +791,14 @@ a:hover .arrow,
 .qr__eyebrow svg { flex: none; width: 15px; height: 15px; }
 
 .qr__frame {
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 10px;
-  aspect-ratio: 1;
+  display: block;
   width: 100%;
   max-width: 215px;
-  margin: 6px auto 12px;
-  padding: 20px;
+  height: auto;
+  margin: 6px auto 18px;
+  padding: 8px;
   background: #fff;
   border-radius: var(--radius);
-  color: var(--black);
-}
-
-.qr__glyph { width: 72px; height: 72px; }
-
-.qr__placeholder {
-  font-size: .6875rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-.qr__caption {
-  margin-bottom: 18px;
-  font-size: .6875rem;
-  line-height: 1.5;
-  text-align: center;
-  color: rgba(255, 255, 255, .55);
 }
 
 /* Adresse en clair sous le QR : doit rester lisible sur le fond noir de la
