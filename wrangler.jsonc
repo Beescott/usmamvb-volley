@@ -1,11 +1,27 @@
 {
   "name": "usmamvb-volley",
   "compatibility_date": "2026-10-23",
+  "main": "src/index.js",
   "assets": {
     "directory": "./",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "none"
+    "not_found_handling": "none",
+    "run_worker_first": ["/api/*"]
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "usmamvb-actus",
+      "database_id": "5e6fd4b2-ba06-4101-9c65-da21f4801b34"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "PHOTOS",
+      "id": "e065bce992f247339879520e88741b6c"
+    }
+  ],
   "observability": {
     "enabled": true
   },

@@ -25,11 +25,16 @@ Then open the changed pages at phone width (375 px) and desktop width.
 | Previous | GitHub Pages from `main`, `https://beescott.github.io/usmamvb-volley/` | to disable once the domain is live |
 | Domain | `usmamvb.fr` registered at OVH, DNS delegated to Cloudflare | bought, delegation to do |
 | Email | `contact@usmamvb.fr` on OVH's free mailbox included with the domain | to set up |
-| Back-end | same Worker + D1 + R2 + Access, see `news.md` | planned |
+| Back-end | same Worker + D1 `usmamvb-actus` + KV `PHOTOS` + secret `SESSION_SECRET`, see `news.md` | live |
 
 The Cloudflare account is `usmamvb@gmail.com`. Worker config lives in
 `wrangler.jsonc`; `.assetsignore` lists what the checkout contains but the
 site must not serve (`.git`, docs, tools).
+
+Workers Builds deploys `main` with `wrangler deploy` and other branches with
+`wrangler preview`. D1 migrations are not run by the build: after adding a
+file in `migrations/`, run `npx wrangler d1 migrations apply usmamvb-actus --remote`
+before merging. Secrets: `npx wrangler secret put SESSION_SECRET`.
 
 Old domain `usmvb.asso.fr` (previous site): redirect it to the new site once
 the club confirms it still controls it.
@@ -61,5 +66,5 @@ CLI (`gh`, `wrangler`) on the developer's machine.
 - `main` is what is published. Never push to it directly.
 - One branch per topic (`chore/…`, `content/…`, `feat/…`), pull request, merge.
 - Commit messages in English, imperative, one topic per commit.
-- `.tmp/`, `.vs/`, `.wrangler/` are ignored; `.cmp/` holds comparison scripts
+- `.tmp/`, `.vs/`, `.wrangler/`, `.dev.vars` are ignored; `.cmp/` holds comparison scripts
   from a Windows setup and is not used by the site.

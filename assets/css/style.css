@@ -1634,17 +1634,9 @@ a:hover .arrow,
    gestion clavier. Un <div hidden> + un bouton piloté en script aurait exigé
    de reconstruire les trois.
 
-   ⚠ Le contrôle d'accès est un FREIN, pas une sécurité : le code est dans
-   assets/js/main.js, que le navigateur livre à tout le monde. N'importe qui
-   peut lire « usmamvb95 », contourner le formulaire, ou ouvrir la console pour
-   poster sans passer par lui. Il protège d'un clic accidentel — pas d'un
-   visiteur déterminé. Pour une vraie modération, il faut un serveur : le site
-   est statique, sans back-end, donc rien n'est stocké globalement.
-
-   Les actus postées ne vivent que dans le `localStorage` du navigateur qui les
-   écrit. Elles ne sont donc visibles que sur cet appareil, et disparaissent si
-   ses données de site sont effacées. C'est une maquette de publication, pas une
-   base de données. */
+   L'accès est vérifié côté serveur : e-mail + code personnel envoyés à
+   /api/login (src/index.js), qui pose un cookie de session HttpOnly. Les
+   actus postées sont publiées pour tous les visiteurs. */
 
 /* Le triangle par défaut de <summary> est neutralisé : le libellé « Poster »
    tient lieu d'indicateur, avec un chevron dessiné à la place. */
@@ -1838,24 +1830,7 @@ a:hover .arrow,
   color: var(--text-muted);
 }
 
-/* ---------- Actu postée depuis ce navigateur ----------
-   Se distingue des actus du site par un liseré doré : elle n'existe que dans
-   le localStorage du visiteur, un lecteur ne doit pas la prendre pour une
-   annonce officielle du club. */
-.actu--postee { border-color: var(--gold-ink); box-shadow: 0 0 0 1px var(--gold-ink), var(--shadow-sm); }
-
-.actu__postee {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 10px;
-  font-size: .625rem;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--gold-ink-dark);
-}
-
+/* ---------- Boutons du bureau sur une actu publiée ---------- */
 .actu__supprimer {
   padding: 0;
   background: none;
