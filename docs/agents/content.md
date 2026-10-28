@@ -13,7 +13,7 @@ Edit the text in place; never invent.
 | Gymnase Bozon | rue des Ponceaux, Auvers-sur-Oise — Mon 20:30, Wed 20:00, Fri 20:30 |
 | Gymnase Municipal | rue Courtil Bajou, Méry-sur-Oise — Tue, Thu, Sat 12:45-14:30 (ages 10-14) |
 | Espace Rives Gauche | rue des Petits Près, Mériel — Wed (teens) |
-| Contact | contact@usmvb.asso.fr · 06 67 21 61 48 (Béatrice Goulain, president) |
+| Contact | contact@usmvb.asso.fr · 06 67 21 61 48 (Béatrice Goulain, president). The new box `contact@usmamvb.fr` exists at OVH (see `deployment.md`); switch the footer `mailto:` in all 8 pages when the club says so |
 | Membership | HelloAsso: `helloasso.com/associations/usmamvb/adhesions/adhesions-2025-2026` |
 | Tournaments | Tournoi des Amazones (women 4×4, since March 2023), Summer Mery'Mixte |
 

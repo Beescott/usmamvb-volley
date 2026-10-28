@@ -1,8 +1,9 @@
 # USMAMVB website — agent guide
 
-Static showcase site for the USMAMVB volleyball club (Union Sportive Méry Auvers
-Mériel de Volley-Ball, Val-d'Oise, France). Plain HTML, CSS and JS: no build
-step, no dependency. Site copy is in French. These docs, commit messages and
+Showcase site for the USMAMVB volleyball club (Union Sportive Méry Auvers
+Mériel de Volley-Ball, Val-d'Oise, France). Plain HTML, CSS and JS, no build
+step, no dependency, served by a Cloudflare Worker that also hosts the news API
+(`src/index.js`, D1, KV). Live at `https://usmamvb.fr`. Site copy is in French. These docs, commit messages and
 pull requests are in English; code comments match the surrounding file.
 
 ## Reading rule
@@ -16,8 +17,10 @@ other sheets: they hold nothing more for your topic.
 | the header, the footer, the menu, or you add a page | `docs/agents/pages.md` |
 | an image, a photo, the logo, a town emblem | `docs/agents/images.md` |
 | colors, font, CSS, responsive layout | `docs/agents/style.md` |
-| the news page, the "Poster" form, the back-end | `docs/agents/news.md` |
-| local preview, deployment, domain, DNS, accounts, Git | `docs/agents/deployment.md` |
+| the news page, the "Poster" form, the API, D1, KV | `docs/agents/news.md` |
+| add or remove someone allowed to post news | `docs/agents/news.md` → Members |
+| local preview, Cloudflare Worker, deploy, rollback, secrets | `docs/agents/deployment.md` |
+| domain `usmamvb.fr`, DNS, OVH, the `contact@` mailbox, accounts, Git | `docs/agents/deployment.md` |
 
 ## Layout
 
@@ -44,4 +47,6 @@ docs/agents/           topic sheets (this guide)
 - File names are lowercase, no space, no accent. Historical exception: `Actualite.html`.
 - No secret in the repository or in these sheets.
 - Before delivering: open the changed page in a browser, at phone and desktop widths.
-- One branch per topic, pull request into `main`.
+- One branch per topic, pull request into `main`; merging `main` deploys to
+  `usmamvb.fr` within a minute.
+- The build does not run D1 migrations or set secrets: see `deployment.md`.
