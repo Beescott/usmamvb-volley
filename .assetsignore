@@ -13,3 +13,6 @@ docs
 node_modules
 *.md
 wrangler.jsonc
+src
+migrations
+scripts
