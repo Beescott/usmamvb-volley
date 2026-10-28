@@ -44,9 +44,9 @@ Facebook and Instagram links in the footer still point to `#`.
 | Required documents | `DOCUMENTS À FOURNIR` |
 | Pass'Sport and labaz | `AIDES À L'INSCRIPTION` |
 
-QR code: `.qr__frame` is a placeholder. Once the PNG exists, save it as
-`assets/img/qr-helloasso.png` and replace the block with
-`<img class="qr__frame" src="assets/img/qr-helloasso.png" alt="QR code vers la billetterie HelloAsso">`.
+QR code: `assets/img/qr-helloasso.png`, shown by `<img class="qr__frame">`. To
+replace it (new HelloAsso campaign), overwrite the PNG: square, 200×200 or
+larger, white quiet zone included. Update the two HelloAsso URLs next to it.
 
 Grants: amounts and dates are for 2026-2027. Amounts appear only inside the
 official posters, never as text next to them. Recheck every season:

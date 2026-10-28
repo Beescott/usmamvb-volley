@@ -17,7 +17,7 @@ Photos are JPEG; PNG only for the logo and the three town emblems.
 | `aide-pass-sport.jpg`, `aide-labaz.jpg` | official grant posters, never cropped | 1200 wide |
 | `meryplouz2022.jpg`, `remise-trophee.jpg` | contact sheets on the news page | as received |
 | `emblemeauvers.png`, `Emblememery.png`, `emblememeriel.png` | town emblems, news page header | 425×470, 217×233, 192×192 |
-| `qr-helloasso.png` | HelloAsso QR | missing, see `content.md` |
+| `qr-helloasso.png` | HelloAsso QR, membership page | square 200×200, see `content.md` |
 
 Present portraits: goulain, cledassou, cabarrou, boullay, pissoort, baron,
 barthelemy, torossian. Missing: champenois, maillard (fallback gradient shown).
