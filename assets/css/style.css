@@ -1154,6 +1154,7 @@ a:hover .arrow,
   font-weight: 800;
   letter-spacing: .03em;
   text-transform: uppercase;
+  scroll-margin-top: 92px;
 }
 
 .teams-list__compte { margin-bottom: 24px; }
