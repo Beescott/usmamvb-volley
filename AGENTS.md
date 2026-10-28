@@ -28,6 +28,9 @@ assets/css/style.css   single stylesheet
 assets/js/main.js      mobile menu, maps on click, team filters, team dialog, news module
 assets/img/            logo, photos, emblems
 assets/fonts/          self-hosted Archivo (OFL)
+src/index.js           Worker: news API (/api/*), serves assets otherwise
+migrations/            D1 schema (wrangler d1 migrations)
+scripts/               ajouter-membre.mjs: add a board member allowed to post
 docs/agents/           topic sheets (this guide)
 .cmp/ .tmp/ .vs/       local tools and archives, not part of the site
 ```
