@@ -2022,7 +2022,7 @@ a:hover .arrow,
 
 /* Un modificateur par photo d'emplacement, sur le modele de
    .membre__photo--<nom>. Le chemin est relatif a la feuille de style, pas a la
-   page. Les deux photos reellement fournies (meryplouz2022, Remisetrophée) ne
+   page. Les deux photos reellement fournies (meryplouz2022, remise-trophee) ne
    passent pas par ici : elles sont des <img> dans le HTML, pour que le texte de
    remplacement soit lu par les lecteurs d'ecran et que le fichier soit indexable. */
 .actu-une__media--inscriptions { --actu-photo: url('../img/actu-inscriptions.jpg'); }

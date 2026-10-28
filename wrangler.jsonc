@@ -1,0 +1,15 @@
+{
+  "name": "usmamvb-volley",
+  "compatibility_date": "2026-10-23",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "observability": {
+    "enabled": true
+  },
+  // Workers Builds runs `wrangler preview` for non-production branches;
+  // the command refuses to run without this block, even empty.
+  "previews": {}
+}
