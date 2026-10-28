@@ -214,31 +214,25 @@
 })();
 
 /* ============================================================================
-   DÉPÔT D'UNE ACTUALITÉ (page Actualite.html)
+   ACTUALITÉS (page Actualite.html)
 
-   ⚠ LE LOGIN N'EST PAS UNE SÉCURITÉ. « usmamvb95 » est écrit en clair dans ce
-   fichier, que le navigateur envoie à tout le monde : n'importe qui peut le
-   lire dans les sources ou la console, poster sans passer par le formulaire, ou
-   vider le localStorage. Ce mécanisme protège d'un clic accidentel, pas d'un
-   visiteur déterminé. Une vraie modération exige un serveur qui valide et
-   stocke — le site est statique, il n'y en a pas.
-
-   CONSÉQUENCE : une actualité postée ici reste dans le localStorage du
-   navigateur qui l'a écrite. Elle n'est visible que sur cet appareil et
-   disparaît si ses données de site sont effacées. C'est une maquette de
-   publication pour voir à quoi ressemble une carte, pas une base de données.
+   Les actus postées par le bureau vivent sur le serveur : src/index.js expose
+   une API (/api/actus, /api/photos, /api/login…) adossée à D1 et KV. Ce
+   module lit la liste au chargement, l'affiche devant les cartes écrites en
+   dur, et fait parler le panneau « Poster » avec l'API. La session est un
+   cookie HttpOnly posé par le serveur : aucun secret ne vit dans ce fichier.
    ========================================================================== */
 (function () {
   'use strict';
 
-  var CODE = 'usmamvb95';
-  var CLE = 'usmamvb.actus';
+  var API = '/api';
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
               'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
   var formLogin = document.getElementById('redac-login');
   var formActu = document.getElementById('redac-form');
-  var code = document.getElementById('redac-code');
+  var champEmail = document.getElementById('redac-email');
+  var champCode = document.getElementById('redac-code');
   var erreurLogin = document.getElementById('redac-erreur');
   var erreurForm = document.getElementById('redac-erreur-form');
   var deconnexion = document.getElementById('redac-deconnexion');
@@ -253,22 +247,19 @@
     return;
   }
 
-  /* ---------- Photos ----------
-     Elles sont réduites dans le navigateur puis rangées dans le localStorage
-     sous forme de data-URL. Aucun fichier n'est envoyé nulle part : le site est
-     statique, il n'y a pas d'endroit où les envoyer.
+  var connecte = false;
 
-     Le redimensionnement n'est pas un détail : un JPEG de 4 Mo d'appareil photo
-     tient mal dans le quota de ~5 Mo du localStorage. En le ramenant à 1200 px
-     de large, un même cliché tombe autour de 150 Ko. */
+  /* ---------- Photos ----------
+     Elles sont réduites dans le navigateur avant l'envoi : un JPEG de 4 Mo
+     d'appareil photo tombe autour de 150 Ko à 1200 px de large, ce qui tient
+     dans la limite de 2 Mo de l'API et charge vite chez les visiteurs. */
   var PHOTOS_MAX = 3;
   var PHOTO_POIDS_MAX = 6 * 1024 * 1024;
   var PHOTO_LARGEUR_MAX = 1200;
   var QUALITE = 0.72;
 
-  /* Data-URL des photos retenues, dans l'ordre de sélection. Tant qu'aucune
-     actu n'est postée, ce tableau ne vit que dans la page : le champ
-     `<input type="file">` n'est pas lisible après un rechargement. */
+  /* Photos retenues, dans l'ordre de sélection : { blob, url }. `url` est un
+     object-URL pour la vignette, révoqué quand la photo est retirée. */
   var photosChoisies = [];
 
   function reduire(fichier) {
@@ -280,15 +271,19 @@
 
         image.onload = function () {
           var ratio = Math.min(1, PHOTO_LARGEUR_MAX / image.width);
-          var largeur = Math.round(image.width * ratio);
-          var hauteur = Math.round(image.height * ratio);
           var toile = document.createElement('canvas');
 
-          toile.width = largeur;
-          toile.height = hauteur;
-          toile.getContext('2d').drawImage(image, 0, 0, largeur, hauteur);
+          toile.width = Math.round(image.width * ratio);
+          toile.height = Math.round(image.height * ratio);
+          toile.getContext('2d').drawImage(image, 0, 0, toile.width, toile.height);
 
-          resolve(toile.toDataURL('image/jpeg', QUALITE));
+          toile.toBlob(function (blob) {
+            if (blob) {
+              resolve(blob);
+            } else {
+              reject(new Error('conversion impossible'));
+            }
+          }, 'image/jpeg', QUALITE);
         };
 
         image.onerror = function () {
@@ -306,6 +301,18 @@
     });
   }
 
+  function retirerPhoto(index) {
+    URL.revokeObjectURL(photosChoisies[index].url);
+    photosChoisies.splice(index, 1);
+    afficherVignettes();
+  }
+
+  function viderPhotos() {
+    while (photosChoisies.length) {
+      retirerPhoto(photosChoisies.length - 1);
+    }
+  }
+
   function afficherVignettes() {
     if (!listeVignettes) {
       return;
@@ -319,7 +326,7 @@
       li.className = 'redac__vignette';
 
       var img = document.createElement('img');
-      img.src = photo;
+      img.src = photo.url;
       img.alt = 'Photo jointe ' + (index + 1);
       li.appendChild(img);
 
@@ -330,8 +337,7 @@
       retirer.setAttribute('aria-label', 'Retirer la photo ' + (index + 1));
 
       retirer.addEventListener('click', function () {
-        photosChoisies.splice(index, 1);
-        afficherVignettes();
+        retirerPhoto(index);
       });
 
       li.appendChild(retirer);
@@ -352,7 +358,6 @@
       fichiers.forEach(function (fichier) {
         if (photosChoisies.length >= PHOTOS_MAX) {
           montrerErreur(erreurForm, PHOTOS_MAX + ' photos au maximum.');
-          champPhotos.value = '';
           return;
         }
 
@@ -362,14 +367,10 @@
         }
 
         /* Forme à deux arguments de `then` plutôt que `.then(…).catch(…)` :
-           le second callback reçoit le rejet. Le seul écart avec `.catch` est
-           qu'il ne rattrape pas une exception levée par le premier callback —
-           or celui-ci se limite à un push et un rendu de vignettes, il ne lève
-           rien. Le bénéfice : `catch` est un mot réservé, que certains
-           analyseurs anciens refusent après un point ; cette forme passe
-           partout et laisse le fichier vérifiable par main.checkjs. */
-        reduire(fichier).then(function (dataUrl) {
-          photosChoisies.push(dataUrl);
+           `catch` est un mot réservé que certains analyseurs anciens refusent
+           après un point ; cette forme passe partout. */
+        reduire(fichier).then(function (blob) {
+          photosChoisies.push({ blob: blob, url: URL.createObjectURL(blob) });
           afficherVignettes();
         }, function () {
           montrerErreur(erreurForm, 'Impossible de lire « ' + fichier.name + ' ».');
@@ -402,55 +403,58 @@
       ('0' + d.getDate()).slice(-2);
   }
 
-  /* ---------- Stockage ---------- */
-  /* Tout passe par un try/catch : en navigation privée, ou quand le quota est
-     atteint, localStorage lève une exception. Le site doit rester utilisable
-     dans ce cas — l'actu est alors affichée mais non conservée. */
-  function lire() {
-    try {
-      var brut = window.localStorage.getItem(CLE);
-      var donnees = brut ? JSON.parse(brut) : [];
-      return Array.isArray(donnees) ? donnees : [];
-    } catch (e) {
-      return [];
-    }
-  }
+  /* ---------- API ----------
+     Une seule fonction d'appel : la promesse est résolue avec le JSON de la
+     réponse, ou rejetée avec une Error dont le message vient du serveur et
+     peut être affiché tel quel. */
+  function appeler(methode, chemin, corps) {
+    var options = { method: methode, credentials: 'same-origin', headers: {} };
 
-  function ecrire(actus) {
-    try {
-      window.localStorage.setItem(CLE, JSON.stringify(actus));
-      return true;
-    } catch (e) {
-      /* Quota dépassé (~5 Mo) ou stockage bloqué : le cas courant avec des
-         photos. L'actu reste affichée en page, mais elle sera perdue au
-         rechargement. Le retour permet d'avertir le bureau. */
-      return false;
+    if (corps instanceof FormData) {
+      options.body = corps;
+    } else if (corps) {
+      options.headers['Content-Type'] = 'application/json';
+      options.body = JSON.stringify(corps);
     }
+
+    return fetch(API + chemin, options).then(function (reponse) {
+      if (reponse.status === 204) {
+        return null;
+      }
+
+      return reponse.json().then(function (donnees) {
+        if (!reponse.ok) {
+          throw new Error((donnees && donnees.erreur) || ('Erreur ' + reponse.status));
+        }
+        return donnees;
+      }, function () {
+        throw new Error('Réponse illisible du serveur (' + reponse.status + ').');
+      });
+    }, function () {
+      throw new Error('Serveur injoignable. Vérifiez la connexion et réessayez.');
+    });
   }
 
   /* ---------- Rendu ----------
-     Le texte saisi passe par textContent, jamais par innerHTML : un titre
+     Le texte reçu passe par textContent, jamais par innerHTML : un titre
      contenant « <script> » doit s'afficher comme du texte, pas s'exécuter.
-     C'est aussi ce qui rend l'injection impossible sur ce formulaire. */
-  function creerCarte(actu, postee) {
+     Les photos sont des URL de l'API, écrites dans un attribut `src`. */
+  function creerCarte(actu) {
     var li = document.createElement('li');
-    var article = document.createElement('article');
+    li.setAttribute('data-actu-id', actu.id);
 
-    article.className = 'actu' + (postee ? ' actu--postee' : '');
+    var article = document.createElement('article');
+    article.className = 'actu';
 
     var media = document.createElement('span');
     media.className = 'actu__media';
 
-    /* Une actu postée peut être illustrée : la première photo tient lieu de
-       visuel de carte. Le `src` est une data-URL produite par `reduire()` —
-       du contenu de l'utilisateur, mais déjà repassé par le bitmap, donc on
-       l'écrit dans un attribut `src` et jamais dans du HTML assemblé à la
-       main. */
     if (actu.photos && actu.photos.length) {
       var image = document.createElement('img');
       image.className = 'actu__photo';
       image.src = actu.photos[0];
       image.alt = 'Photo de l\'actualité : ' + actu.titre;
+      image.loading = 'lazy';
       media.appendChild(image);
     } else {
       media.setAttribute('role', 'img');
@@ -461,13 +465,6 @@
 
     var corps = document.createElement('div');
     corps.className = 'actu__body';
-
-    if (postee) {
-      var mention = document.createElement('p');
-      mention.className = 'actu__postee';
-      mention.textContent = 'Postée depuis ce navigateur';
-      corps.appendChild(mention);
-    }
 
     var meta = document.createElement('p');
     meta.className = 'actu__meta';
@@ -495,49 +492,13 @@
     corps.appendChild(texte);
 
     /* Les photos 2 et 3, celles qui n'ont pas tenu lieu de visuel de carte,
-       sont rappelées en bandeau sous le paragraphe. Sans elles, elles seraient
-       invisibles alors qu'elles sont bien enregistrées. */
+       sont rappelées en bandeau sous le paragraphe. */
     if (actu.photos && actu.photos.length > 1) {
-      var autres = document.createElement('ul');
-      autres.className = 'actu__galerie';
-
-      actu.photos.slice(1).forEach(function (photo, index) {
-        var liPhoto = document.createElement('li');
-
-        var vignette = document.createElement('img');
-        vignette.src = photo;
-        vignette.alt = 'Photo ' + (index + 2) + ' de l\'actualité : ' + actu.titre;
-        vignette.loading = 'lazy';
-        liPhoto.appendChild(vignette);
-
-        autres.appendChild(liPhoto);
-      });
-
-      corps.appendChild(autres);
+      corps.appendChild(creerGalerie(actu));
     }
 
-    if (postee) {
-      var pied = document.createElement('p');
-      pied.className = 'actu__pied';
-
-      var supprimer = document.createElement('button');
-      supprimer.type = 'button';
-      supprimer.className = 'actu__supprimer';
-      supprimer.textContent = 'Supprimer';
-
-      supprimer.addEventListener('click', function () {
-        ecrire(lire().filter(function (autre) {
-          return autre.id !== actu.id;
-        }));
-
-        var liASupprimer = article.parentNode;
-        if (liASupprimer) {
-          liASupprimer.remove();
-        }
-      });
-
-      pied.appendChild(supprimer);
-      corps.appendChild(pied);
+    if (connecte) {
+      corps.appendChild(creerPiedSuppression(actu, li));
     }
 
     article.appendChild(corps);
@@ -546,14 +507,69 @@
     return li;
   }
 
-  /* Redessine la grille : actus écrites d'abord, les plus récentes en tête car
-     elles sont enregistrées en tête du tableau, puis le HTML figé. Le contenu
-     statique du site n'est jamais modifié. */
-  function afficher() {
-    var premier = grille.firstElementChild;
+  function creerGalerie(actu) {
+    var autres = document.createElement('ul');
+    autres.className = 'actu__galerie';
 
-    lire().forEach(function (actu) {
-      grille.insertBefore(creerCarte(actu, true), premier);
+    actu.photos.slice(1).forEach(function (photo, index) {
+      var liPhoto = document.createElement('li');
+
+      var vignette = document.createElement('img');
+      vignette.src = photo;
+      vignette.alt = 'Photo ' + (index + 2) + ' de l\'actualité : ' + actu.titre;
+      vignette.loading = 'lazy';
+      liPhoto.appendChild(vignette);
+
+      autres.appendChild(liPhoto);
+    });
+
+    return autres;
+  }
+
+  function creerPiedSuppression(actu, li) {
+    var pied = document.createElement('p');
+    pied.className = 'actu__pied';
+
+    var supprimer = document.createElement('button');
+    supprimer.type = 'button';
+    supprimer.className = 'actu__supprimer';
+    supprimer.textContent = 'Supprimer';
+
+    supprimer.addEventListener('click', function () {
+      if (!window.confirm('Supprimer « ' + actu.titre + ' » ?')) {
+        return;
+      }
+
+      supprimer.disabled = true;
+
+      appeler('DELETE', '/actus/' + actu.id).then(function () {
+        li.remove();
+      }, function (erreur) {
+        supprimer.disabled = false;
+        montrerErreur(erreurForm, erreur.message);
+      });
+    });
+
+    pied.appendChild(supprimer);
+
+    return pied;
+  }
+
+  /* Redessine les actus du serveur devant les cartes écrites en dur, les plus
+     récentes en tête. Les cartes du HTML ne sont jamais touchées. */
+  function afficher() {
+    appeler('GET', '/actus').then(function (actus) {
+      grille.querySelectorAll('[data-actu-id]').forEach(function (ancienne) {
+        ancienne.remove();
+      });
+
+      var premier = grille.firstElementChild;
+
+      actus.forEach(function (actu) {
+        grille.insertBefore(creerCarte(actu), premier);
+      });
+    }, function () {
+      /* Liste indisponible : la page reste lisible avec ses cartes statiques. */
     });
   }
 
@@ -571,41 +587,55 @@
     }
   }
 
+  /* ---------- Session ---------- */
   function ouvrir() {
+    connecte = true;
     formLogin.hidden = true;
     formActu.hidden = false;
-    document.getElementById('redac-categorie').focus();
+    champCode.value = '';
+    afficher();
   }
 
   function fermer() {
+    connecte = false;
     formActu.hidden = true;
     formLogin.hidden = false;
     masquerErreur(erreurForm);
     formActu.reset();
-    photosChoisies = [];
-    afficherVignettes();
-    code.value = '';
-    code.focus();
+    champDate.value = aujourdhui();
+    viderPhotos();
+    afficher();
   }
 
   formLogin.addEventListener('submit', function (event) {
     event.preventDefault();
+    masquerErreur(erreurLogin);
 
-    if (code.value.trim() === CODE) {
-      masquerErreur(erreurLogin);
-      ouvrir();
+    var email = champEmail.value.trim();
+    var code = champCode.value;
+
+    if (!email || !code) {
+      montrerErreur(erreurLogin, 'E-mail et code requis.');
       return;
     }
 
-    montrerErreur(erreurLogin, 'Login incorrect.');
-    code.select();
+    appeler('POST', '/login', { email: email, code: code }).then(function () {
+      ouvrir();
+      document.getElementById('redac-categorie').focus();
+    }, function (erreur) {
+      montrerErreur(erreurLogin, erreur.message);
+      champCode.select();
+    });
   });
 
-  deconnexion.addEventListener('click', fermer);
+  deconnexion.addEventListener('click', function () {
+    appeler('POST', '/logout').then(fermer, fermer);
+  });
 
   /* ---------- Poster ----------
      `novalidate` neutralise la validation native : le message d'erreur est
-     alors dans la langue du site et annoncé par le role="alert". */
+     alors dans la langue du site et annoncé par le role="alert". Le serveur
+     refait les mêmes contrôles, ceux-ci n'évitent qu'un aller-retour. */
   formActu.addEventListener('submit', function (event) {
     event.preventDefault();
     masquerErreur(erreurForm);
@@ -625,36 +655,36 @@
       return;
     }
 
-    var actus = lire();
-    var nouvelle = {
-      id: String(Date.now()),
-      categorie: categorie,
-      date: date,
-      titre: titre,
-      texte: texte,
-      photos: photosChoisies.slice()
-    };
+    var donnees = new FormData();
+    donnees.append('categorie', categorie);
+    donnees.append('date', date);
+    donnees.append('titre', titre);
+    donnees.append('texte', texte);
+    photosChoisies.forEach(function (photo, index) {
+      donnees.append('photos', photo.blob, 'photo-' + (index + 1) + '.jpg');
+    });
 
-    actus.unshift(nouvelle);
-    var enregistre = ecrire(actus);
+    var bouton = formActu.querySelector('button[type="submit"]');
+    bouton.disabled = true;
 
-    /* Première carte de la grille : l'actualité vient d'être postée. */
-    grille.insertBefore(creerCarte(nouvelle, true), grille.firstElementChild);
+    appeler('POST', '/actus', donnees).then(function (actu) {
+      bouton.disabled = false;
+      grille.insertBefore(creerCarte(actu), grille.firstElementChild);
 
-    formActu.reset();
-    champDate.value = aujourdhui();
-    photosChoisies = [];
-    afficherVignettes();
-    champDate.focus();
-
-    if (!enregistre) {
-      montrerErreur(erreurForm,
-        'Actualité affichée, mais non enregistrée : espace de stockage plein. ' +
-        'Elle disparaîtra au rechargement — retirez des photos ou effacez d\'anciennes actus.');
-    }
+      formActu.reset();
+      champDate.value = aujourdhui();
+      viderPhotos();
+      champDate.focus();
+    }, function (erreur) {
+      bouton.disabled = false;
+      montrerErreur(erreurForm, erreur.message);
+    });
   });
 
-  /* ---------- Démarrage ---------- */
+  /* ---------- Démarrage ----------
+     /api/me dit si le cookie de session est encore valide : le panneau
+     s'ouvre alors directement, sans redemander le code. */
   champDate.value = aujourdhui();
-  afficher();
+
+  appeler('GET', '/me').then(ouvrir, afficher);
 })();
