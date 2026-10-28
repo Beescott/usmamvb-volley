@@ -8,5 +8,8 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  // Workers Builds runs `wrangler preview` for non-production branches;
+  // the command refuses to run without this block, even empty.
+  "previews": {}
 }
