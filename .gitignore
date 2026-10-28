@@ -13,3 +13,4 @@ Desktop.ini
 # Archives locales et caches, hors dépôt
 .tmp/
 .vs/
+.wrangler/

@@ -1,0 +1,15 @@
+# Files in the repo that are not part of the published site.
+# Paths are relative to the assets directory (the repo root).
+.git
+.gitattributes
+.gitignore
+.assetsignore
+.cmp
+.tmp
+.vs
+.wrangler
+.claude
+docs
+node_modules
+*.md
+wrangler.jsonc
