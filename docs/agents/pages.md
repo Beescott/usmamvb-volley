@@ -35,6 +35,11 @@ for f in *.html; do echo "== $f"; diff <(sed -n '/<header/,/<\/header>/p' index.
 Only tolerated difference: the current page's menu link carries
 `class="nav__link is-active"` and `aria-current="page"`.
 
+Internal links are extensionless: `href="gymnases"`, never `gymnases.html`,
+and `href="./"` for the home page. The Workers asset server maps `/gymnases`
+to `gymnases.html` and redirects `/gymnases.html` to `/gymnases` (307), so a
+`.html` link costs a redirect on every click.
+
 Menu lists: `ul.nav__list` in the header, `ul.footer__links` in the footer.
 Adding a page means adding an entry to both lists, in all 8 files.
 

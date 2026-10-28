@@ -3,10 +3,13 @@
 ## Local preview
 
 ```bash
-python3 -m http.server 8765
+npx wrangler dev
 ```
-Then open `http://127.0.0.1:8765/index.html`. Opening the files directly also
-works (no build), but maps and fonts behave more faithfully over HTTP.
+Then open `http://localhost:8787/`. This runs the same static-asset server as
+production (`wrangler.jsonc`): extensionless URLs such as `/gymnases` resolve
+to `gymnases.html`, and `.assetsignore` applies. A plain file server
+(`python3 -m http.server`) does not resolve extensionless links, so internal
+navigation 404s there.
 
 Checks before a pull request:
 ```bash
@@ -18,11 +21,15 @@ Then open the changed pages at phone width (375 px) and desktop width.
 
 | | Where | Status |
 | --- | --- | --- |
-| Current | GitHub Pages from `main`, `https://beescott.github.io/usmamvb-volley/` | live |
-| Target | Cloudflare Pages connected to the GitHub repo, auto-deploy on push to `main` | to set up |
-| Domain | `usmamvb.fr` registered at OVH, DNS delegated to Cloudflare | to buy |
+| Current | Cloudflare Worker `usmamvb-volley` (static assets), built from `main` by Workers Builds, `https://usmamvb-volley.usmamvb.workers.dev/` | live |
+| Previous | GitHub Pages from `main`, `https://beescott.github.io/usmamvb-volley/` | to disable once the domain is live |
+| Domain | `usmamvb.fr` registered at OVH, DNS delegated to Cloudflare | bought, delegation to do |
 | Email | `contact@usmamvb.fr` on OVH's free mailbox included with the domain | to set up |
-| Back-end | Cloudflare Workers + D1 + R2 + Access, see `news.md` | planned |
+| Back-end | same Worker + D1 + R2 + Access, see `news.md` | planned |
+
+The Cloudflare account is `usmamvb@gmail.com`. Worker config lives in
+`wrangler.jsonc`; `.assetsignore` lists what the checkout contains but the
+site must not serve (`.git`, docs, tools).
 
 Old domain `usmvb.asso.fr` (previous site): redirect it to the new site once
 the club confirms it still controls it.
@@ -30,7 +37,7 @@ the club confirms it still controls it.
 ### DNS steps (once)
 1. In the OVH customer area, replace the domain's name servers with the two
    Cloudflare gives when the zone is added.
-2. In Cloudflare Pages, add the custom domain `usmamvb.fr` and `www.usmamvb.fr`.
+2. On the Worker, Settings → Domains & Routes, add `usmamvb.fr` and `www.usmamvb.fr`.
 3. Keep the OVH MX records in the Cloudflare zone so the mailbox keeps working.
 4. Propagation: 1 to 24 hours.
 
@@ -54,5 +61,5 @@ CLI (`gh`, `wrangler`) on the developer's machine.
 - `main` is what is published. Never push to it directly.
 - One branch per topic (`chore/…`, `content/…`, `feat/…`), pull request, merge.
 - Commit messages in English, imperative, one topic per commit.
-- `.tmp/`, `.vs/` are ignored; `.cmp/` holds comparison scripts from a Windows
-  setup and is not used by the site.
+- `.tmp/`, `.vs/`, `.wrangler/` are ignored; `.cmp/` holds comparison scripts
+  from a Windows setup and is not used by the site.
