@@ -33,7 +33,7 @@ coach names per team, real dates of the news items.
 | Gyms preview | `OÙ L'ON JOUE` → `.venues__grid` |
 | Email, phone, socials, season in © | `FOOTER` (all 8 pages, see `pages.md`) |
 
-Facebook and Instagram links in the footer still point to `#`.
+Footer socials: Facebook group `facebook.com/groups/1420983715035659`, Instagram `instagram.com/usmavb95`.
 
 ### `adhesion.html`
 | To change | Section |
